@@ -41,8 +41,6 @@ public class GuestLookupFrame extends javax.swing.JFrame {
         AddGuestButton = new javax.swing.JButton();
         ResultsLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         FirstNameLabel.setText("First Name:");
 
         LastNameLabel.setText("Last Name:");
