@@ -108,7 +108,7 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CreateNewGuestButton.setText("Create New Guest");
         CreateNewGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateNewGuestButtonActionPerformed(evt);
+                //CreateNewGuestButtonActionPerformed(evt);
             }
         });
 
