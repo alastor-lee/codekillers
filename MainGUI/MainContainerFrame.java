@@ -579,7 +579,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
 
     private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
-        frontdeskgui.GuestSearchFrame GuestSearchFrame = new frontdeskgui.GuestSearchFrame(); //Create a new instance of the frame
+        floorlayoutgui.GuestSearchFrame GuestSearchFrame = new floorlayoutgui.GuestSearchFrame(); //Create a new instance of the frame
         GuestSearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
@@ -619,7 +619,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
     private void RoomDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomDataButtonActionPerformed
-        frontdeskgui.RoomDataFrame Room1 = new frontdeskgui.RoomDataFrame(); // Create a new instance of the frame
+        floorlayoutgui.RoomDataFrame Room1 = new floorlayoutgui.RoomDataFrame(); // Create a new instance of the frame
         Room1.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_RoomDataButtonActionPerformed
 
@@ -631,12 +631,12 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FloorSelectorItemStateChanged
 
     private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
-        frontdeskgui.GuestSearchFrame GuestSearchFrame = new frontdeskgui.GuestSearchFrame(); //Create a new instance of the frame
+        floorlayoutgui.GuestSearchFrame GuestSearchFrame = new floorlayoutgui.GuestSearchFrame(); //Create a new instance of the frame
         GuestSearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
     private void NewReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewReservationButtonActionPerformed
-        frontdeskgui.NewReservationFrame NewReservationFrame = new frontdeskgui.NewReservationFrame(); //Create a new instance of the frame
+        floorlayoutgui.NewReservationFrame NewReservationFrame = new floorlayoutgui.NewReservationFrame(); //Create a new instance of the frame
         NewReservationFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewReservationButtonActionPerformed
 
