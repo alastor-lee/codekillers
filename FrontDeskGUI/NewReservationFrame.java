@@ -254,8 +254,8 @@ public class NewReservationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_TypeRoomComboBoxActionPerformed
 
     private void CreateNewGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewGuestButtonActionPerformed
-        CreateNewGuestFrame CreateNewGuest = new CreateNewGuestFrame(); //Create a new instance of the frame
-        CreateNewGuest.setVisible(true); //Make the frame visible
+        //CreateNewGuestFrame CreateNewGuest = new CreateNewGuestFrame(); //Create a new instance of the frame
+        //CreateNewGuest.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CreateNewGuestButtonActionPerformed
 
     private void GuestLookupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestLookupButtonActionPerformed
