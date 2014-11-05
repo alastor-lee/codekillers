@@ -33,17 +33,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
         TabbedPane = new javax.swing.JTabbedPane();
         FrontDeskTab = new javax.swing.JPanel();
         FrontDeskPanel = new javax.swing.JPanel();
-        NewReservationButton = new javax.swing.JButton();
-        GuestSearchButton = new javax.swing.JButton();
-        FloorSelector = new javax.swing.JComboBox();
-        MainPanel = new javax.swing.JPanel();
-        Floor1Panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        RoomDataButton = new javax.swing.JButton();
-        Floor2Panel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        Floor3Panel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        FrontDeskSubTab = new javax.swing.JTabbedPane();
+        ReservationTab = new javax.swing.JTabbedPane();
+        FloorPlanTab = new javax.swing.JTabbedPane();
         RestaurantHostTab = new javax.swing.JPanel();
         RestaurantHostPanel = new javax.swing.JPanel();
         RestaurantHostCurrentOrdersPanel = new javax.swing.JPanel();
@@ -84,134 +76,24 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        NewReservationButton.setText("New Reservation");
-        NewReservationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewReservationButtonActionPerformed(evt);
-            }
-        });
+        FrontDeskSubTab.addTab("Reservation", ReservationTab);
+        ReservationTab.getAccessibleContext().setAccessibleName("ReservationTab");
 
-        GuestSearchButton.setText("Guest Search");
-        GuestSearchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuestSearchButtonActionPerformed(evt);
-            }
-        });
-
-        FloorSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Floor 1", "Floor 2", "Floor 3" }));
-        FloorSelector.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                FloorSelectorItemStateChanged(evt);
-            }
-        });
-
-        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        MainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        MainPanel.setLayout(new java.awt.CardLayout());
-
-        jLabel1.setText("Floor 1");
-
-        RoomDataButton.setText("Room Data");
-        RoomDataButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RoomDataButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Floor1PanelLayout = new javax.swing.GroupLayout(Floor1Panel);
-        Floor1Panel.setLayout(Floor1PanelLayout);
-        Floor1PanelLayout.setHorizontalGroup(
-            Floor1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor1PanelLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(RoomDataButton)
-                .addGap(137, 137, 137)
-                .addComponent(jLabel1)
-                .addContainerGap(338, Short.MAX_VALUE))
-        );
-        Floor1PanelLayout.setVerticalGroup(
-            Floor1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor1PanelLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(Floor1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(RoomDataButton))
-                .addContainerGap(299, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(Floor1Panel, "card2");
-
-        jLabel2.setText("Floor2");
-
-        javax.swing.GroupLayout Floor2PanelLayout = new javax.swing.GroupLayout(Floor2Panel);
-        Floor2Panel.setLayout(Floor2PanelLayout);
-        Floor2PanelLayout.setHorizontalGroup(
-            Floor2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Floor2PanelLayout.createSequentialGroup()
-                .addContainerGap(415, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(245, 245, 245))
-        );
-        Floor2PanelLayout.setVerticalGroup(
-            Floor2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor2PanelLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel2)
-                .addContainerGap(231, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(Floor2Panel, "card3");
-
-        jLabel3.setText("Floor3");
-
-        javax.swing.GroupLayout Floor3PanelLayout = new javax.swing.GroupLayout(Floor3Panel);
-        Floor3Panel.setLayout(Floor3PanelLayout);
-        Floor3PanelLayout.setHorizontalGroup(
-            Floor3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor3PanelLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(jLabel3)
-                .addContainerGap(360, Short.MAX_VALUE))
-        );
-        Floor3PanelLayout.setVerticalGroup(
-            Floor3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor3PanelLayout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(jLabel3)
-                .addContainerGap(234, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(Floor3Panel, "card4");
+        FrontDeskSubTab.addTab("Floor Plan", FloorPlanTab);
+        FloorPlanTab.getAccessibleContext().setAccessibleName("FloorPlanTab");
 
         javax.swing.GroupLayout FrontDeskPanelLayout = new javax.swing.GroupLayout(FrontDeskPanel);
         FrontDeskPanel.setLayout(FrontDeskPanelLayout);
         FrontDeskPanelLayout.setHorizontalGroup(
             FrontDeskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrontDeskPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(FrontDeskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(FrontDeskPanelLayout.createSequentialGroup()
-                        .addComponent(FloorSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NewReservationButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GuestSearchButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(FrontDeskSubTab, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
         );
         FrontDeskPanelLayout.setVerticalGroup(
             FrontDeskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrontDeskPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(FrontDeskPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FloorSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NewReservationButton)
-                    .addComponent(GuestSearchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(FrontDeskSubTab, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
         );
+
+        FrontDeskSubTab.getAccessibleContext().setAccessibleName("FrontDeskSubTab");
 
         javax.swing.GroupLayout FrontDeskTabLayout = new javax.swing.GroupLayout(FrontDeskTab);
         FrontDeskTab.setLayout(FrontDeskTabLayout);
@@ -623,23 +505,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FloorSelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FloorSelectorItemStateChanged
-        /*
-        @Pre
-        Display the floor layout for the floor selected.
-        */
-    }//GEN-LAST:event_FloorSelectorItemStateChanged
-
-    private void NewReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewReservationButtonActionPerformed
-        FrontDeskGUI.NewReservationFrame NewReservationFrame = new FrontDeskGUI.NewReservationFrame(); //Create a new instance of the frame
-        NewReservationFrame.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_NewReservationButtonActionPerformed
-
-    private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
-        FrontDeskGUI.GuestSearchFrame GuestSearchFrame = new FrontDeskGUI.GuestSearchFrame(); //Create a new instance of the frame
-        GuestSearchFrame.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_GuestSearchButtonActionPerformed
-
     private void NewOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewOrderButtonActionPerformed
         RestaurantHostGUI.OrderFrame OrderFrame = new RestaurantHostGUI.OrderFrame(); //Create a new instance of the frame
         OrderFrame.setVisible(true); //Make the frame visible
@@ -692,11 +557,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         // Do stuff here.
     }//GEN-LAST:event_CheckOutButtonActionPerformed
 
-    private void RoomDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomDataButtonActionPerformed
-       FrontDeskGUI.RoomDataFrame Room1 = new FrontDeskGUI.RoomDataFrame(); // Create a new instance of the frame
-       Room1.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_RoomDataButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -744,35 +604,27 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel CurrentOrdersPanel;
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
-    private javax.swing.JPanel Floor1Panel;
-    private javax.swing.JPanel Floor2Panel;
-    private javax.swing.JPanel Floor3Panel;
-    private javax.swing.JComboBox FloorSelector;
+    private javax.swing.JTabbedPane FloorPlanTab;
     private javax.swing.JPanel FrontDeskPanel;
+    private javax.swing.JTabbedPane FrontDeskSubTab;
     private javax.swing.JPanel FrontDeskTab;
-    private javax.swing.JButton GuestSearchButton;
     private javax.swing.JPanel KitchenStaffPanel;
     private javax.swing.JPanel KitchenStaffTab;
-    private javax.swing.JPanel MainPanel;
     private javax.swing.JButton NewOrderButton;
-    private javax.swing.JButton NewReservationButton;
     private javax.swing.JButton OrderHistoryButton;
     private javax.swing.JButton ProcessPaymentButton;
     private javax.swing.JButton ReadyForPickupButton;
     private javax.swing.JButton RemoveOrderButton;
+    private javax.swing.JTabbedPane ReservationTab;
     private javax.swing.JPanel RestaurantHostCurrentOrdersPanel;
     private javax.swing.JPanel RestaurantHostPanel;
     private javax.swing.JPanel RestaurantHostTab;
-    private javax.swing.JButton RoomDataButton;
     private javax.swing.JTabbedPane TabbedPane;
     private javax.swing.JButton ViewInventoryButton;
     private javax.swing.JButton ViewMenuButton;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
