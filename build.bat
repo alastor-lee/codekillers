@@ -6,12 +6,13 @@ IF NOT EXIST %HOMEPATH%\bin (
 )
 
 :COMPILES TO THE USER BIN FOLDER
-javac -d %HOMEPATH%\bin -cp .\FrontDeskGUI\*.java .\MainGUI\*.java^
- .\RestaurantHostGUI\*.java .\Engine\*.java
+javac -d %HOMEPATH%\bin -cp .\floorlayoutgui\*.java .\maingui\*.java^
+ .\kitchengui\*.java .\engine\*.java 
+ 	:.\database\*java
 ECHO compiled code
 
 :TYPE y AS COMMAND LINE ARGUMENT TO RUN BUILD
 IF "%1"=="y" (
 	ECHO running program
-	java -cp %HOMEPATH%\bin Engine.HotelManagementSystem
+	java -cp %HOMEPATH%\bin engine.HotelManagementSystem
 )

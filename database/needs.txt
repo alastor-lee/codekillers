@@ -1,0 +1,10 @@
+Created: 11/5/2014
+
+Needed java classes for the database package
+	- GuestDB
+	- UserDB
+	- ReservationDB
+	- RoomDB(access through the calendar primarily)
+	- InventoryDB
+	- OrderHistoryDB
+Note: each database will contain it's own add, remove, search, toString etc.
