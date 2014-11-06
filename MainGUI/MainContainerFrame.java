@@ -124,7 +124,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         MainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         MainPanel.setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("Floor 1");
+        //jLabel1.setText("Floor 1");
 
         RoomDataButton.setText("Room Data");
         RoomDataButton.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addGap(97, 97, 97)
                 .addComponent(RoomDataButton)
                 .addGap(137, 137, 137)
-                .addComponent(jLabel1)
+                //.addComponent(jLabel1)
                 .addContainerGap(479, Short.MAX_VALUE))
         );
         Floor1PanelLayout.setVerticalGroup(
@@ -156,7 +156,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         MainPanel.add(Floor1Panel, "card2");
 
-        jLabel2.setText("Floor2");
+        //jLabel2.setText("Floor2");
 
         javax.swing.GroupLayout Floor2PanelLayout = new javax.swing.GroupLayout(Floor2Panel);
         Floor2Panel.setLayout(Floor2PanelLayout);
@@ -177,7 +177,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         MainPanel.add(Floor2Panel, "card3");
 
-        jLabel3.setText("Floor3");
+        //jLabel3.setText("Floor3");
 
         javax.swing.GroupLayout Floor3PanelLayout = new javax.swing.GroupLayout(Floor3Panel);
         Floor3Panel.setLayout(Floor3PanelLayout);
@@ -192,7 +192,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             Floor3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Floor3PanelLayout.createSequentialGroup()
                 .addGap(152, 152, 152)
-                .addComponent(jLabel3)
+                //.addComponent(jLabel3)
                 .addContainerGap(360, Short.MAX_VALUE))
         );
 
@@ -209,7 +209,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addGroup(floorLayoutPanelLayout.createSequentialGroup()
                         .addComponent(FloorSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NewReservationButton)
+                        //.addComponent(NewReservationButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(GuestSearchButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -221,7 +221,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(floorLayoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FloorSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NewReservationButton)
+                    //.addComponent(NewReservationButton)
                     .addComponent(GuestSearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
