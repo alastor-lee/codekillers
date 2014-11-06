@@ -34,6 +34,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
         calendarTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         calendarTable = new javax.swing.JTable();
+        newReservationButton = new javax.swing.JButton();
+        floorLayoutTab = new javax.swing.JPanel();
+        jComboBox3 = new javax.swing.JComboBox();
         kitchenTab = new javax.swing.JPanel();
         kitchenPanel = new javax.swing.JPanel();
         CurrentOrdersLabel1 = new javax.swing.JLabel();
@@ -88,24 +91,59 @@ public class MainContainerFrame extends javax.swing.JFrame {
             calendarTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
         }
 
+        newReservationButton.setText("New Reservation");
+        newReservationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newReservationButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout calendarTabLayout = new javax.swing.GroupLayout(calendarTab);
         calendarTab.setLayout(calendarTabLayout);
         calendarTabLayout.setHorizontalGroup(
             calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(calendarTabLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(calendarTabLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(calendarTabLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(newReservationButton)))
                 .addContainerGap(342, Short.MAX_VALUE))
         );
         calendarTabLayout.setVerticalGroup(
             calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(calendarTabLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addContainerGap()
+                .addComponent(newReservationButton)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Calendar", calendarTab);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout floorLayoutTabLayout = new javax.swing.GroupLayout(floorLayoutTab);
+        floorLayoutTab.setLayout(floorLayoutTabLayout);
+        floorLayoutTabLayout.setHorizontalGroup(
+            floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(floorLayoutTabLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(772, Short.MAX_VALUE))
+        );
+        floorLayoutTabLayout.setVerticalGroup(
+            floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(floorLayoutTabLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(533, Short.MAX_VALUE))
+        );
+
+        mainFrame.addTab("Floor Layout", floorLayoutTab);
 
         CurrentOrdersLabel1.setFont(CurrentOrdersLabel1.getFont().deriveFont(CurrentOrdersLabel1.getFont().getSize()+6f));
         CurrentOrdersLabel1.setText("Current Orders");
@@ -511,6 +549,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_orderPickupButtonActionPerformed
 
+    private void newReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReservationButtonActionPerformed
+        floorlayoutgui.NewReservationFrame NewReservation = new floorlayoutgui.NewReservationFrame();
+        NewReservation.setVisible(true);
+    }//GEN-LAST:event_newReservationButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -564,9 +607,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JTable calendarTable;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
+    private javax.swing.JPanel floorLayoutTab;
     private javax.swing.JTextField guestIDField;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -580,6 +625,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel kitchenPanel;
     private javax.swing.JPanel kitchenTab;
     private javax.swing.JTabbedPane mainFrame;
+    private javax.swing.JButton newReservationButton;
     private javax.swing.JButton orderPickupButton;
     private javax.swing.JLabel paymentInfoLabel;
     private javax.swing.JPanel searchTab;

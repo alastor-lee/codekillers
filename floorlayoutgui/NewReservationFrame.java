@@ -56,6 +56,12 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CheckOutSpinner = new javax.swing.JSpinner();
         CheckDateAvailabilityButton = new javax.swing.JButton();
 
+        GuestIDField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuestIDFieldActionPerformed(evt);
+            }
+        });
+
         NumberPersonsLabel.setText("Number of Persons:");
 
         GuestIDLabel.setText("Guest ID:");
@@ -275,6 +281,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
     private void CheckDateAvailabilityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDateAvailabilityButtonActionPerformed
         // Do stuff here
     }//GEN-LAST:event_CheckDateAvailabilityButtonActionPerformed
+
+    private void GuestIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestIDFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GuestIDFieldActionPerformed
 
     /**
      * @param args the command line arguments
