@@ -32,6 +32,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         mainFrame = new javax.swing.JTabbedPane();
         calendarTab = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        calendarTable = new javax.swing.JTable();
         floorLayoutTab = new javax.swing.JPanel();
         floorLayoutPanel = new javax.swing.JPanel();
         NewReservationButton = new javax.swing.JButton();
@@ -61,9 +63,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
         orderPickupButton = new javax.swing.JButton();
         checkoutTab = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        guestIDField = new javax.swing.JTextField();
         CheckoutGuestSearchButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        paymentInfoLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -80,15 +82,40 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        calendarTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(calendarTable);
+        if (calendarTable.getColumnModel().getColumnCount() > 0) {
+            calendarTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+            calendarTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+            calendarTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+            calendarTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        }
+
         javax.swing.GroupLayout calendarTabLayout = new javax.swing.GroupLayout(calendarTab);
         calendarTab.setLayout(calendarTabLayout);
         calendarTabLayout.setHorizontalGroup(
             calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 874, Short.MAX_VALUE)
+            .addGroup(calendarTabLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         calendarTabLayout.setVerticalGroup(
             calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addGroup(calendarTabLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Calendar", calendarTab);
@@ -414,7 +441,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Guest ID:");
 
-        jTextField1.setText("jTextField1");
+        guestIDField.setText("jTextField1");
 
         CheckoutGuestSearchButton.setText("Guest Search");
         CheckoutGuestSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -423,7 +450,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Payment Information");
+        paymentInfoLabel.setText("Payment Information");
 
         jLabel6.setText("CC #:");
 
@@ -471,10 +498,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
                             .addGroup(checkoutTabLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CheckoutGuestSearchButton))
-                            .addComponent(jLabel5)
+                            .addComponent(paymentInfoLabel)
                             .addGroup(checkoutTabLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -510,10 +537,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CheckoutGuestSearchButton))
                 .addGap(34, 34, 34)
-                .addComponent(jLabel5)
+                .addComponent(paymentInfoLabel)
                 .addGap(20, 20, 20)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -702,10 +729,12 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel activeOrdersLabel;
     private javax.swing.JPanel activeOrdersPanel;
     private javax.swing.JPanel calendarTab;
+    private javax.swing.JTable calendarTable;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
     private javax.swing.JPanel floorLayoutPanel;
     private javax.swing.JPanel floorLayoutTab;
+    private javax.swing.JTextField guestIDField;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -713,12 +742,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -726,6 +754,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel kitchenTab;
     private javax.swing.JTabbedPane mainFrame;
     private javax.swing.JButton orderPickupButton;
+    private javax.swing.JLabel paymentInfoLabel;
     private javax.swing.JPanel searchTab;
     // End of variables declaration//GEN-END:variables
 }
