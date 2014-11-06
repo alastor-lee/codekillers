@@ -30,8 +30,16 @@ public class MainContainerFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
-        TabbedPane = new javax.swing.JTabbedPane();
+        mainFrame = new javax.swing.JTabbedPane();
+        calendarTab = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        calendarTable = new javax.swing.JTable();
+        kitchenTab = new javax.swing.JPanel();
+        kitchenPanel = new javax.swing.JPanel();
+        CurrentOrdersLabel1 = new javax.swing.JLabel();
+        currentOrdersPanel = new javax.swing.JPanel();
+        activeOrdersLabel = new javax.swing.JLabel();
+        activeOrdersPanel = new javax.swing.JPanel();
         NewOrderButton = new javax.swing.JButton();
         OrderHistoryButton = new javax.swing.JButton();
         EditOrderButton = new javax.swing.JButton();
@@ -98,148 +106,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         );
 
         mainFrame.addTab("Calendar", calendarTab);
-
-        NewReservationButton.setText("New Reservation");
-        NewReservationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewReservationButtonActionPerformed(evt);
-            }
-        });
-
-        GuestSearchButton.setText("Guest Search");
-        GuestSearchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuestSearchButtonActionPerformed(evt);
-            }
-        });
-
-        FloorSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Floor 1", "Floor 2", "Floor 3" }));
-        FloorSelector.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                FloorSelectorItemStateChanged(evt);
-            }
-        });
-
-        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        MainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        MainPanel.setLayout(new java.awt.CardLayout());
-
-        //jLabel1.setText("Floor 1");
-
-        RoomDataButton.setText("Room Data");
-        RoomDataButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RoomDataButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Floor1PanelLayout = new javax.swing.GroupLayout(Floor1Panel);
-        Floor1Panel.setLayout(Floor1PanelLayout);
-        Floor1PanelLayout.setHorizontalGroup(
-            Floor1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor1PanelLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(RoomDataButton)
-                .addGap(137, 137, 137)
-                //.addComponent(jLabel1)
-                .addContainerGap(479, Short.MAX_VALUE))
-        );
-        Floor1PanelLayout.setVerticalGroup(
-            Floor1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor1PanelLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(Floor1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(RoomDataButton))
-                .addContainerGap(425, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(Floor1Panel, "card2");
-
-        //jLabel2.setText("Floor2");
-
-        javax.swing.GroupLayout Floor2PanelLayout = new javax.swing.GroupLayout(Floor2Panel);
-        Floor2Panel.setLayout(Floor2PanelLayout);
-        Floor2PanelLayout.setHorizontalGroup(
-            Floor2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Floor2PanelLayout.createSequentialGroup()
-                .addContainerGap(567, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(245, 245, 245))
-        );
-        Floor2PanelLayout.setVerticalGroup(
-            Floor2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor2PanelLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel2)
-                .addContainerGap(357, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(Floor2Panel, "card3");
-
-        //jLabel3.setText("Floor3");
-
-        javax.swing.GroupLayout Floor3PanelLayout = new javax.swing.GroupLayout(Floor3Panel);
-        Floor3Panel.setLayout(Floor3PanelLayout);
-        Floor3PanelLayout.setHorizontalGroup(
-            Floor3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor3PanelLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(jLabel3)
-                .addContainerGap(512, Short.MAX_VALUE))
-        );
-        Floor3PanelLayout.setVerticalGroup(
-            Floor3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Floor3PanelLayout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                //.addComponent(jLabel3)
-                .addContainerGap(360, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(Floor3Panel, "card4");
-
-        javax.swing.GroupLayout floorLayoutPanelLayout = new javax.swing.GroupLayout(floorLayoutPanel);
-        floorLayoutPanel.setLayout(floorLayoutPanelLayout);
-        floorLayoutPanelLayout.setHorizontalGroup(
-            floorLayoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(floorLayoutPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(floorLayoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(floorLayoutPanelLayout.createSequentialGroup()
-                        .addComponent(FloorSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        //.addComponent(NewReservationButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GuestSearchButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        floorLayoutPanelLayout.setVerticalGroup(
-            floorLayoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(floorLayoutPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(floorLayoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FloorSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    //.addComponent(NewReservationButton)
-                    .addComponent(GuestSearchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout floorLayoutTabLayout = new javax.swing.GroupLayout(floorLayoutTab);
-        floorLayoutTab.setLayout(floorLayoutTabLayout);
-        floorLayoutTabLayout.setHorizontalGroup(
-            floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floorLayoutPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        floorLayoutTabLayout.setVerticalGroup(
-            floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floorLayoutPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        mainFrame.addTab("Floor Layout", floorLayoutTab);
 
         CurrentOrdersLabel1.setFont(CurrentOrdersLabel1.getFont().deriveFont(CurrentOrdersLabel1.getFont().getSize()+6f));
         CurrentOrdersLabel1.setText("Current Orders");
@@ -624,11 +490,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         OrderFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
-    private void RoomDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomDataButtonActionPerformed
-        floorlayoutgui.RoomDataFrame Room1 = new floorlayoutgui.RoomDataFrame(); // Create a new instance of the frame
-        Room1.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_RoomDataButtonActionPerformed
-
     private void FloorSelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FloorSelectorItemStateChanged
         /*
         @Pre
@@ -691,17 +552,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel CurrentOrdersLabel1;
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
-    private javax.swing.JPanel Floor1Panel;
-    private javax.swing.JPanel Floor2Panel;
-    private javax.swing.JPanel Floor3Panel;
-    private javax.swing.JComboBox FloorSelector;
-    private javax.swing.JButton GuestSearchButton;
-    private javax.swing.JPanel MainPanel;
     private javax.swing.JButton NewOrderButton;
     private javax.swing.JButton OrderHistoryButton;
     private javax.swing.JButton ProcessPaymentButton;
     private javax.swing.JButton RemoveOrderButton;
-    private javax.swing.JButton RoomDataButton;
     private javax.swing.JButton ViewInventoryButton;
     private javax.swing.JButton ViewMenuButton;
     private javax.swing.JLabel activeOrdersLabel;
@@ -710,8 +564,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JTable calendarTable;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
-    private javax.swing.JPanel floorLayoutPanel;
-    private javax.swing.JPanel floorLayoutTab;
     private javax.swing.JTextField guestIDField;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
