@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JSpinner;
 
 /**
- *
- * @author Colin
+ *  Needed fields for creating new reservation:
+ * Guest ID, Room #, Check-In, Check-out, # of occupants, preferences, comments, room type
  */
 public class NewReservationFrame extends javax.swing.JFrame {
 
@@ -20,7 +20,7 @@ public class NewReservationFrame extends javax.swing.JFrame {
     public NewReservationFrame() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,13 +260,13 @@ public class NewReservationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_TypeRoomComboBoxActionPerformed
 
     private void CreateNewGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewGuestButtonActionPerformed
-        //CreateNewGuestFrame NewGuest = new CreateNewGuestFrame(); //Create a new instance of the frame
-        //NewGuest.setVisible(true); //Make the frame visible
+        NewGuestCreate NewGuest = new NewGuestCreate(); //Create a new instance of the frame
+        NewGuest.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CreateNewGuestButtonActionPerformed
 
     private void GuestLookupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestLookupButtonActionPerformed
-        GuestLookupFrame GuestLookup = new GuestLookupFrame(); //Create a new instance of the frame
-        GuestLookup.setVisible(true); //Make the frame visible
+        SearchGuestFrame GuestSearch = new SearchGuestFrame(); //Create a new instance of the frame
+        GuestSearch.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestLookupButtonActionPerformed
 
     private void CreateReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateReservationButtonActionPerformed

@@ -79,6 +79,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
         });
 
         cancelReservationButton.setText("Cancel Reservation");
+        cancelReservationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelReservationButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout reservationTabLayout = new javax.swing.GroupLayout(reservationTab);
         reservationTab.setLayout(reservationTabLayout);
@@ -471,8 +476,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
 
     private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
-        floorlayoutgui.GuestSearchFrame GuestSearchFrame = new floorlayoutgui.GuestSearchFrame(); //Create a new instance of the frame
-        GuestSearchFrame.setVisible(true); //Make the frame visible
+        floorlayoutgui.SearchGuestFrame SearchFrame = new floorlayoutgui.SearchGuestFrame(); //Create a new instance of the frame
+        SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
     private void EditInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditInventoryButtonActionPerformed
@@ -518,8 +523,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FloorSelectorItemStateChanged
 
     private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
-        floorlayoutgui.GuestSearchFrame GuestSearchFrame = new floorlayoutgui.GuestSearchFrame(); //Create a new instance of the frame
-        GuestSearchFrame.setVisible(true); //Make the frame visible
+        floorlayoutgui.SearchGuestFrame SearchFrame = new floorlayoutgui.SearchGuestFrame(); //Create a new instance of the frame
+        SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
     private void NewReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewReservationButtonActionPerformed
@@ -543,6 +548,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
+        //TODO
+    }//GEN-LAST:event_cancelReservationButtonActionPerformed
 
     /**
      * @param args the command line arguments
