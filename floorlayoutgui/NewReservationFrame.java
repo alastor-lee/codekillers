@@ -159,7 +159,7 @@ public class NewReservationFrame extends javax.swing.JFrame {
                                     .addComponent(BeachViewCheckbox)
                                     .addComponent(SmokingCheckbox)
                                     .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(TypeRoomLabel)

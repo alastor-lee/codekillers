@@ -40,14 +40,27 @@ import java.lang.reflect.*;
 
 
 public class GuestDB {
-
+    
 public static String _GuestID;
+//need to add last and first name functionality
 public static String _CustomerName;
 public static String _Address;
 public static String _ContactNumber;
 public static String _Email;
 public static String _Charges;
 
+public GuestDB() {
+    //bascic constructor
+}
+
+public GuestDB(String ID, String firstName, String phoneNum, String address, String email) {
+    _GuestID = ID;
+    _CustomerName = firstName; 
+    _ContactNumber = phoneNum;  
+    _Address = address;
+    _Email = email;
+    System.out.println(_GuestID + " " + _CustomerName + " " + _ContactNumber + " " + _Address + " " + _Email);
+}
 
 static final int recPosition_CustomerName = 1;
 static final int recPosition_Action	= 2;

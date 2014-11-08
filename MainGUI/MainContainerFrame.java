@@ -545,8 +545,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
-        floorlayoutgui.NewGuestCreate NewGuest = new floorlayoutgui.NewGuestCreate();
-        NewGuest.setVisible(true);
+        //TODO
     }//GEN-LAST:event_cancelReservationButtonActionPerformed
 
     /**

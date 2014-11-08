@@ -17,7 +17,16 @@ public class NewGuestCreate extends javax.swing.JFrame {
     public NewGuestCreate() {
         initComponents();
     }
-
+    
+    //variable declaration for database modification
+    //int guestID;
+    String guestID;
+    String firstName;
+    String lastName;
+    String phoneNum;
+    String address;
+    String email;
+            
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +63,11 @@ public class NewGuestCreate extends javax.swing.JFrame {
         EmailLabel.setText("Email:");
 
         AddGuestButton.setText("Add Guest");
+        AddGuestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddGuestButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,7 +84,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
                                 .addComponent(GuestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(FirstNameLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(FirstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,6 +137,19 @@ public class NewGuestCreate extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AddGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGuestButtonActionPerformed
+        //guestID = Integer.parseInt(GuestIDField.getText());       //implement this later
+        guestID = GuestIDField.getText();
+        firstName = FirstNameField.getText();
+        lastName = LastNameField.getText();
+        phoneNum = PhoneNumField.getText();
+        address = AddressField.getText();
+        email = EmailField.getText();
+        //make guestID an integer and change GuestDB to handle first and last name
+        database.GuestDB CreateNew = new database.GuestDB(guestID, firstName, phoneNum, address, email);
+        //System.out.println(guestID + " " + firstName + " " + lastName + " " + phoneNum + " " + address + " " + email);
+    }//GEN-LAST:event_AddGuestButtonActionPerformed
 
     /**
      * @param args the command line arguments

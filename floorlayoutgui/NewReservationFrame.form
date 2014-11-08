@@ -59,7 +59,7 @@
                                       <Component id="BeachViewCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="SmokingCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="ContainerPane" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="CreateReservationButton" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                      <Component id="CreateReservationButton" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
