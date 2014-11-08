@@ -31,10 +31,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainFrame = new javax.swing.JTabbedPane();
-        calendarTab = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        calendarTable = new javax.swing.JTable();
+        reservationTab = new javax.swing.JPanel();
         newReservationButton = new javax.swing.JButton();
+        cancelReservationButton = new javax.swing.JButton();
         floorLayoutTab = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox();
         kitchenTab = new javax.swing.JPanel();
@@ -72,25 +71,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        calendarTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(calendarTable);
-        if (calendarTable.getColumnModel().getColumnCount() > 0) {
-            calendarTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
-            calendarTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-            calendarTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            calendarTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-        }
-
         newReservationButton.setText("New Reservation");
         newReservationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,31 +78,30 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout calendarTabLayout = new javax.swing.GroupLayout(calendarTab);
-        calendarTab.setLayout(calendarTabLayout);
-        calendarTabLayout.setHorizontalGroup(
-            calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(calendarTabLayout.createSequentialGroup()
-                .addGroup(calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(calendarTabLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(calendarTabLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(newReservationButton)))
-                .addContainerGap(342, Short.MAX_VALUE))
+        cancelReservationButton.setText("Cancel Reservation");
+
+        javax.swing.GroupLayout reservationTabLayout = new javax.swing.GroupLayout(reservationTab);
+        reservationTab.setLayout(reservationTabLayout);
+        reservationTabLayout.setHorizontalGroup(
+            reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reservationTabLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(620, Short.MAX_VALUE))
         );
-        calendarTabLayout.setVerticalGroup(
-            calendarTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(calendarTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newReservationButton)
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+        reservationTabLayout.setVerticalGroup(
+            reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reservationTabLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(newReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(cancelReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(367, Short.MAX_VALUE))
         );
 
-        mainFrame.addTab("Calendar", calendarTab);
+        mainFrame.addTab("Reservation", reservationTab);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -131,16 +110,16 @@ public class MainContainerFrame extends javax.swing.JFrame {
         floorLayoutTabLayout.setHorizontalGroup(
             floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(floorLayoutTabLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(54, 54, 54)
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(772, Short.MAX_VALUE))
+                .addContainerGap(756, Short.MAX_VALUE))
         );
         floorLayoutTabLayout.setVerticalGroup(
             floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(floorLayoutTabLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(45, 45, 45)
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addContainerGap(527, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Floor Layout", floorLayoutTab);
@@ -324,8 +303,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Guest ID:");
 
-        guestIDField.setText("jTextField1");
-
         CheckoutGuestSearchButton.setText("Guest Search");
         CheckoutGuestSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,15 +318,22 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         jLabel8.setText("CVV");
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01 - Jan", "02 - Feb", "03 - Mar", "04 - Apr", "05 - May", "06 - Jun", "07 - Jul", "08 - Aug", "09 - Sep", "10 - Oct", "11 - Nov", "12 - Dec" }));
 
         jLabel9.setText("/");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         ProcessPaymentButton.setText("Process Payment");
         ProcessPaymentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -357,8 +341,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 ProcessPaymentButtonActionPerformed(evt);
             }
         });
-
-        jTextField4.setText("jTextField4");
 
         jLabel10.setText("Result");
 
@@ -374,45 +356,45 @@ public class MainContainerFrame extends javax.swing.JFrame {
         checkoutTabLayout.setHorizontalGroup(
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(checkoutTabLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(checkoutTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(checkoutTabLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CheckoutGuestSearchButton))
-                            .addComponent(paymentInfoLabel)
-                            .addGroup(checkoutTabLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(checkoutTabLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(checkoutTabLayout.createSequentialGroup()
-                                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(checkoutTabLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(checkoutTabLayout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ProcessPaymentButton))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CheckoutGuestSearchButton))
+                    .addComponent(paymentInfoLabel)
                     .addGroup(checkoutTabLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(CheckOutButton)))
-                .addContainerGap(619, Short.MAX_VALUE))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(checkoutTabLayout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                            .addGap(79, 79, 79)
+                            .addComponent(ProcessPaymentButton))
+                        .addGroup(checkoutTabLayout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(checkoutTabLayout.createSequentialGroup()
+                                    .addGap(15, 15, 15)
+                                    .addComponent(CheckOutButton))))))
+                .addContainerGap(599, Short.MAX_VALUE))
         );
         checkoutTabLayout.setVerticalGroup(
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,9 +404,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CheckoutGuestSearchButton))
-                .addGap(34, 34, 34)
+                .addGap(36, 36, 36)
                 .addComponent(paymentInfoLabel)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -438,15 +420,15 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ProcessPaymentButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ProcessPaymentButton)
+                .addGap(13, 13, 13)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(53, 53, 53)
+                .addGap(38, 38, 38)
                 .addComponent(CheckOutButton)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Check Out", checkoutTab);
@@ -554,6 +536,14 @@ public class MainContainerFrame extends javax.swing.JFrame {
         NewReservation.setVisible(true);
     }//GEN-LAST:event_newReservationButtonActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -603,8 +593,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton ViewMenuButton;
     private javax.swing.JLabel activeOrdersLabel;
     private javax.swing.JPanel activeOrdersPanel;
-    private javax.swing.JPanel calendarTab;
-    private javax.swing.JTable calendarTable;
+    private javax.swing.JButton cancelReservationButton;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
     private javax.swing.JPanel floorLayoutTab;
@@ -618,7 +607,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -628,6 +616,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton newReservationButton;
     private javax.swing.JButton orderPickupButton;
     private javax.swing.JLabel paymentInfoLabel;
+    private javax.swing.JPanel reservationTab;
     private javax.swing.JPanel searchTab;
     // End of variables declaration//GEN-END:variables
 }
