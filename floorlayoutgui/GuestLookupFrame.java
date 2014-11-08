@@ -17,6 +17,8 @@ public class GuestLookupFrame extends javax.swing.JFrame {
     public GuestLookupFrame() {
         initComponents();
     }
+    //TESTING GUEST NAME FIELD INPUT
+    String nameText;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +36,6 @@ public class GuestLookupFrame extends javax.swing.JFrame {
         LastNameField = new javax.swing.JTextField();
         PhoneNumberLabel = new javax.swing.JLabel();
         PhoneNumberField = new javax.swing.JTextField();
-        SearchButton = new javax.swing.JButton();
         OutputContainer = new javax.swing.JScrollPane();
         ResultsOutput = new javax.swing.JTextArea();
         CancelButton = new javax.swing.JButton();
@@ -43,16 +44,15 @@ public class GuestLookupFrame extends javax.swing.JFrame {
 
         FirstNameLabel.setText("First Name:");
 
+        FirstNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstNameFieldActionPerformed(evt);
+            }
+        });
+
         LastNameLabel.setText("Last Name:");
 
         PhoneNumberLabel.setText("Phone Number:");
-
-        SearchButton.setText("Search");
-        SearchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchButtonActionPerformed(evt);
-            }
-        });
 
         ResultsOutput.setColumns(20);
         ResultsOutput.setRows(5);
@@ -66,7 +66,7 @@ public class GuestLookupFrame extends javax.swing.JFrame {
             }
         });
 
-        AddGuestButton.setText("Add Guest");
+        AddGuestButton.setText("Search");
         AddGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddGuestButtonActionPerformed(evt);
@@ -83,30 +83,25 @@ public class GuestLookupFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 10, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(SearchButton))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(PhoneNumberLabel)
-                                    .addComponent(LastNameLabel)
-                                    .addComponent(FirstNameLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PhoneNumberField)
-                                    .addComponent(LastNameField)
-                                    .addComponent(FirstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(PhoneNumberLabel)
+                            .addComponent(LastNameLabel)
+                            .addComponent(FirstNameLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PhoneNumberField)
+                            .addComponent(LastNameField)
+                            .addComponent(FirstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(OutputContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(AddGuestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(165, 165, 165)
-                                .addComponent(CancelButton))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(AddGuestButton)))
+                                .addComponent(CancelButton)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -138,9 +133,7 @@ public class GuestLookupFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(PhoneNumberLabel)
-                            .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchButton)))
+                            .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -161,18 +154,21 @@ public class GuestLookupFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchButtonActionPerformed
-
     private void AddGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGuestButtonActionPerformed
         // Add Guest into CreateNewGuestFrame
-        this.dispose(); //Close the frame
+        nameText = FirstNameField.getText();
+        ResultsOutput.append(nameText);         //TESTING GUEST NAME FIELD INPUT
+        System.out.println(nameText);
+        //this.dispose(); //Close the frame
     }//GEN-LAST:event_AddGuestButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         this.dispose(); //Close the frame
     }//GEN-LAST:event_CancelButtonActionPerformed
+
+    private void FirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +218,6 @@ public class GuestLookupFrame extends javax.swing.JFrame {
     private javax.swing.JLabel PhoneNumberLabel;
     private javax.swing.JLabel ResultsLabel;
     private javax.swing.JTextArea ResultsOutput;
-    private javax.swing.JButton SearchButton;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
