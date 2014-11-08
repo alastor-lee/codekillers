@@ -109,6 +109,8 @@ public class LoginFrame extends javax.swing.JFrame {
         this.dispose();
         MainContainerFrame MainContainer = new MainContainerFrame();
         MainContainer.setVisible(true);
+        //String name = LoginField.getText();
+        //System.out.print(name);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void LoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginFieldActionPerformed
