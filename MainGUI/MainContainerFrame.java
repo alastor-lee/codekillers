@@ -422,9 +422,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProcessPaymentButton)
                 .addGap(13, 13, 13)
@@ -527,11 +527,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
-    private void NewReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewReservationButtonActionPerformed
-        floorlayoutgui.NewReservationFrame NewReservationFrame = new floorlayoutgui.NewReservationFrame(); //Create a new instance of the frame
-        NewReservationFrame.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_NewReservationButtonActionPerformed
-
     private void orderPickupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPickupButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_orderPickupButtonActionPerformed
@@ -550,7 +545,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
-        //TODO
+        floorlayoutgui.NewGuestCreate NewGuest = new floorlayoutgui.NewGuestCreate();
+        NewGuest.setVisible(true);
     }//GEN-LAST:event_cancelReservationButtonActionPerformed
 
     /**
