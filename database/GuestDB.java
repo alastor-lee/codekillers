@@ -85,8 +85,8 @@ static final int NO_MODIFY_RECORD_ABSENT = 45;
 
 public int addGuest(){
      nameOfFile = "C:\\Users\\alastor\\apps\\guestDatabaseFile.txt";
-     System.out.println("File name is:" + nameOfFile);
-     String newRecord = "TEST";
+     System.out.println("File path is:" + nameOfFile);
+     String newRecord = _GuestID+";"+_FirstName+";"+_LastName+";"+_Address+";"+_ContactNumber+";"+_Email;;
     //Variables
     int nReturnValue = 0;
     int iCount = 0;
@@ -99,20 +99,21 @@ public int addGuest(){
     FileWriter writer;
 
     //Code
-    /*
+    
     if (DBisValidRecord(newRecord) != true) {
         //the Record was not valid; so do not process it
         //System.out.println("FAILED RECORD CHECK");
         return FAILED_INVALID_RECORD;
         }
     try {
+        //theRecords will hold everything in the data file if this is successful
         theRecords = DBreadFile(nameOfFile);
     } //try
 
     catch (Exception ee) {
-        System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
+        System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString());
     }  //catch
-    */
+    
     /*
     newRecordFields[0] = _GuestID+",";
     newRecordFields[1] = _FirstName+",";
@@ -121,10 +122,8 @@ public int addGuest(){
     newRecordFields[4] = _ContactNumber+",";
     newRecordFields[5] = _Email+",";
     */
-    
-    newRecord = _GuestID+","+_FirstName+","+_LastName+","+_Address+","+_ContactNumber+","+_Email;
-      
-    newRecordFields = newRecord.split(",");
+       
+    newRecordFields = newRecord.split(";");
     //TEST
     System.out.println(newRecord);
     
@@ -132,33 +131,37 @@ public int addGuest(){
     nRecCount = theRecords.size();
     Iterator itr = theRecords.iterator();
     while (itr.hasNext()) {
-
         if (iCount < nRecCount + 1) {
             itr.next();
-            strLine = (String)theRecords.get(iCount);
-            fields = strLine.split(",");
-
+            strLine = (String)theRecords.get(iCount);   //strLine holds the entry line
+            fields = strLine.split(";");    //fields uses comma delimiter to split into array
+            //pretty sure the following is just to test that strLine is getting placead into fields[] correctly
             System.out.println("...\n");
             System.out.println(strLine);
             for (int i=0; i < fields.length; i++)  {
                 System.out.println(fields[i].trim() );
             }
-            
+            //setting variables to values of preesxisting entry
             _GuestID = fields[0].trim();
-            _LastName = fields[1].trim();
-            _Address = fields[2].trim();
-            _ContactNumber = fields[3].trim();
-            _Email = fields[4].trim();
-            _Charges = fields[5].trim();
-
-            if (_GuestID.trim().equalsIgnoreCase(newRecordFields[0].trim()) && 
-                _LastName.trim().equalsIgnoreCase(newRecordFields[1].trim()) &&
-                _Address.trim().equalsIgnoreCase(newRecordFields[2].trim()) &&
-                _ContactNumber.trim().equalsIgnoreCase(newRecordFields[3].trim()) &&
-                _Email.trim().equalsIgnoreCase(newRecordFields[4].trim()) &&
-                _Charges.trim().equalsIgnoreCase(newRecordFields[5].trim())) 
+            _FirstName = fields[1].trim();
+            _LastName = fields[2].trim();
+            _Address = fields[3].trim();
+            _ContactNumber = fields[4].trim();
+            _Email = fields[5].trim();
+            //_Charges = fields[6].trim();      //no handling this yet
+            
+            //comparing current entry at given iterator count to the new entry
+            //only last guest ID, last name, and email should not be duplicate
+            if (_GuestID.trim().equalsIgnoreCase(newRecordFields[0].trim()) || 
+                _LastName.trim().equalsIgnoreCase(newRecordFields[2].trim()) ||
+                //_Address.trim().equalsIgnoreCase(newRecordFields[2].trim()) ||
+                //_ContactNumber.trim().equalsIgnoreCase(newRecordFields[3].trim()) ||
+                _Email.trim().equalsIgnoreCase(newRecordFields[5].trim()) //||
+               //_Charges.trim().equalsIgnoreCase(newRecordFields[5].trim())
+            )
             {
-                nReturnValue = FAILED_DUPLICATE_RECORD ;   
+                System.out.println("Duplicate Record");
+                nReturnValue = FAILED_DUPLICATE_RECORD ;   //if there is a duplicate, fail the write
                 break;
             }
 
