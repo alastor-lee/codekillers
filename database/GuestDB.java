@@ -83,10 +83,11 @@ static final int FAILED_MODIFIED_RECORD = 43;
 static final int NO_MODIFY_RECORD_ABSENT = 45;
 
 
-public int addGuest(){
+public int addGuest(GuestInfo NewGuest){
      nameOfFile = "C:\\Users\\alastor\\apps\\guestDatabaseFile.txt";
      System.out.println("File path is:" + nameOfFile);
-     String newRecord = _GuestID+";"+_FirstName+";"+_LastName+";"+_Address+";"+_ContactNumber+";"+_Email;;
+     String newRecord; 
+     newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
     //Variables
     int nReturnValue = 0;
     int iCount = 0;
@@ -113,15 +114,6 @@ public int addGuest(){
     catch (Exception ee) {
         System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString());
     }  //catch
-    
-    /*
-    newRecordFields[0] = _GuestID+",";
-    newRecordFields[1] = _FirstName+",";
-    newRecordFields[2] = _LastName+",";
-    newRecordFields[3] = _Address+",";
-    newRecordFields[4] = _ContactNumber+",";
-    newRecordFields[5] = _Email+",";
-    */
        
     newRecordFields = newRecord.split(";");
     //TEST
@@ -205,6 +197,44 @@ public int addGuest(){
 
     } //method
 
+public String searchDB(GuestInfo OldGuest) {
+    //Variables
+    nameOfFile = "C:\\Users\\alastor\\apps\\guestDatabaseFile.txt";
+    String strLine;
+    String[] fields;
+    ArrayList theRecords = new ArrayList();
+    //opening and reading database file for comparison purposes
+    try {
+    //Get all the file records in the Array
+        theRecords = DBreadFile(nameOfFile);
+    } //try
+
+    catch (Exception ee) {
+        System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
+    } //catch
+    
+    //searching for matching records for GuestID and LastName 
+    for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
+        strLine = (String)it.next();
+        strLine = strLine.trim();
+        fields = strLine.split(";");    //delimiter is ;
+        /*
+        for(int i=0; i<fields.getLength(); i++){
+            System.out.println(fields);
+        }
+        */
+        _GuestID = fields[0].trim();
+        _LastName = fields[2].trim();
+
+        if (OldGuest.getGuestID().equals(_GuestID)) {
+            return strLine;
+        } //if
+        else if (OldGuest.getLastName().equals(_LastName)) {
+            return strLine;
+        }
+    } //for
+    return "No matching guests in database";
+}  //method
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Methods: DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate, int fieldPosition, String newValue)
@@ -354,13 +384,8 @@ return nReturnValue;
 //returns  : ArrayList of Strings
 //------------------------------------------------------------------------------------------------------------
 
-public static ArrayList DBfindOneCustomer(String reservationFile,String CustomerName)
-
-{
-
-
+public static ArrayList DBfindOneCustomer(String reservationFile,String CustomerName) {
 //Variables
-
 String strLine = null;
 String[] fields = null;
 ArrayList theRecords = new ArrayList();

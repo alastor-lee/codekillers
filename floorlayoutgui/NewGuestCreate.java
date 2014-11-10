@@ -130,7 +130,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EmailLabel)
                     .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(AddGuestButton)
                 .addContainerGap())
         );
@@ -140,15 +140,17 @@ public class NewGuestCreate extends javax.swing.JFrame {
 
     private void AddGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGuestButtonActionPerformed
         //guestID = Integer.parseInt(GuestIDField.getText());       //implement this later
-        guestID = GuestIDField.getText();
-        firstName = FirstNameField.getText();
-        lastName = LastNameField.getText();
-        phoneNum = PhoneNumField.getText();
-        address = AddressField.getText();
-        email = EmailField.getText();
+        database.GuestInfo NewGuest = new database.GuestInfo();
+        NewGuest.setGuestID(GuestIDField.getText());
+        NewGuest.setFirstName(FirstNameField.getText());
+        NewGuest.setLastName(LastNameField.getText());
+        NewGuest.setContactNum(PhoneNumField.getText());
+        NewGuest.setAddress(AddressField.getText());
+        NewGuest.setEmail(EmailField.getText());
+
         //make guestID an integer and change GuestDB to handle first and last name
-        engine.databaseManager NewGuest = new engine.databaseManager();
-        NewGuest.addGuest(guestID, firstName, lastName, phoneNum, address, email);
+        engine.databaseManager manager = new engine.databaseManager();
+        manager.addGuest(NewGuest);
         //System.out.println(guestID + " " + firstName + " " + lastName + " " + phoneNum + " " + address + " " + email);
     }//GEN-LAST:event_AddGuestButtonActionPerformed
 

@@ -17,6 +17,9 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     public SearchGuestFrame() {
         initComponents();
     }
+    
+    //variables
+    String searchReturn;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,19 +30,86 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        IDField = new javax.swing.JTextField();
+        LastNameField = new javax.swing.JTextField();
+        GuestIDLabel = new javax.swing.JLabel();
+        LastNameLabel = new javax.swing.JLabel();
+        SearchButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        GuestInfoText = new javax.swing.JTextArea();
+
+        GuestIDLabel.setText("Guest ID:");
+
+        LastNameLabel.setText("Last Name:");
+
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
+
+        GuestInfoText.setColumns(20);
+        GuestInfoText.setRows(5);
+        jScrollPane1.setViewportView(GuestInfoText);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GuestIDLabel)
+                            .addComponent(LastNameLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LastNameField)
+                            .addComponent(IDField))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GuestIDLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LastNameLabel))
+                        .addGap(42, 42, 42)
+                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        database.GuestInfo GuestSearch = new database.GuestInfo();
+        GuestSearch.setLastName(IDField.getText());
+        GuestSearch.setLastName(LastNameField.getText());
+        
+        engine.databaseManager manager = new engine.databaseManager();
+        searchReturn = manager.findGuest(GuestSearch);
+        //displays in GUI text window
+        GuestInfoText.setText("Guest Information:/n"+searchReturn);
+    }//GEN-LAST:event_SearchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +147,12 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GuestIDLabel;
+    private javax.swing.JTextArea GuestInfoText;
+    private javax.swing.JTextField IDField;
+    private javax.swing.JTextField LastNameField;
+    private javax.swing.JLabel LastNameLabel;
+    private javax.swing.JButton SearchButton;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

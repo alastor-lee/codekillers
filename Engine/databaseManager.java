@@ -14,7 +14,15 @@ public class databaseManager {
     public databaseManager() {
         //init here
     }
+    //variables here
+    String guestID;
+    String firstName;
+    String lastName;
+    String phoneNum;
+    String address;
+    String email;
     
+    //constructors
     public databaseManager(String ID, String fName, String lName, String phone, String addr, String mail) {
         guestID = ID;
         firstName = fName;
@@ -24,19 +32,18 @@ public class databaseManager {
         email = mail;
     }
     
-    //variables here
-    String guestID;
-    String firstName;
-    String lastName;
-    String phoneNum;
-    String address;
-    String email;
+
 
    //method for creating new guest(passed from NewGuestCreate class)
-    public void addGuest(String ID, String fName, String lName, String phone, String addr, String mail) {
-        database.GuestDB NewGuest = new database.GuestDB(ID, fName, lName, phone, addr, mail);
-        //System.out.println(_GuestID + " " + _FirstName + " "+ _LastName + " " + _ContactNumber + " " + _Address + " " + _Email);
-        System.out.println(NewGuest.addGuest());
+    public void addGuest(database.GuestInfo a) {
+        database.GuestDB GuestAdder = new database.GuestDB();
+        //sending guest information to GuestDB handler
+        System.out.println(GuestAdder.addGuest(a));
+    }
+    
+    public String findGuest(database.GuestInfo a) {
+        database.GuestDB GuestSearcher = new database.GuestDB();
+        return GuestSearcher.searchDB(a);
     }
     
 

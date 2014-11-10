@@ -34,6 +34,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         reservationTab = new javax.swing.JPanel();
         newReservationButton = new javax.swing.JButton();
         cancelReservationButton = new javax.swing.JButton();
+        GuestSearchButton = new javax.swing.JButton();
         floorLayoutTab = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox();
         kitchenTab = new javax.swing.JPanel();
@@ -85,15 +86,24 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
+        GuestSearchButton.setText("Guest Search");
+        GuestSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuestSearchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout reservationTabLayout = new javax.swing.GroupLayout(reservationTab);
         reservationTab.setLayout(reservationTabLayout);
         reservationTabLayout.setHorizontalGroup(
             reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reservationTabLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(620, Short.MAX_VALUE))
         );
         reservationTabLayout.setVerticalGroup(
@@ -103,7 +113,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addComponent(newReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(cancelReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Reservation", reservationTab);
@@ -589,6 +601,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel CurrentOrdersLabel1;
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
+    private javax.swing.JButton GuestSearchButton;
     private javax.swing.JButton NewOrderButton;
     private javax.swing.JButton OrderHistoryButton;
     private javax.swing.JButton ProcessPaymentButton;
