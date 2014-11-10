@@ -35,7 +35,7 @@ public static String _ContactNumber;
 public static String _Email;
 public static String _Charges;
 
-String nameOfFile;
+String nameOfFile = new File("").getAbsolutePath();
 
 public GuestDB() {
     //basic constructor
@@ -93,7 +93,7 @@ static final int NO_MODIFY_RECORD_ABSENT = 45;
 
 
 public int addGuest(GuestInfo NewGuest){
-     nameOfFile = "C:\\Users\\alastor\\apps\\guestDatabaseFile.txt";
+     nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";
      System.out.println("File path is:" + nameOfFile);
      String newRecord; 
      newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
@@ -208,7 +208,7 @@ public int addGuest(GuestInfo NewGuest){
 
 public String searchDB(GuestInfo OldGuest) {
     //Variables
-    nameOfFile = "C:\\Users\\alastor\\apps\\guestDatabaseFile.txt";
+    nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";
     String strLine;
     String[] fields;
     ArrayList theRecords = new ArrayList();

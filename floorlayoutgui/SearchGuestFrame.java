@@ -9,6 +9,7 @@ package floorlayoutgui;
  *
  * @author alastor
  */
+
 public class SearchGuestFrame extends javax.swing.JFrame {
 
     /**
