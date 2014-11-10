@@ -147,7 +147,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         );
 
         activeOrdersLabel.setFont(activeOrdersLabel.getFont().deriveFont(activeOrdersLabel.getFont().getSize()+6f));
-        activeOrdersLabel.setText("Active Orders");
+        activeOrdersLabel.setText("Active Order");
 
         activeOrdersPanel.setBackground(new java.awt.Color(255, 255, 255));
         activeOrdersPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
