@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+
 
 /**
  *
@@ -21,17 +21,6 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 
-import java.nio.file.FileVisitResult;
-
-import java.nio.file.Files;
-
-import java.nio.file.Path;
-
-import java.nio.file.Paths;
-
-import java.nio.file.SimpleFileVisitor;
-
-import java.nio.file.attribute.BasicFileAttributes;
 
 import java.lang.reflect.*;
 
@@ -39,7 +28,7 @@ import java.lang.reflect.*;
 
 
 
-public class RoomReservationDB {
+public class RoomReservation {
 
 public static String _GuestID;
 public static String _RoomNumber;
@@ -52,13 +41,13 @@ public static String _RoomType;
 
 
 
-static final int recPosition_CustomerName = 1;
-static final int recPosition_Action	= 2;
-static final int recPosition_roomCount = 3;
-static final int recPosition_roomType = 4;
-static final int recPosition_checkInDate = 5;
-static final int recPosition_checkOutDate = 6;
-static final int recPosition_roomRate = 7;
+static final int recPosition_RoomNumber = 1;
+static final int recPosition_CheckIn_Date	= 2;
+static final int recPosition_CheckOut_Date = 3;
+static final int recPosition_Occupancy = 4;
+static final int recPosition_Preference = 5;
+static final int recPosition_Comments = 6;
+static final int recPosition_RoomType = 7;
 
 static final int SUCCESSFUL_OPERATION	= 1;
 static final int SUCCESSFUL_ADDED_RECORD = 3;
@@ -87,7 +76,7 @@ static final int NO_MODIFY_RECORD_ABSENT = 45;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBmodifyCustomerRecord(String reservationFile,String CustomerName, int fieldPosition, String newValue)
 //------------------------------------------------------------------------------------------------------------
-public static int  DBmodifyRoomRecord(String reservationFile, String GuestID, String CustomerName, int fieldPosition, String newValue){
+public static int  DBmodifyRoomRecord(String reservationFile, String GuestID, String RoomNumber, int fieldPosition, String newValue){
 //Variables
 
 int nReturnValue = 0;
@@ -100,7 +89,7 @@ Iterator it = null;
 ArrayList theRecords = new ArrayList();
 
 //Code
-//the KEY Values are GuestID && CustomerName
+//the KEY Values are GuestID && RoomNumber
 
 /*
 if (fieldPosition >= 1 && fieldPosition < 8) {
@@ -666,7 +655,7 @@ public static String DBgetReseravtionFileName() {
 //
 //return the String name
 //
-return "C:\\Users\\Collin\\Desktop\\hotel_res.txt";
+return "/Users/collinpartee/Desktop/TESTroomDB.txt ";
 
 } //
 
@@ -679,7 +668,7 @@ public static void main(String[] args) {
 
 
 
-String reservationFile = "C:\\Users\\Collin\\Desktop\\hotel_res.txt";
+String reservationFile = "/Users/collinpartee/Desktop/TESTroomDB.txt";
 /*
 ArrayList theRecords = new ArrayList();
 
@@ -719,19 +708,19 @@ while(i < theRecords.size()) {
       i++;
 
 }  //while
-
 */
 
 
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Test: DBfindOneCustomer(String fileName,String CustomerName)
+//Test: DBfindOneRoom(String fileName,String RoomNumber)
 //-------------------------------------------------------------------------------
 
 
 /*
 ArrayList theRecords = new ArrayList();
 
-theRecords = DBfindOneCustomer(reservationFile, "Collin Partee");
+theRecords = DBfindOneRoom(reservationFile, "1101");
 
 
 
@@ -744,8 +733,8 @@ while(i < theRecords.size()) {
       i++;
 
 }  //while
-
 */
+
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -757,7 +746,7 @@ while(i < theRecords.size()) {
 int nReturnValue = 0;
 
 //Code
-nReturnValue = DBappendToEndOfFile(reservationFile, "10,Bruce Bruce, 14 Whitehall Place, 9999999999, blah@blah.com, apples");
+nReturnValue = DBappendToEndOfFile(reservationFile, "9,2201, 18 April 2014, 19 April 2014, 3, No View, no comments, Twin");
 if (nReturnValue == SUCCESSFUL_OPERATION) {
     System.out.println("\n New record has been added successfully.");
 }  //if
@@ -774,29 +763,29 @@ if (nReturnValue == FAILED_DUPLICATE_RECORD ) {
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Test:	DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate,  int fieldPosition, String newValue)
+//Test:	DBmodifyRoomRecord(String reservationFile,String CustomerName, String RoomNumber,  int fieldPosition, String newValue)
 //--------------------------------------------------------------------------------------
 
 /*
 //Variables
 int nReturnValue = 0;
 String GuestID = null; 
-String CustomerName = null;
+String RoomNumber = null;
 int fieldPosition = 0; 
 String newValue	= null;
 
 //Code
-GuestID = "9";
-CustomerName = "Bruce Smith";
-fieldPosition = 2;
-newValue = "Colin Portee";
+GuestID = "8";
+RoomNumber = "2201";
+fieldPosition = recPosition_CheckIn_Date;
+newValue = "19 April 2014";
 
 System.out.println("\n Modify invoked");
 
-nReturnValue = DBmodifyCustomerRecord(reservationFile,GuestID, CustomerName,  fieldPosition, newValue);
+nReturnValue = DBmodifyRoomRecord(reservationFile,GuestID, RoomNumber,  fieldPosition, newValue);
 
 if (SUCCESSFUL_OPERATION == nReturnValue) {
-    System.out.println("\n Successfullyy Modified ...");
+    System.out.println("\n Successfully Modified ...");
 }
 
 if (FOUND_RECORD_TO_MODIFY  == nReturnValue) {
@@ -829,10 +818,10 @@ if (INVALID_RESERVATION_NEW_VALUE  == nReturnValue) {
 int nReturnValue = 0;
 
 //Code
-nReturnValue = DBremoveRecord(reservationFile, "1,Collin Portee, 14 Whitehall Place, 9999999999, blah@blah.com, apples");
+nReturnValue = DBremoveRecord(reservationFile, "9,2201, 18 April 2014, 19 April 2014, 3, No View, no comments, Twin");
 
 if (nReturnValue == SUCCESSFUL_OPERATION) {
-    System.out.println("\n New record has been deleted successfully.");
+    System.out.println("\n Record has been deleted successfully.");
 }  //if
 
 if (nReturnValue == FAILED_DELETED_RECORD) {
@@ -842,8 +831,8 @@ if (nReturnValue == FAILED_DELETED_RECORD) {
 if (nReturnValue == NO_DELETE_RECORD_ABSENT) {
     System.out.println("\n Unable to delete record because this record was not present.");
 }   //if
-
 */
+
 
 
 
@@ -855,21 +844,21 @@ if (nReturnValue == NO_DELETE_RECORD_ABSENT) {
 
 /* ======================================================
 
-* File: Hotel_reservation.txt Sample
+* File: TESTroom_reservationDB.txt Sample
 
 * 
 
 * ------------------------------------------------------
 
-1,Collin Partee, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-2,Shelly Wilson, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-3,Lisa Wool, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-4,Frank Jones, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-5,Collin Partee, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-6,Zeta Jones, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-7,Pete Marks, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-8,Mark Sewald, 14 Whitehall Place, 9999999999, blah@blah.com, apples
-9,Bruce Smith, 14 Whitehall Place,9999999999,blah@blah.com, apples
+1,1101, 12 Nov 2014, 14 Nov 2014, 3, Beach View, smoking room, Suite
+2,2101, 12 Dec 2014, 14 Dec 2014, 1, Road View, no comments, Suite
+3,1103, 14 Nov 2014, 15 Nov 2014, 4, No Preference, need an extra bed, Twin
+4,1105, 12 Jan 2014, 16 Jan 2014, 3, No Preference, smoking room, Twin
+5,1107, 1 Dec 2014, 4 Dec 2014, 3, Beach View, no comments, Deluxe
+6,1102, 22 Nov 2014, 24 Nov 2014, 2, Beach View, no comments, Suite
+7,4101, 1 Nov 2014, 10 Nov 2014, 2, Road View, no comments, Queen
+8,3101, 18 Nov 2014, 19 Nov 2014, 3, Road View, no comments, Twin
+
 
 
 

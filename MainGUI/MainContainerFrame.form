@@ -308,7 +308,7 @@
                         <Font component="activeOrdersLabel" property="font" relativeSize="true" size="6"/>
                       </FontInfo>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Active Orders"/>
+                    <Property name="text" type="java.lang.String" value="Active Order"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="activeOrdersPanel">
