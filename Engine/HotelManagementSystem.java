@@ -79,7 +79,7 @@ public class HotelManagementSystem {
             writer.write("DB6 Room(calendar) DB");
         } 
         catch (IOException ex){
-            // handle me
+            //handle me
         }
 
         
