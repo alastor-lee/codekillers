@@ -63,12 +63,12 @@ public GuestDB(String ID, String firstName, String phoneNum, String address, Str
 }
 
 static final int recPosition_CustomerName = 1;
-static final int recPosition_Action	= 2;
-static final int recPosition_roomCount = 3;
-static final int recPosition_roomType = 4;
-static final int recPosition_checkInDate = 5;
-static final int recPosition_checkOutDate = 6;
-static final int recPosition_roomRate = 7;
+static final int recPosition_Address	= 2;
+static final int recPosition_ContactNumber = 3;
+static final int recPosition_Email = 4;
+static final int recPosition_Charges = 5;
+//static final int recPosition_checkOutDate = 6;
+//static final int recPosition_roomRate = 7;
 
 static final int SUCCESSFUL_OPERATION	= 1;
 static final int SUCCESSFUL_ADDED_RECORD = 3;
