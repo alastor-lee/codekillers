@@ -6,8 +6,8 @@ IF NOT EXIST %HOMEPATH%\bin (
 )
 
 :COMPILES TO THE USER BIN FOLDER
-javac -d %HOMEPATH%\bin -cp .\engine\*.java .\maingui\*.java .\floorlayoutgui\*.java^
- .\database\*java .\kitchengui\*.java  
+javac -d %HOMEPATH%\bin -cp  .\floorlayoutgui\*.java .\engine\*.java .\maingui\*.java .\database\*java^
+ .\kitchengui\*.java  
 
 ECHO compiled code
 

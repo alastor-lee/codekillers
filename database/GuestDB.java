@@ -10,59 +10,48 @@ package database;
  * @author Collin
  */
 import java.io.*;
-
 import java.util.*;
-
 import java.io.BufferedReader;
-
 import java.io.FileWriter;
-
 import java.io.IOException;
-
 import java.io.PrintWriter;
-
 import java.nio.file.FileVisitResult;
-
 import java.nio.file.Files;
-
 import java.nio.file.Path;
-
 import java.nio.file.Paths;
-
 import java.nio.file.SimpleFileVisitor;
-
 import java.nio.file.attribute.BasicFileAttributes;
-
 import java.lang.reflect.*;
 
-
-
-
-
+//start of class
 public class GuestDB {
-    
+
+//variables
 public static String _GuestID;
-//need to add last and first name functionality
-public static String _CustomerName;
+public static String _FirstName;
+public static String _LastName;
 public static String _Address;
 public static String _ContactNumber;
 public static String _Email;
 public static String _Charges;
 
-public GuestDB() {
-    //bascic constructor
-}
+String nameOfFile;
 
-public GuestDB(String ID, String firstName, String phoneNum, String address, String email) {
+public GuestDB() {
+    //basic constructor
+}
+//constructor called on by the databaseManager to add a new guest to the database
+public GuestDB(String ID, String fName, String lName, String phoneNum, String address, String email) {
     _GuestID = ID;
-    _CustomerName = firstName; 
+    _FirstName = fName;
+    _LastName = lName;
     _ContactNumber = phoneNum;  
     _Address = address;
     _Email = email;
-    System.out.println(_GuestID + " " + _CustomerName + " " + _ContactNumber + " " + _Address + " " + _Email);
+    System.out.println(_GuestID + " " + _FirstName + " "+ _LastName + " " + _ContactNumber + " " + _Address + " " + _Email);
 }
 
-static final int recPosition_CustomerName = 1;
+//static final int recPosition_LastName = 1;
 static final int recPosition_Action	= 2;
 static final int recPosition_roomCount = 3;
 static final int recPosition_roomType = 4;
@@ -94,9 +83,130 @@ static final int FAILED_MODIFIED_RECORD = 43;
 static final int NO_MODIFY_RECORD_ABSENT = 45;
 
 
+public int addGuest(){
+     nameOfFile = "C:\\Users\\alastor\\apps\\guestDatabaseFile.txt";
+     System.out.println("File name is:" + nameOfFile);
+     String newRecord = "TEST";
+    //Variables
+    int nReturnValue = 0;
+    int iCount = 0;
+    int nRecCount = 0;
+    String strLine = null;
+    String[] fields = null;
+    String[] newRecordFields = null;
+    ArrayList theRecords = new ArrayList();
+    File file = new File(nameOfFile);
+    FileWriter writer;
+
+    //Code
+    /*
+    if (DBisValidRecord(newRecord) != true) {
+        //the Record was not valid; so do not process it
+        //System.out.println("FAILED RECORD CHECK");
+        return FAILED_INVALID_RECORD;
+        }
+    try {
+        theRecords = DBreadFile(nameOfFile);
+    } //try
+
+    catch (Exception ee) {
+        System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
+    }  //catch
+    */
+    /*
+    newRecordFields[0] = _GuestID+",";
+    newRecordFields[1] = _FirstName+",";
+    newRecordFields[2] = _LastName+",";
+    newRecordFields[3] = _Address+",";
+    newRecordFields[4] = _ContactNumber+",";
+    newRecordFields[5] = _Email+",";
+    */
+    
+    newRecord = _GuestID+","+_FirstName+","+_LastName+","+_Address+","+_ContactNumber+","+_Email;
+      
+    newRecordFields = newRecord.split(",");
+    //TEST
+    System.out.println(newRecord);
+    
+    iCount =0;
+    nRecCount = theRecords.size();
+    Iterator itr = theRecords.iterator();
+    while (itr.hasNext()) {
+
+        if (iCount < nRecCount + 1) {
+            itr.next();
+            strLine = (String)theRecords.get(iCount);
+            fields = strLine.split(",");
+
+            System.out.println("...\n");
+            System.out.println(strLine);
+            for (int i=0; i < fields.length; i++)  {
+                System.out.println(fields[i].trim() );
+            }
+            
+            _GuestID = fields[0].trim();
+            _LastName = fields[1].trim();
+            _Address = fields[2].trim();
+            _ContactNumber = fields[3].trim();
+            _Email = fields[4].trim();
+            _Charges = fields[5].trim();
+
+            if (_GuestID.trim().equalsIgnoreCase(newRecordFields[0].trim()) && 
+                _LastName.trim().equalsIgnoreCase(newRecordFields[1].trim()) &&
+                _Address.trim().equalsIgnoreCase(newRecordFields[2].trim()) &&
+                _ContactNumber.trim().equalsIgnoreCase(newRecordFields[3].trim()) &&
+                _Email.trim().equalsIgnoreCase(newRecordFields[4].trim()) &&
+                _Charges.trim().equalsIgnoreCase(newRecordFields[5].trim())) 
+            {
+                nReturnValue = FAILED_DUPLICATE_RECORD ;   
+                break;
+            }
+
+            else{
+                System.out.println("NOT A DUP");
+                nReturnValue = NEW_RECORD;
+
+            }  //if
+
+            iCount++;
+
+        } //if
+
+    }  //while
+    
+    if(itr.hasNext() != true) {
+        nReturnValue = NEW_RECORD;
+    }
+
+    if (NEW_RECORD == nReturnValue){
+
+        try {
+            writer = new FileWriter(file, true);
+            PrintWriter printer = new PrintWriter(writer);
+            printer.append("\n");
+            printer.append(newRecord);
+            printer.close();
+            System.out.println("SUCCESSFUL WRITE");
+            nReturnValue = SUCCESSFUL_OPERATION;
+
+        } //try
+
+        catch (IOException ee) {
+            System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
+            ee.printStackTrace();
+
+        } //catch
+
+    }  //if
+    return nReturnValue;
+
+    } //method
+
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Method: DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate, int fieldPosition, String newValue)
+//Methods: DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate, int fieldPosition, String newValue)
 //------------------------------------------------------------------------------------------------------------
+
 public static int  DBmodifyCustomerRecord(String reservationFile, String GuestID, String CustomerName, int fieldPosition, String newValue){
 //Variables
 
@@ -150,7 +260,7 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
         
         fields = strLine.split(",");
         _GuestID = fields[0].trim();
-        _CustomerName = fields[1].trim();
+        _LastName = fields[1].trim();
         _Address = fields[2].trim();
         _ContactNumber = fields[3].trim();
         _Email = fields[4].trim();
@@ -159,17 +269,17 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
 
 //If all fields in the newRecord are the same as all the fields in theRecords then FAILED MODIFIED RECORD
 
-if (_GuestID.trim().equalsIgnoreCase(GuestID.trim()) && _CustomerName.trim().equalsIgnoreCase(_CustomerName.trim()) )  {   
+if (_GuestID.trim().equalsIgnoreCase(GuestID.trim()) && _LastName.trim().equalsIgnoreCase(_LastName.trim()) )  {   
     
     System.out.println("\n Checkpoint 2  \n");
     
-    System.out.println(_CustomerName);
+    System.out.println(_LastName);
     
     switch (fieldPosition) {
         case 1:  _GuestID = newValue;
         break;
         
-        case 2:  _CustomerName  = newValue;
+        case 2:  _LastName  = newValue;
         break;
 
         case 3:  _Address = newValue;
@@ -192,7 +302,7 @@ if (_GuestID.trim().equalsIgnoreCase(GuestID.trim()) && _CustomerName.trim().equ
     System.out.println("\n Checkpoint 3");
     theRecords.remove(iCount);
     
-    strLine = _GuestID + "," + _CustomerName + ","  + _Address   + ","  + _ContactNumber + "," + _Email   + "," + _Charges;    
+    strLine = _GuestID + "," + _LastName + ","  + _Address   + ","  + _ContactNumber + "," + _Email   + "," + _Charges;    
     strLine.trim();
     
     theRecords.add(strLine);
@@ -269,10 +379,10 @@ for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
     strLine = (String) it.next();
     strLine = strLine.trim();
     fields = strLine.split(",");
-    _CustomerName = fields[1].trim();
+    _LastName = fields[1].trim();
    /* 
     _GuestID = fields[0].trim();
-    _CustomerName = fields[1].trim();
+    _LastName = fields[1].trim();
     _Address = fields[2].trim();
     _ContactNumber = fields[3].trim();
     _Email = fields[4].trim();
@@ -280,7 +390,7 @@ for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
 */
 
 
-    if (!CustomerName.equals(_CustomerName)) {
+    if (!CustomerName.equals(_LastName)) {
         it.remove();
 
     } //if
@@ -305,7 +415,7 @@ public static ArrayList getAllReservationRecords()
 String DBfileName = null;
 ArrayList records = new ArrayList();
 
-DBfileName = DBgetReseravtionFileName();
+DBfileName = DBgetReservationFileName();
 
 records = DBreadFile(DBfileName); 
 
@@ -355,9 +465,7 @@ public static ArrayList DBreadFile(String reservationFile){
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBappendToEndOfFile(String fullPathFileName, String newRecord)
 //------------------------------------------------------------------------------------------------------------
-public static int DBappendToEndOfFile(String reservationFile, String newRecord)
-
-{
+public static int DBappendToEndOfFile(String reservationFile, String newRecord) {
 
 //Variables
 int nReturnValue = 0;
@@ -376,11 +484,9 @@ if (DBisValidRecord(newRecord) != true) {
     return FAILED_INVALID_RECORD;
     }
 
-
 try {
     theRecords = DBreadFile(reservationFile);
 } //try
-
 catch (Exception ee) {
     System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
 }  //catch
@@ -392,7 +498,6 @@ iCount =0;
 nRecCount = theRecords.size();
 
 Iterator itr = theRecords.iterator();
-
 
 while (itr.hasNext()) {
 
@@ -410,15 +515,14 @@ while (itr.hasNext()) {
         */
 
         _GuestID = fields[0].trim();
-        _CustomerName = fields[1].trim();
+        _LastName = fields[1].trim();
         _Address = fields[2].trim();
         _ContactNumber = fields[3].trim();
         _Email = fields[4].trim();
         _Charges = fields[5].trim();
 
-
         if (_GuestID.trim().equalsIgnoreCase(newRecordFields[0].trim()) && 
-            _CustomerName.trim().equalsIgnoreCase(newRecordFields[1].trim()) &&
+            _LastName.trim().equalsIgnoreCase(newRecordFields[1].trim()) &&
             _Address.trim().equalsIgnoreCase(newRecordFields[2].trim()) &&
             _ContactNumber.trim().equalsIgnoreCase(newRecordFields[3].trim()) &&
             _Email.trim().equalsIgnoreCase(newRecordFields[4].trim()) &&
@@ -514,7 +618,7 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
         else{
             fields = strLine.split(",");
             _GuestID = fields[0].trim();
-            _CustomerName = fields[1].trim();
+            _LastName = fields[1].trim();
             _Address = fields[2].trim();
             _ContactNumber = fields[3].trim();
             _Email = fields[4].trim();
@@ -528,7 +632,7 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
             iCount++;
             
             if (_GuestID.trim().equalsIgnoreCase(delRecordFields[0].trim()) &&
-                _CustomerName.trim().equalsIgnoreCase(delRecordFields[1].trim()) &&
+                _LastName.trim().equalsIgnoreCase(delRecordFields[1].trim()) &&
                 _Address.trim().equalsIgnoreCase(delRecordFields[2].trim()) &&
                 _ContactNumber.trim().equalsIgnoreCase(delRecordFields[3].trim()) &&
                 _Email.trim().equalsIgnoreCase(delRecordFields[4].trim()) &&
@@ -581,7 +685,7 @@ return nReturnValue;
 
 public static boolean DBisValidRecord(String dbRecord){
 //Variables
-boolean bReturnValue	= false;
+boolean bReturnValue = false;
 
 //Code
 if (dbRecord.equals("") || dbRecord.equals(" ")) {
@@ -654,9 +758,9 @@ return nReturnValue;
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Method: DBgetReseravtionFileName()
+//Method: DBgetReservationFileName()
 //------------------------------------------------------------------------------------------------------------
-public static String DBgetReseravtionFileName() {
+public static String DBgetReservationFileName() {
 //
 //return the String name
 //
@@ -674,7 +778,7 @@ public static void main(String[] args) {
 
 
 String reservationFile = "C:\\Users\\Collin\\Desktop\\hotel_res.txt";
-/*
+
 ArrayList theRecords = new ArrayList();
 
 theRecords = getAllReservationRecords();
@@ -689,7 +793,7 @@ while(i < theRecords.size()) {
       i++;
 
 }  //while
-*/
+
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
