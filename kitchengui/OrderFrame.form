@@ -63,7 +63,7 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="SpecialRequestsLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="OrderLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="DeleteButton" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="DeleteButton" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
