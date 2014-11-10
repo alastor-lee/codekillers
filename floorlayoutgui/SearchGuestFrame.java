@@ -102,13 +102,15 @@ public class SearchGuestFrame extends javax.swing.JFrame {
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         database.GuestInfo GuestSearch = new database.GuestInfo();
-        GuestSearch.setLastName(IDField.getText());
+        GuestSearch.setGuestID(IDField.getText());
         GuestSearch.setLastName(LastNameField.getText());
+        System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
+        System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
         
+        //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
         engine.databaseManager manager = new engine.databaseManager();
         searchReturn = manager.findGuest(GuestSearch);
-        //displays in GUI text window
-        GuestInfoText.setText("Guest Information:/n"+searchReturn);
+        GuestInfoText.setText("Guest Information:\n"+searchReturn.replace(";" , "\n"));
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     /**
