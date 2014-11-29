@@ -9,6 +9,6 @@ package engine;
  *
  * @author Colin
  */
-public class Alarm {
+public class AlarmManager {
     
 }

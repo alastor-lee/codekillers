@@ -9,9 +9,9 @@ package engine;
  *
  * @author alastor
  */
-public class databaseManager {
+public class GuestDBWriter {
     
-    public databaseManager() {
+    public GuestDBWriter() {
         //init here
     }
     //variables here
@@ -23,7 +23,7 @@ public class databaseManager {
     String email;
     
     //constructors
-    public databaseManager(String ID, String fName, String lName, String phone, String addr, String mail) {
+    public GuestDBWriter(String ID, String fName, String lName, String phone, String addr, String mail) {
         guestID = ID;
         firstName = fName;
         lastName = lName;
@@ -35,14 +35,14 @@ public class databaseManager {
 
 
    //method for creating new guest(passed from NewGuestCreate class)
-    public void addGuest(database.GuestInfo a) {
-        database.GuestDB GuestAdder = new database.GuestDB();
+    public void addGuest(database.info.GuestInfo a) {
+        database.info.GuestDB GuestAdder = new database.info.GuestDB();
         //sending guest information to GuestDB handler
         System.out.println(GuestAdder.addGuest(a));
     }
     
-    public String findGuest(database.GuestInfo a) {
-        database.GuestDB GuestSearcher = new database.GuestDB();
+    public String findGuest(database.info.GuestInfo a) {
+        database.info.GuestDB GuestSearcher = new database.info.GuestDB();
         return GuestSearcher.searchDB(a);
     }
     

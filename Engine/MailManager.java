@@ -9,7 +9,7 @@ package engine;
  *
  * @author Colin
  */
-public class Mail {
+public class MailManager {
     // Good news #1: Java has a mail API to make sending mail relatively painless
     // Bad news #1: That API is only available in the Enterprise Edition. We'll need to see what Bhola is expecting us to use.
     // Good news #2: It IS possible to implement mail sending through SMTP in Java Standard Edition

@@ -1,5 +1,24 @@
+/*
+  MAIN CLASS -- RUN THIS FROM COMMAND LINE
+
+  PROGRAM OUTLINE 
+       engine
+            - only contains MANAGERS and WRITERS
+            - does all logic handling and database management
+            - handles all input verification
+       database.info
+            - classes in this package are PURELY for holding INFORMATION
+            - Guest, Inventory, Reservation, Room etc.
+            - These will all work very closely with the engine
+            - Often will be created by GUI and then handled by ENGINE
+       all GUI packages
+            - PURELY FOT DISPLAY PURPOSES
+            - all information passed in will IMMEDIATELY be passed to INFO classes
+ */
+
 package engine;
 
+//below imports are unused until file checking works
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,18 +26,18 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-/**
- * This is the main class for the program. This is the file that you will compile from the command line.
- */
-public class HotelManagementSystem {
+public class HotelManager {
     
     public static void main(String[] args){
-        mainframeGUI.LoginFrame gui = new mainframeGUI.LoginFrame();
-        gui.setVisible(true);
+        mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
+        master.setVisible(true);
         
-    //++++++
-    //initializing the database
-    //------
+    /*
+     * The following will check for flat file existence
+     * If needed files do not exist, they will be created in a new database folder
+     */
+    
+        /* WILL MAKE THIS WORK LATER, ASSUMING EXISTENCE FOR NOW
         
     String GuestDB = "C:\\Documents\\database\\Guest.txt";
     String RoomReservationDB = "C:\\Documents\\database\\RoomReservation.txt";
@@ -81,6 +100,7 @@ public class HotelManagementSystem {
         catch (IOException ex){
             //handle me
         }
+                */
 
         
     }

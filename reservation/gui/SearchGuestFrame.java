@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reservationGUI;
+package reservation.gui;
 
 /**
  *
@@ -102,14 +102,14 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        database.GuestInfo GuestSearch = new database.GuestInfo();
+        database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
         GuestSearch.setGuestID(IDField.getText());
         GuestSearch.setLastName(LastNameField.getText());
         System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
         System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
         
         //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
-        engine.databaseManager manager = new engine.databaseManager();
+        engine.GuestDBWriter manager = new engine.GuestDBWriter();
         searchReturn = manager.findGuest(GuestSearch);
         GuestInfoText.setText("Guest Information:\n"+searchReturn.replace(";" , "\n"));
     }//GEN-LAST:event_SearchButtonActionPerformed

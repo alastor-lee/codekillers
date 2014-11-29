@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-package database;
+package database.info;
 /**
  *
  * @author Collin

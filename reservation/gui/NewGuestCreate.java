@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reservationGUI;
+package reservation.gui;
 
 /**
  *
@@ -144,7 +144,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
     
     private void AddGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGuestButtonActionPerformed
         //guestID = Integer.parseInt(GuestIDField.getText());       //implement this later
-        database.GuestInfo NewGuest = new database.GuestInfo();
+        database.info.GuestInfo NewGuest = new database.info.GuestInfo();
         NewGuest.setGuestID(GuestIDField.getText());
         NewGuest.setFirstName(FirstNameField.getText());
         NewGuest.setLastName(LastNameField.getText());
@@ -153,7 +153,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
         NewGuest.setEmail(EmailField.getText());
 
         //make guestID an integer and change GuestDB to handle first and last name
-        engine.databaseManager manager = new engine.databaseManager();
+        engine.GuestDBWriter manager = new engine.GuestDBWriter();
         manager.addGuest(NewGuest);
         //System.out.println(guestID + " " + firstName + " " + lastName + " " + phoneNum + " " + address + " " + email);
     }//GEN-LAST:event_AddGuestButtonActionPerformed

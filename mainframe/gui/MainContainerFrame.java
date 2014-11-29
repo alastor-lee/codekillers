@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mainframeGUI;
+package mainframe.gui;
 
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -489,18 +489,18 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
 
     private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
-        //here the button calls on the search frame from the reservationGUI package, same functionality needed
-        reservationGUI.SearchGuestFrame SearchFrame = new reservationGUI.SearchGuestFrame(); //Create a new instance of the frame
+        //here the button calls on the search frame from the reservation.gui package, same functionality needed
+        reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
     private void EditInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditInventoryButtonActionPerformed
-        kitchenGUI.EditInventoryFrame EditInventoryFrame = new kitchenGUI.EditInventoryFrame(); //Create a new instance of the frame
+        kitchen.gui.EditInventoryFrame EditInventoryFrame = new kitchen.gui.EditInventoryFrame(); //Create a new instance of the frame
         EditInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_EditInventoryButtonActionPerformed
 
     private void ViewInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewInventoryButtonActionPerformed
-        kitchenGUI.ViewInventoryFrame ViewInventoryFrame = new kitchenGUI.ViewInventoryFrame(); //Create a new instance of the frame
+        kitchen.gui.ViewInventoryFrame ViewInventoryFrame = new kitchen.gui.ViewInventoryFrame(); //Create a new instance of the frame
         ViewInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewInventoryButtonActionPerformed
 
@@ -514,18 +514,18 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveOrderButtonActionPerformed
 
     private void EditOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditOrderButtonActionPerformed
-        kitchenGUI.OrderFrame OrderFrame = new kitchenGUI.OrderFrame(); //Create a new instance of the frame
+        kitchen.gui.OrderFrame OrderFrame = new kitchen.gui.OrderFrame(); //Create a new instance of the frame
         OrderFrame.setVisible(true); //Make the frame visible
         // Not exactly sure how this is going to work.
     }//GEN-LAST:event_EditOrderButtonActionPerformed
 
     private void OrderHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryButtonActionPerformed
-        kitchenGUI.OrderHistoryFrame OrderHistoryFrame = new kitchenGUI.OrderHistoryFrame(); //Create a new instance of the frame
+        kitchen.gui.OrderHistoryFrame OrderHistoryFrame = new kitchen.gui.OrderHistoryFrame(); //Create a new instance of the frame
         OrderHistoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_OrderHistoryButtonActionPerformed
 
     private void NewOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewOrderButtonActionPerformed
-        kitchenGUI.OrderFrame OrderFrame = new kitchenGUI.OrderFrame(); //Create a new instance of the frame
+        kitchen.gui.OrderFrame OrderFrame = new kitchen.gui.OrderFrame(); //Create a new instance of the frame
         OrderFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
@@ -537,7 +537,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FloorSelectorItemStateChanged
 
     private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
-        reservationGUI.SearchGuestFrame SearchFrame = new reservationGUI.SearchGuestFrame(); //Create a new instance of the frame
+        reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
@@ -546,7 +546,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_orderPickupButtonActionPerformed
 
     private void newReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReservationButtonActionPerformed
-        reservationGUI.NewReservationFrame NewReservation = new reservationGUI.NewReservationFrame();
+        reservation.gui.NewReservationFrame NewReservation = new reservation.gui.NewReservationFrame();
         NewReservation.setVisible(true);
     }//GEN-LAST:event_newReservationButtonActionPerformed
 
