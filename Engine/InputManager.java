@@ -15,21 +15,23 @@ public class InputManager {
         if (addr.length < 6 || addr.length > 6) {
             //address does not have enough fields
             System.out.println("wrong address length");
-            return 1;
+            return 2;
         }
-        //Printing fields
+        //Printing fields TEST
+        /*
         for(int i=0; i<addr.length; i++){
             System.out.println(addr[i]);
         }
+        */
         //checking for comma after city
         if(addr[3].charAt(addr[3].length()-1) != ',') {
             System.out.println("No comma, instead: "+addr[3].charAt(addr[3].length()-1));
-            return 1;
+            return 2;
         }
         //checking that state is in abbreviated form only
         if(addr[4].length() > 2 || addr[4].length() < 2) {
             System.out.println("Improper State input");
-            return 1;
+            return 2;
         }
         return 0;
     }
@@ -39,7 +41,7 @@ public class InputManager {
         phone = phone.replaceAll("-", "");
         //checking length
         if(phone.length() > 10 || phone.length() < 10){
-            return 2;
+            return 3;
         }
         //checking that the string is all numbers
         char num;
@@ -48,7 +50,7 @@ public class InputManager {
             num = phone.charAt(i);
             asciiVal = (int)num;
             if(asciiVal < 48 || asciiVal > 57){
-                return 2;
+                return 3;
             }
         }
         return 0;
@@ -57,7 +59,7 @@ public class InputManager {
     public int checkEmail(String e){
         //using regex to verify email address format
         if(!e.matches("(.+@{1}){1}([a-zA-Z]+[\\.]{1})+[a-zA-Z]+")){
-            return 3; 
+            return 4; 
         }
         return 0;
     }

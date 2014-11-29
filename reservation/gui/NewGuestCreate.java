@@ -157,17 +157,18 @@ public class NewGuestCreate extends javax.swing.JFrame {
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
         engine.GuestDBManager GuestDBWriter = new engine.GuestDBManager();
         //setting vars in GuestInfo
-        
+        NewGuest.setGuestID(GuestIDField.getText());
         NewGuest.setFirstName(FirstNameField.getText());    //no error check
         NewGuest.setLastName(LastNameField.getText());      //no error check
-        check = NewGuest.setAddress(AddressField.getText());    //error flag returns 1
+        
+        check = NewGuest.setAddress(AddressField.getText());    //error flag returns 2
         //if error has already been returned by setAddress, this is skipped
         if(check==0) {
-            check = NewGuest.setContactNum(PhoneNumField.getText());    //error flag returns 2
+            check = NewGuest.setContactNum(PhoneNumField.getText());    //error flag returns 3
         }
         //if error has already been returned by setAddress or setContactNum, this is skipped
         if(check==0){
-            check = NewGuest.setEmail(EmailField.getText());            //error flag returns 3
+            check = NewGuest.setEmail(EmailField.getText());            //error flag returns 4
         }
         if(check==0){
             check = GuestDBWriter.addGuest(NewGuest);
@@ -175,13 +176,13 @@ public class NewGuestCreate extends javax.swing.JFrame {
         //switch either calls on GuestDBManager to write to file or gives error message
         switch(check) {
             //case 0 means no errors, passes GuestInfo to GuestDBManager for writing
-            case 0: ErrorTextField.setText("All fields correct");
+            case 1: ErrorTextField.setText("Guest Added");
                 break;
-            case 1: ErrorTextField.setText("Invalid Address");  
+            case 2: ErrorTextField.setText("Invalid Address");  
                 break;
-            case 2: ErrorTextField.setText("Invalid Phone Number");
+            case 3: ErrorTextField.setText("Invalid Phone Number");
                 break;
-            case 3: ErrorTextField.setText("Invalid Email");
+            case 4: ErrorTextField.setText("Invalid Email");
                 break;
             case 13: ErrorTextField.setText("Guest already exists");
                 break;

@@ -176,11 +176,9 @@ public int addGuest(GuestInfo NewGuest){
 
     }  //while
     
-    /* THIS IS REDUNDANT, if WHILE loop is over hasNext is false automatically
     if(itr.hasNext() != true) {
         nReturnValue = NEW_RECORD;
     }
-    */
 
     if (NEW_RECORD == nReturnValue){
 
