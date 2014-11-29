@@ -13,7 +13,7 @@ import java.io.Writer;
 public class HotelManagementSystem {
     
     public static void main(String[] args){
-        maingui.LoginFrame gui = new maingui.LoginFrame();
+        mainframeGUI.LoginFrame gui = new mainframeGUI.LoginFrame();
         gui.setVisible(true);
         
     //++++++

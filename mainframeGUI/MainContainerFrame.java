@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maingui;
+package mainframeGUI;
 
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -31,7 +31,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainFrame = new javax.swing.JTabbedPane();
-        reservationTab = new javax.swing.JPanel();
+        reserveTab = new javax.swing.JPanel();
         newReservationButton = new javax.swing.JButton();
         cancelReservationButton = new javax.swing.JButton();
         GuestSearchButton = new javax.swing.JButton();
@@ -93,22 +93,22 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout reservationTabLayout = new javax.swing.GroupLayout(reservationTab);
-        reservationTab.setLayout(reservationTabLayout);
-        reservationTabLayout.setHorizontalGroup(
-            reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(reservationTabLayout.createSequentialGroup()
+        javax.swing.GroupLayout reserveTabLayout = new javax.swing.GroupLayout(reserveTab);
+        reserveTab.setLayout(reserveTabLayout);
+        reserveTabLayout.setHorizontalGroup(
+            reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reserveTabLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                         .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(620, Short.MAX_VALUE))
         );
-        reservationTabLayout.setVerticalGroup(
-            reservationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(reservationTabLayout.createSequentialGroup()
+        reserveTabLayout.setVerticalGroup(
+            reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reserveTabLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(newReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
@@ -118,7 +118,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addContainerGap(262, Short.MAX_VALUE))
         );
 
-        mainFrame.addTab("Reservation", reservationTab);
+        mainFrame.addTab("Reservation", reserveTab);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -468,8 +468,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,23 +489,24 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
 
     private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
-        floorlayoutgui.SearchGuestFrame SearchFrame = new floorlayoutgui.SearchGuestFrame(); //Create a new instance of the frame
+        //here the button calls on the search frame from the reservationGUI package, same functionality needed
+        reservationGUI.SearchGuestFrame SearchFrame = new reservationGUI.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
     private void EditInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditInventoryButtonActionPerformed
-        kitchengui.EditInventoryFrame EditInventoryFrame = new kitchengui.EditInventoryFrame(); //Create a new instance of the frame
+        kitchenGUI.EditInventoryFrame EditInventoryFrame = new kitchenGUI.EditInventoryFrame(); //Create a new instance of the frame
         EditInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_EditInventoryButtonActionPerformed
 
     private void ViewInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewInventoryButtonActionPerformed
-        kitchengui.ViewInventoryFrame ViewInventoryFrame = new kitchengui.ViewInventoryFrame(); //Create a new instance of the frame
+        kitchenGUI.ViewInventoryFrame ViewInventoryFrame = new kitchenGUI.ViewInventoryFrame(); //Create a new instance of the frame
         ViewInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewInventoryButtonActionPerformed
 
     private void ViewMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMenuButtonActionPerformed
-        kitchengui.ViewMenuFrame ViewMenuFrame = new kitchengui.ViewMenuFrame(); //Create a new instance of the frame
-        ViewMenuFrame.setVisible(true); //Make the frame visible
+        //kitchenGUI.ViewMenuFrame ViewMenu = new kitchenGUI.ViewMenuFrame(); //Create a new instance of the frame
+        //ViewMenu.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewMenuButtonActionPerformed
 
     private void RemoveOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveOrderButtonActionPerformed
@@ -512,18 +514,18 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveOrderButtonActionPerformed
 
     private void EditOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditOrderButtonActionPerformed
-        kitchengui.OrderFrame OrderFrame = new kitchengui.OrderFrame(); //Create a new instance of the frame
+        kitchenGUI.OrderFrame OrderFrame = new kitchenGUI.OrderFrame(); //Create a new instance of the frame
         OrderFrame.setVisible(true); //Make the frame visible
         // Not exactly sure how this is going to work.
     }//GEN-LAST:event_EditOrderButtonActionPerformed
 
     private void OrderHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryButtonActionPerformed
-        kitchengui.OrderHistoryFrame OrderHistoryFrame = new kitchengui.OrderHistoryFrame(); //Create a new instance of the frame
+        kitchenGUI.OrderHistoryFrame OrderHistoryFrame = new kitchenGUI.OrderHistoryFrame(); //Create a new instance of the frame
         OrderHistoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_OrderHistoryButtonActionPerformed
 
     private void NewOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewOrderButtonActionPerformed
-        kitchengui.OrderFrame OrderFrame = new kitchengui.OrderFrame(); //Create a new instance of the frame
+        kitchenGUI.OrderFrame OrderFrame = new kitchenGUI.OrderFrame(); //Create a new instance of the frame
         OrderFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
@@ -535,7 +537,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FloorSelectorItemStateChanged
 
     private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
-        floorlayoutgui.SearchGuestFrame SearchFrame = new floorlayoutgui.SearchGuestFrame(); //Create a new instance of the frame
+        reservationGUI.SearchGuestFrame SearchFrame = new reservationGUI.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
@@ -544,7 +546,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_orderPickupButtonActionPerformed
 
     private void newReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReservationButtonActionPerformed
-        floorlayoutgui.NewReservationFrame NewReservation = new floorlayoutgui.NewReservationFrame();
+        reservationGUI.NewReservationFrame NewReservation = new reservationGUI.NewReservationFrame();
         NewReservation.setVisible(true);
     }//GEN-LAST:event_newReservationButtonActionPerformed
 
@@ -633,7 +635,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton newReservationButton;
     private javax.swing.JButton orderPickupButton;
     private javax.swing.JLabel paymentInfoLabel;
-    private javax.swing.JPanel reservationTab;
+    private javax.swing.JPanel reserveTab;
     private javax.swing.JPanel searchTab;
     // End of variables declaration//GEN-END:variables
 }

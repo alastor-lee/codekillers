@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package floorlayoutgui;
+package reservationGUI;
 
 /**
  *
@@ -138,6 +138,10 @@ public class NewGuestCreate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addGuestId() {
+         
+    }
+    
     private void AddGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGuestButtonActionPerformed
         //guestID = Integer.parseInt(GuestIDField.getText());       //implement this later
         database.GuestInfo NewGuest = new database.GuestInfo();
