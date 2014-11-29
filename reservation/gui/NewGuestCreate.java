@@ -18,15 +18,15 @@ public class NewGuestCreate extends javax.swing.JFrame {
         initComponents();
     }
     
-    //variable declaration for database modification
-    //int guestID;
+   /*
     String guestID;
     String firstName;
     String lastName;
     String phoneNum;
     String address;
     String email;
-            
+   */ 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +49,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
         AddressField = new javax.swing.JTextField();
         EmailField = new javax.swing.JTextField();
         AddGuestButton = new javax.swing.JButton();
+        ErrorTextField = new javax.swing.JLabel();
 
         jLabel1.setText("Guest ID:");
 
@@ -93,14 +94,17 @@ public class NewGuestCreate extends javax.swing.JFrame {
                                     .addComponent(AddressLabel)
                                     .addComponent(PhoneNumLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PhoneNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(PhoneNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(LastNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(AddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(EmailField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(AddGuestButton)))
+                        .addComponent(AddGuestButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,9 +132,11 @@ public class NewGuestCreate extends javax.swing.JFrame {
                     .addComponent(AddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EmailLabel)
-                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmailLabel))
+                .addGap(21, 21, 21)
+                .addComponent(ErrorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AddGuestButton)
                 .addContainerGap())
         );
@@ -143,19 +149,45 @@ public class NewGuestCreate extends javax.swing.JFrame {
     }
     
     private void AddGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGuestButtonActionPerformed
-        //guestID = Integer.parseInt(GuestIDField.getText());       //implement this later
+        /*
+            GuestInfo class will set guest information and check for input error
+            GuestDBManager will write to the database if input is correct
+        */
+        int check=0;
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
-        NewGuest.setGuestID(GuestIDField.getText());
-        NewGuest.setFirstName(FirstNameField.getText());
-        NewGuest.setLastName(LastNameField.getText());
-        NewGuest.setContactNum(PhoneNumField.getText());
-        NewGuest.setAddress(AddressField.getText());
-        NewGuest.setEmail(EmailField.getText());
-
-        //make guestID an integer and change GuestDB to handle first and last name
-        engine.GuestDBWriter manager = new engine.GuestDBWriter();
-        manager.addGuest(NewGuest);
-        //System.out.println(guestID + " " + firstName + " " + lastName + " " + phoneNum + " " + address + " " + email);
+        engine.GuestDBManager GuestDBWriter = new engine.GuestDBManager();
+        //setting vars in GuestInfo
+        
+        NewGuest.setFirstName(FirstNameField.getText());    //no error check
+        NewGuest.setLastName(LastNameField.getText());      //no error check
+        check = NewGuest.setAddress(AddressField.getText());    //error flag returns 1
+        //if error has already been returned by setAddress, this is skipped
+        if(check==0) {
+            check = NewGuest.setContactNum(PhoneNumField.getText());    //error flag returns 2
+        }
+        //if error has already been returned by setAddress or setContactNum, this is skipped
+        if(check==0){
+            check = NewGuest.setEmail(EmailField.getText());            //error flag returns 3
+        }
+        if(check==0){
+            check = GuestDBWriter.addGuest(NewGuest);
+        }
+        //switch either calls on GuestDBManager to write to file or gives error message
+        switch(check) {
+            //case 0 means no errors, passes GuestInfo to GuestDBManager for writing
+            case 0: ErrorTextField.setText("All fields correct");
+                break;
+            case 1: ErrorTextField.setText("Invalid Address");  
+                break;
+            case 2: ErrorTextField.setText("Invalid Phone Number");
+                break;
+            case 3: ErrorTextField.setText("Invalid Email");
+                break;
+            case 13: ErrorTextField.setText("Guest already exists");
+                break;
+            default: ErrorTextField.setText("Improper Handling");
+                break;
+        }
     }//GEN-LAST:event_AddGuestButtonActionPerformed
 
     /**
@@ -199,6 +231,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
     private javax.swing.JLabel AddressLabel;
     private javax.swing.JTextField EmailField;
     private javax.swing.JLabel EmailLabel;
+    private javax.swing.JLabel ErrorTextField;
     private javax.swing.JTextField FirstNameField;
     private javax.swing.JLabel FirstNameLabel;
     private javax.swing.JTextField GuestIDField;

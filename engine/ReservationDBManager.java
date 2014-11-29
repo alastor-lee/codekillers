@@ -5,11 +5,12 @@
  * and open the template in the editor.
  */
 
-package database.info;
+package engine;
 /**
  *
  * @author Collin
  */
+import database.info.*;
 import java.io.*;
 
 import java.util.*;
@@ -29,7 +30,7 @@ import java.lang.reflect.*;
 
 
 
-public class RoomReservationDB {
+public class ReservationDBManager {
 
 public static String _GuestID;
 public static String _RoomNumber;

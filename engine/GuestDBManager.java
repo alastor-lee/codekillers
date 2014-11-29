@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.info;
+package engine;
 
 /**
  *
  * @author Collin
  */
+import database.info.*;
 import java.io.*;
 import java.util.*;
 import java.io.BufferedReader;
@@ -24,7 +25,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.lang.reflect.*;
 
 //start of class
-public class GuestDB {
+public class GuestDBManager {
 
 //variables
 public static String _GuestID;
@@ -37,11 +38,11 @@ public static String _Charges;
 
 String nameOfFile = new File("").getAbsolutePath();
 
-public GuestDB() {
+public GuestDBManager() {
     //basic constructor
 }
 //constructor called on by the databaseManager to add a new guest to the database
-public GuestDB(String ID, String fName, String lName, String phoneNum, String address, String email) {
+public GuestDBManager(String ID, String fName, String lName, String phoneNum, String address, String email) {
     _GuestID = ID;
     _FirstName = fName;
     _LastName = lName;
@@ -152,18 +153,15 @@ public int addGuest(GuestInfo NewGuest){
             //_Charges = fields[6].trim();      //no handling this yet
             
             //comparing current entry at given iterator count to the new entry
-            //only last guest ID, last name, and email should not be duplicate
+            //only guestID and email need to be checked for duplicate records
             if (_GuestID.trim().equalsIgnoreCase(newRecordFields[0].trim()) || 
-                _LastName.trim().equalsIgnoreCase(newRecordFields[2].trim()) ||
-                //_Address.trim().equalsIgnoreCase(newRecordFields[2].trim()) ||
-                //_ContactNumber.trim().equalsIgnoreCase(newRecordFields[3].trim()) ||
-                _Email.trim().equalsIgnoreCase(newRecordFields[5].trim()) //||
-               //_Charges.trim().equalsIgnoreCase(newRecordFields[5].trim())
+                _Email.trim().equalsIgnoreCase(newRecordFields[5].trim())
             )
             {
                 System.out.println("Duplicate Record");
-                nReturnValue = FAILED_DUPLICATE_RECORD ;   //if there is a duplicate, fail the write
-                break;
+                //returns int value 13, which is understood as a write fail due to duplicates
+                nReturnValue = FAILED_DUPLICATE_RECORD ;
+                return nReturnValue;
             }
 
             else{
@@ -178,9 +176,11 @@ public int addGuest(GuestInfo NewGuest){
 
     }  //while
     
+    /* THIS IS REDUNDANT, if WHILE loop is over hasNext is false automatically
     if(itr.hasNext() != true) {
         nReturnValue = NEW_RECORD;
     }
+    */
 
     if (NEW_RECORD == nReturnValue){
 
@@ -393,7 +393,7 @@ return nReturnValue;
 //returns  : ArrayList of Strings
 //------------------------------------------------------------------------------------------------------------
 
-public static ArrayList DBfindOneCustomer(String reservationFile,String CustomerName) {
+public static ArrayList DBOneCustomer(String reservationFile,String CustomerName) {
 //Variables
 String strLine = null;
 String[] fields = null;

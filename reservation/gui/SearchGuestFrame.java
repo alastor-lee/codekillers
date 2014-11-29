@@ -109,8 +109,8 @@ public class SearchGuestFrame extends javax.swing.JFrame {
         System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
         
         //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
-        engine.GuestDBWriter manager = new engine.GuestDBWriter();
-        searchReturn = manager.findGuest(GuestSearch);
+        engine.GuestDBManager manager = new engine.GuestDBManager();
+        searchReturn = manager.searchDB(GuestSearch);
         GuestInfoText.setText("Guest Information:\n"+searchReturn.replace(";" , "\n"));
     }//GEN-LAST:event_SearchButtonActionPerformed
 

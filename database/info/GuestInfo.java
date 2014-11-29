@@ -17,6 +17,8 @@ public class GuestInfo {
     String Address;
     String ContactNum;
     String Email;
+    //InputManager handles input error checking
+    engine.InputManager verify = new engine.InputManager();
     //setters
     public void setGuestID(String a){
         GuestID = a;
@@ -27,14 +29,20 @@ public class GuestInfo {
     public void setLastName(String c){
         LastName = c;
     }
-    public void setAddress(String d){
+    public int setAddress(String d){
         Address = d;
+        //if return value is 1, there is an error
+        return verify.checkAddress(Address);
     }
-    public void setContactNum(String e){
+    public int setContactNum(String e){
         ContactNum = e;
+        //if returned value is 2, there is an error
+        return verify.checkPhoneNum(ContactNum);
     }
-    public void setEmail(String f){
+    public int setEmail(String f){
         Email = f;
+        //if returned value is 3, there is an error
+        return verify.checkEmail(Email);
     }
     //getters
     public String getGuestID(){
