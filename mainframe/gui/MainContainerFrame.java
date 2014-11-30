@@ -121,6 +121,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         mainFrame.addTab("Reservation", reserveTab);
 
+        floorLayoutTab.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/codekillers/mainframe/resources/floorlayout.jpg"))); // NOI18N
 
         javax.swing.GroupLayout floorLayoutTabLayout = new javax.swing.GroupLayout(floorLayoutTab);
@@ -268,9 +270,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
             kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CurrentOrdersLabel1)
-                    .addComponent(activeOrdersLabel))
+                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(activeOrdersLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CurrentOrdersLabel1))
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kitchenPanelLayout.createSequentialGroup()
                         .addGap(29, 29, 29)

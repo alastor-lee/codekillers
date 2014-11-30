@@ -53,8 +53,8 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CreateNewGuestButton = new javax.swing.JButton();
         GuestLookupButton = new javax.swing.JButton();
         CheckInSpinner = new javax.swing.JSpinner();
-        CheckOutSpinner = new javax.swing.JSpinner();
         CheckDateAvailabilityButton = new javax.swing.JButton();
+        CheckOutSpinner = new javax.swing.JSpinner();
 
         GuestIDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,14 +128,15 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CheckInSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MONTH));
         CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, "dd/MM/yyyy"));
 
-        CheckOutSpinner.setModel(new javax.swing.SpinnerDateModel());
-
         CheckDateAvailabilityButton.setText("Check Date Availability");
         CheckDateAvailabilityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckDateAvailabilityButtonActionPerformed(evt);
             }
         });
+
+        CheckOutSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MONTH));
+        CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, "dd/MM/yyyy"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,8 +175,8 @@ public class NewReservationFrame extends javax.swing.JFrame {
                                     .addComponent(NumPersonsField)
                                     .addComponent(TypeRoomComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(CheckInSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                    .addComponent(CheckOutSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                    .addComponent(RoomNumberField))
+                                    .addComponent(RoomNumberField)
+                                    .addComponent(CheckOutSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CreateNewGuestButton)

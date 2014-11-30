@@ -77,8 +77,8 @@
                                       <Component id="NumPersonsField" alignment="1" max="32767" attributes="0"/>
                                       <Component id="TypeRoomComboBox" alignment="1" max="32767" attributes="0"/>
                                       <Component id="CheckInSpinner" alignment="1" pref="0" max="32767" attributes="0"/>
-                                      <Component id="CheckOutSpinner" alignment="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="RoomNumberField" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="CheckOutSpinner" alignment="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -303,13 +303,6 @@
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, &quot;dd/MM/yyyy&quot;));"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JSpinner" name="CheckOutSpinner">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" stepSize="5" type="date"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="CheckDateAvailabilityButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Check Date Availability"/>
@@ -317,6 +310,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckDateAvailabilityButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="CheckOutSpinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="now" stepSize="2" type="date"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, &quot;dd/MM/yyyy&quot;));"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
