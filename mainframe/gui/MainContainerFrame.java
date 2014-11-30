@@ -29,7 +29,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         mainFrame = new javax.swing.JTabbedPane();
         reserveTab = new javax.swing.JPanel();
@@ -37,14 +36,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         cancelReservationButton = new javax.swing.JButton();
         GuestSearchButton = new javax.swing.JButton();
         floorLayoutTab = new javax.swing.JPanel();
-        floorTabPane = new javax.swing.JTabbedPane();
-        floor1Tab = new javax.swing.JTabbedPane();
-        floor1Layout = new javax.swing.JPanel();
-        floor1Background = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        floor2Tab = new javax.swing.JTabbedPane();
-        floor3Tab = new javax.swing.JTabbedPane();
         kitchenTab = new javax.swing.JPanel();
         kitchenPanel = new javax.swing.JPanel();
         CurrentOrdersLabel1 = new javax.swing.JLabel();
@@ -113,7 +105,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                         .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(692, Short.MAX_VALUE))
+                .addContainerGap(688, Short.MAX_VALUE))
         );
         reserveTabLayout.setVerticalGroup(
             reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,73 +116,29 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addComponent(cancelReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Reservation", reserveTab);
 
-        floor1Background.setBackground(new java.awt.Color(255, 255, 255));
-        floor1Background.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainframe/resources/floorlayout.jpg"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        floor1Background.add(jLabel1, gridBagConstraints);
-
-        jPanel1.setOpaque(false);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 936, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 538, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        floor1Background.add(jPanel1, gridBagConstraints);
-
-        javax.swing.GroupLayout floor1LayoutLayout = new javax.swing.GroupLayout(floor1Layout);
-        floor1Layout.setLayout(floor1LayoutLayout);
-        floor1LayoutLayout.setHorizontalGroup(
-            floor1LayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floor1Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        floor1LayoutLayout.setVerticalGroup(
-            floor1LayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floor1Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        floor1Tab.addTab("Floor Plan", floor1Layout);
-
-        floorTabPane.addTab("Floor 1", floor1Tab);
-        floorTabPane.addTab("Floor 2", floor2Tab);
-        floorTabPane.addTab("Floor 3", floor3Tab);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/codekillers/mainframe/resources/floorlayout.jpg"))); // NOI18N
 
         javax.swing.GroupLayout floorLayoutTabLayout = new javax.swing.GroupLayout(floorLayoutTab);
         floorLayoutTab.setLayout(floorLayoutTabLayout);
         floorLayoutTabLayout.setHorizontalGroup(
             floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floorTabPane)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, floorLayoutTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         floorLayoutTabLayout.setVerticalGroup(
             floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floorTabPane)
+            .addGroup(floorLayoutTabLayout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(jLabel1)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
-
-        floorTabPane.getAccessibleContext().setAccessibleName("FloorTabPane");
 
         mainFrame.addTab("Floor Layout", floorLayoutTab);
 
@@ -288,33 +236,33 @@ public class MainContainerFrame extends javax.swing.JFrame {
         kitchenPanel.setLayout(kitchenPanelLayout);
         kitchenPanelLayout.setHorizontalGroup(
             kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OrderHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(EditOrderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(RemoveOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ViewMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ViewInventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(EditInventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
-                .addComponent(currentOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
-                        .addComponent(activeOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
-                        .addComponent(orderPickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
             .addGroup(kitchenPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CurrentOrdersLabel1)
-                .addGap(158, 158, 158)
-                .addComponent(activeOrdersLabel)
-                .addGap(85, 85, 85))
+                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kitchenPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OrderHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(EditOrderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(RemoveOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ViewMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ViewInventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EditInventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(48, 48, 48)
+                        .addComponent(currentOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(activeOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(kitchenPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(orderPickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(kitchenPanelLayout.createSequentialGroup()
+                        .addGap(374, 374, 374)
+                        .addComponent(CurrentOrdersLabel1)
+                        .addGap(162, 162, 162)
+                        .addComponent(activeOrdersLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kitchenPanelLayout.setVerticalGroup(
             kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,9 +293,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kitchenPanelLayout.createSequentialGroup()
                                 .addComponent(activeOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(orderPickupButton)
-                                .addGap(0, 10, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(orderPickupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(currentOrdersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -358,8 +305,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
             kitchenTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kitchenTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kitchenPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(kitchenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kitchenTabLayout.setVerticalGroup(
             kitchenTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,7 +411,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                                 .addGroup(checkoutTabLayout.createSequentialGroup()
                                     .addGap(15, 15, 15)
                                     .addComponent(CheckOutButton))))))
-                .addContainerGap(695, Short.MAX_VALUE))
+                .addContainerGap(691, Short.MAX_VALUE))
         );
         checkoutTabLayout.setVerticalGroup(
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,7 +445,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addGap(38, 38, 38)
                 .addComponent(CheckOutButton)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         mainFrame.addTab("Check Out", checkoutTab);
@@ -507,11 +454,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
         searchTab.setLayout(searchTabLayout);
         searchTabLayout.setHorizontalGroup(
             searchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 946, Short.MAX_VALUE)
+            .addGap(0, 942, Short.MAX_VALUE)
         );
         searchTabLayout.setVerticalGroup(
             searchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addGap(0, 561, Short.MAX_VALUE)
         );
 
         mainFrame.addTab("Search/Update", searchTab);
@@ -522,12 +469,13 @@ public class MainContainerFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainFrame)
-                .addContainerGap())
+                .addComponent(mainFrame))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainFrame, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
@@ -668,13 +616,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelReservationButton;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
-    private javax.swing.JPanel floor1Background;
-    private javax.swing.JPanel floor1Layout;
-    private javax.swing.JTabbedPane floor1Tab;
-    private javax.swing.JTabbedPane floor2Tab;
-    private javax.swing.JTabbedPane floor3Tab;
     private javax.swing.JPanel floorLayoutTab;
-    private javax.swing.JTabbedPane floorTabPane;
     private javax.swing.JTextField guestIDField;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
@@ -685,7 +627,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
