@@ -27,28 +27,35 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="67" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="GuestIDField" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="FirstNameLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="FirstNameField" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="LastNameLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="EmailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="AddressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="PhoneNumLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="FirstNameLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="FirstNameField" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="LastNameLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                          <Component id="EmailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="AddressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="PhoneNumLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="EmailField" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Component id="AddressField" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="PhoneNumField" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="LastNameField" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="PhoneNumField" pref="100" max="32767" attributes="0"/>
-                                  <Component id="LastNameField" pref="100" max="32767" attributes="0"/>
-                                  <Component id="AddressField" alignment="0" pref="100" max="32767" attributes="0"/>
-                                  <Component id="EmailField" pref="100" max="32767" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -61,7 +68,7 @@
                       <Component id="ErrorTextField" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
