@@ -512,7 +512,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtonActionPerformed
-        // Do stuff here.
+        //Email receipt
+        Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
+        smtp.sendMail("cmckenzie6@student.gsu.edu","This is a test."); //Send the email. First argument is Guest email address, second argument is the message
     }//GEN-LAST:event_CheckOutButtonActionPerformed
 
     private void ProcessPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessPaymentButtonActionPerformed
