@@ -50,6 +50,9 @@ public class NewGuestCreate extends javax.swing.JFrame {
         EmailField = new javax.swing.JTextField();
         AddGuestButton = new javax.swing.JButton();
         ErrorTextField = new javax.swing.JLabel();
+        NewGuestCancelButton = new javax.swing.JButton();
+
+        setResizable(false);
 
         jLabel1.setText("Guest ID:");
 
@@ -67,6 +70,13 @@ public class NewGuestCreate extends javax.swing.JFrame {
         AddGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddGuestButtonActionPerformed(evt);
+            }
+        });
+
+        NewGuestCancelButton.setText("Cancel");
+        NewGuestCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewGuestCancelButtonActionPerformed(evt);
             }
         });
 
@@ -104,11 +114,15 @@ public class NewGuestCreate extends javax.swing.JFrame {
                                             .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(AddGuestButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AddGuestButton)
+                .addGap(15, 15, 15)
+                .addComponent(NewGuestCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,9 +153,11 @@ public class NewGuestCreate extends javax.swing.JFrame {
                     .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailLabel))
                 .addGap(21, 21, 21)
-                .addComponent(ErrorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addComponent(ErrorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddGuestButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddGuestButton)
+                    .addComponent(NewGuestCancelButton))
                 .addContainerGap())
         );
 
@@ -195,6 +211,10 @@ public class NewGuestCreate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AddGuestButtonActionPerformed
 
+    private void NewGuestCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGuestCancelButtonActionPerformed
+        this.dispose(); //Close the window
+    }//GEN-LAST:event_NewGuestCancelButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +262,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
     private javax.swing.JTextField GuestIDField;
     private javax.swing.JTextField LastNameField;
     private javax.swing.JLabel LastNameLabel;
+    private javax.swing.JButton NewGuestCancelButton;
     private javax.swing.JTextField PhoneNumField;
     private javax.swing.JLabel PhoneNumLabel;
     private javax.swing.JLabel jLabel1;
