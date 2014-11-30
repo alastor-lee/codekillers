@@ -6,6 +6,7 @@
 package mainframe.gui;
 
 import javax.swing.JFrame;
+import engine.InputManager;
 
 /**
  *
@@ -108,9 +109,14 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        this.dispose();
-        MainContainerFrame MainContainer = new MainContainerFrame();
-        MainContainer.setVisible(true);
+     
+        if (InputManager.validateUser(LoginField.getText(),PasswordField.getPassword()) > 0){
+            this.dispose();
+            MainContainerFrame MainContainer = new MainContainerFrame();
+            MainContainer.setVisible(true);
+        } else {
+            System.out.println("Invalid username or password.");
+        }
         //String name = LoginField.getText();
         //System.out.print(name);
     }//GEN-LAST:event_LoginButtonActionPerformed

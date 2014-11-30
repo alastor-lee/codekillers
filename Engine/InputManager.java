@@ -63,4 +63,16 @@ public class InputManager {
         }
         return 0;
     }
+    
+    public static int validateUser(String userName, char[] password){
+        int userlevel = 1; //Should be initially set to 0. It is set to 1 here so that you can log-in without username or password.
+        // Need to query UserDB here to check if username and password combo exists.
+        // If it does, set userlevel = int.
+        // 1 = Front Desk
+        // 2 = Restaurant Host
+        // 3 = Kitchen Employee
+        // 4 = Manager
+        
+        return userlevel;
+    }
 }
