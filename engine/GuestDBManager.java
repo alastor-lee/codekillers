@@ -204,16 +204,17 @@ public String searchDB(GuestInfo OldGuest) {
         System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
     } //catch
     
-    //searching for matching records for GuestID and LastName 
-    for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
-        strLine = (String)it.next();
+    int iCount = 1;
+    int nRecCount = theRecords.size();
+    Iterator itr = theRecords.iterator();
+    itr.next();     //skips the first line of file, which contains database name
+    while (itr.hasNext()) {
+        if (iCount < nRecCount + 1) {
+        strLine = (String)theRecords.get(iCount);
         strLine = strLine.trim();
+        System.out.println(strLine);
         fields = strLine.split(";");    //delimiter is ;
-        /*
-        for(int i=0; i<fields.getLength(); i++){
-            System.out.println(fields);
-        }
-        */
+        
         _GuestID = fields[0].trim();
         _LastName = fields[2].trim();
 
@@ -223,7 +224,9 @@ public String searchDB(GuestInfo OldGuest) {
         else if (OldGuest.getLastName().equals(_LastName)) {
             return strLine;
         }
-    } //for
+    } //if
+    iCount++;
+    } //while
     return "No matching guests in database";
 }  //method
 
