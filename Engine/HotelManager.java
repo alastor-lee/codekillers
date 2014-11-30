@@ -30,6 +30,7 @@ public class HotelManager {
     
     public static void main(String[] args){
         mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
+        master.setLocationRelativeTo(null);
         master.setVisible(true);
         
     /*
