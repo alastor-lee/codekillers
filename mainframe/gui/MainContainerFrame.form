@@ -151,6 +151,9 @@
                   <Image iconType="3" name="/codekillers/mainframe/resources/floorlayout.jpg"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox3ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

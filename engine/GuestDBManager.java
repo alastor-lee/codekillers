@@ -1,14 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class handles all reading and writing to the Guest Database
+ * Checks for duplicate entries
  */
 package engine;
 
-/**
- *
- * @author Collin
- */
 import database.info.*;
 import java.io.*;
 import java.util.*;
@@ -36,21 +31,8 @@ public static String _ContactNumber;
 public static String _Email;
 public static String _Charges;
 
-String nameOfFile = new File("").getAbsolutePath();
-
-public GuestDBManager() {
-    //basic constructor
-}
-//constructor called on by the databaseManager to add a new guest to the database
-public GuestDBManager(String ID, String fName, String lName, String phoneNum, String address, String email) {
-    _GuestID = ID;
-    _FirstName = fName;
-    _LastName = lName;
-    _ContactNumber = phoneNum;  
-    _Address = address;
-    _Email = email;
-    System.out.println(_GuestID + " " + _FirstName + " "+ _LastName + " " + _ContactNumber + " " + _Address + " " + _Email);
-}
+//gets path to flat files
+String nameOfFile = new File("").getAbsolutePath()+"\\database_files";
 
 //static final int recPosition_LastName = 1;
 static final int recPosition_Action	= 2;
@@ -92,7 +74,7 @@ static final int FOUND_RECORD_TO_MODIFY = 41;
 static final int FAILED_MODIFIED_RECORD = 43;
 static final int NO_MODIFY_RECORD_ABSENT = 45;
 
-
+//method to check for duplicate entries and add guests to database
 public int addGuest(GuestInfo NewGuest){
      nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";
      System.out.println("File path is:" + nameOfFile);
@@ -129,9 +111,10 @@ public int addGuest(GuestInfo NewGuest){
     //TEST
     System.out.println(newRecord);
     
-    iCount =0;
+    iCount = 0;
     nRecCount = theRecords.size();
     Iterator itr = theRecords.iterator();
+    itr.next();     //skips the first line of file, which contains database name
     while (itr.hasNext()) {
         if (iCount < nRecCount + 1) {
             itr.next();
@@ -175,7 +158,8 @@ public int addGuest(GuestInfo NewGuest){
         } //if
 
     }  //while
-    
+    //once the iterator has hit the end of file this makes sure nReturnValue is
+    //set so that the method creates a new entry in the database
     if(itr.hasNext() != true) {
         nReturnValue = NEW_RECORD;
     }
@@ -203,7 +187,7 @@ public int addGuest(GuestInfo NewGuest){
     return nReturnValue;
 
     } //method
-
+//method to search for guest entry given either last name or guest ID
 public String searchDB(GuestInfo OldGuest) {
     //Variables
     nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";
@@ -247,6 +231,7 @@ public String searchDB(GuestInfo OldGuest) {
 //Methods: DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate, int fieldPosition, String newValue)
 //------------------------------------------------------------------------------------------------------------
 
+//not using this yet, need to modify
 public static int  DBmodifyCustomerRecord(String reservationFile, String GuestID, String CustomerName, int fieldPosition, String newValue){
 //Variables
 
@@ -390,7 +375,7 @@ return nReturnValue;
 //param 2	: CustomerName String	the Key	"Collin Partee"  or "Alan Jones"
 //returns  : ArrayList of Strings
 //------------------------------------------------------------------------------------------------------------
-
+//not clear on use of this, may not need
 public static ArrayList DBOneCustomer(String reservationFile,String CustomerName) {
 //Variables
 String strLine = null;
@@ -441,22 +426,18 @@ return theRecords;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: getAllReservationRecords()
 //------------------------------------------------------------------------------------------------------------
-public static ArrayList getAllReservationRecords()
 
-{
+//this class does not handle reservation database, will either remove this or copr
+//to a the ReservationDBManager class
+public static ArrayList getAllReservationRecords() {
 
 // Variables
-
 String DBfileName = null;
 ArrayList records = new ArrayList();
 
 DBfileName = DBgetReservationFileName();
-
 records = DBreadFile(DBfileName); 
-
 return records;
-
-
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -5,5 +5,7 @@
 package engine;
 
 public class GuestIDManager {
-    
+    public String createGuestID(String a){
+        return "Nothing so far";
+    }
 }

@@ -36,73 +36,71 @@ public class HotelManager {
      * The following will check for flat file existence
      * If needed files do not exist, they will be created in a new database folder
      */
-    
-        /* WILL MAKE THIS WORK LATER, ASSUMING EXISTENCE FOR NOW
         
-    String GuestDB = "C:\\Documents\\database\\Guest.txt";
-    String RoomReservationDB = "C:\\Documents\\database\\RoomReservation.txt";
-    String InventoryDB = "C:\\Documents\\database\\Inventory.txt";
-    String OrderHistoryDB = "C:\\Documents\\database\\OrderHistory.txt";
-    String UserDB = "C:\\Documents\\database\\User.txt";
-    String RoomDB = "C:\\Documents\\database\\Room.txt";
+    String GuestDB = new File("").getAbsolutePath()+"\\database_files\\guestDatabaseFile.txt";
+    String RoomReservationDB = new File("").getAbsolutePath()+"\\database_files\\reservationDatabaseFile.txt";
+    String InventoryDB = new File("").getAbsolutePath()+"\\database_files\\inventoryDatabaseFile.txt";
+    String OrderHistoryDB = new File("").getAbsolutePath()+"\\database_files\\orderDatabaseFile.txt";
+    String UserDB = new File("").getAbsolutePath()+"\\database_files\\userDatabaseFile.txt";
+    String RoomDB = new File("").getAbsolutePath()+"\\database_files\\roomDatabaseFile.txt";
 
-    File directory = new File("C:\\Documents\\database");
+    File directory = new File(new File("").getAbsolutePath()+"\\database_files");
     boolean result = false;
     
     if (directory.exists()) {
         System.out.println("Folder already exists");
     } 
-    else {
-        result = directory.mkdirs();
-        
-        //DB_1 (Guest DB)
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(GuestDB), "utf-8"))) {
-            writer.write("DB1 Guest DB");
-        } 
-        catch (IOException ex){
-            // handle me
-        }  
-        //DB_2 (Room Reservation DB)
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RoomReservationDB), "utf-8"))) {
-            writer.write("DB2 Room Reservation DB");
-        } 
-        catch (IOException ex){
-            // handle me
-        }
-        //DB_3 (Inventory DB)
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(InventoryDB), "utf-8"))) {
-            writer.write("DB3 Inventory DB");
-        } 
-        catch (IOException ex){
-            // handle me
-        }
-        
-        //DB_4 (Order History DB)
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(OrderHistoryDB), "utf-8"))) {
-            writer.write("DB4 Order History DB");
-        } 
-        catch (IOException ex){
-            // handle me
-        }
-        
-        //DB_5 (User DB)
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(UserDB), "utf-8"))) {
-            writer.write("DB5 UserDB DB");
-        } 
-        catch (IOException ex){
-            // handle me
+        else {
+            result = directory.mkdirs();
+            System.out.println(result);
+            //creation of Guest Database
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(GuestDB), "utf-8"))) {
+                writer.write("DB1 Guest DB");
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }  
+            //creation of Reservation Database
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RoomReservationDB), "utf-8"))) {
+                writer.write("DB2 Room Reservation DB");
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }
+            //creation of Inventory Database
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(InventoryDB), "utf-8"))) {
+                writer.write("DB3 Inventory DB");
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }
+            //creation of Order History Database
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(OrderHistoryDB), "utf-8"))) {
+                writer.write("DB4 Order History DB");
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }
+            //creation of User Database
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(UserDB), "utf-8"))) {
+                writer.write("DB5 UserDB DB");
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }
+            //creation of Room Database
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RoomDB), "utf-8"))) {
+                writer.write("DB6 Room(calendar) DB");
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }
         }
     }
-    //DB_6 (Room(calendar) DB)
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(RoomDB), "utf-8"))) {
-            writer.write("DB6 Room(calendar) DB");
-        } 
-        catch (IOException ex){
-            //handle me
-        }
-                */
-
-        
-    }
-    
 }
