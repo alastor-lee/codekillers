@@ -111,7 +111,7 @@ public int addGuest(GuestInfo NewGuest){
     //TEST
     System.out.println(newRecord);
     
-    iCount = 0;
+    iCount = 1;
     nRecCount = theRecords.size();
     Iterator itr = theRecords.iterator();
     itr.next();     //skips the first line of file, which contains database name
