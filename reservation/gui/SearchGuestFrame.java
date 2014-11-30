@@ -21,6 +21,7 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     
     //variables
     String searchReturn;
+    int focus = 1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +43,18 @@ public class SearchGuestFrame extends javax.swing.JFrame {
 
         setResizable(false);
 
+        IDField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                IDFieldFocusGained(evt);
+            }
+        });
+
+        LastNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                LastNameFieldFocusGained(evt);
+            }
+        });
+
         GuestIDLabel.setText("Guest ID:");
 
         LastNameLabel.setText("Last Name:");
@@ -55,6 +68,7 @@ public class SearchGuestFrame extends javax.swing.JFrame {
 
         GuestInfoText.setColumns(20);
         GuestInfoText.setRows(5);
+        GuestInfoText.setFocusable(false);
         jScrollPane1.setViewportView(GuestInfoText);
 
         CloseButton.setText("Close");
@@ -115,10 +129,19 @@ public class SearchGuestFrame extends javax.swing.JFrame {
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
-        GuestSearch.setGuestID(IDField.getText());
-        GuestSearch.setLastName(LastNameField.getText());
-        System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
-        System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
+        if(focus == 1){
+            GuestSearch.setGuestID(IDField.getText());
+            GuestSearch.setLastName("99999999999999999999"); //the purpose of this is to set it equal to a value that should never be in database
+        }
+        
+        if(focus == 2){
+            GuestSearch.setGuestID("qqqqqqqqqqqqqqqqqqqqq"); //the purpose of this is to set it equal to a value that should never be in database
+            GuestSearch.setLastName(LastNameField.getText());
+        }
+        //GuestSearch.setGuestID(IDField.getText());
+        //GuestSearch.setLastName(LastNameField.getText());
+        //System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
+        //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
         
         //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
         engine.GuestDBManager manager = new engine.GuestDBManager();
@@ -129,6 +152,14 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
         this.dispose(); //close the frame
     }//GEN-LAST:event_CloseButtonActionPerformed
+
+    private void IDFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_IDFieldFocusGained
+        focus = 1;
+    }//GEN-LAST:event_IDFieldFocusGained
+
+    private void LastNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LastNameFieldFocusGained
+        focus = 2;
+    }//GEN-LAST:event_LastNameFieldFocusGained
 
     /**
      * @param args the command line arguments
