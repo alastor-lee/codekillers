@@ -192,8 +192,9 @@ public class OrderFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemsButtonActionPerformed
-        AddItemsFrame AddItemsFrame = new AddItemsFrame();
-        AddItemsFrame.setVisible(true);
+        AddItemsFrame AddItemsFrame = new AddItemsFrame(); //create the frame
+        AddItemsFrame.setLocationRelativeTo(null); //center the frame
+        AddItemsFrame.setVisible(true); //make it visible
     }//GEN-LAST:event_AddItemsButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
