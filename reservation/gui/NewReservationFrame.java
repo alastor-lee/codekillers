@@ -56,8 +56,6 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CheckDateAvailabilityButton = new javax.swing.JButton();
         CheckOutSpinner = new javax.swing.JSpinner();
 
-        setResizable(false);
-
         GuestIDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuestIDFieldActionPerformed(evt);
