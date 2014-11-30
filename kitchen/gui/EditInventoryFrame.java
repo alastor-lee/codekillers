@@ -160,13 +160,15 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemButtonActionPerformed
-        AddItemFrame AddItemFrame = new AddItemFrame();
-        AddItemFrame.setVisible(true);
+        AddItemFrame AddItemFrame = new AddItemFrame(); //create the frame
+        AddItemFrame.setLocationRelativeTo(null); //center the frame
+        AddItemFrame.setVisible(true); //make it visible
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
     private void EditItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditItemButtonActionPerformed
-        EditItemFrame EditItemFrame = new EditItemFrame();
-        EditItemFrame.setVisible(true);
+        EditItemFrame EditItemFrame = new EditItemFrame(); //create the frame
+        EditItemFrame.setLocationRelativeTo(null); //center the frame
+        EditItemFrame.setVisible(true); //make it visible
     }//GEN-LAST:event_EditItemButtonActionPerformed
 
     private void DeleteItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemButtonActionPerformed
