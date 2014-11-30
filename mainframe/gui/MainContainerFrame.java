@@ -29,6 +29,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         mainFrame = new javax.swing.JTabbedPane();
         reserveTab = new javax.swing.JPanel();
@@ -36,7 +37,14 @@ public class MainContainerFrame extends javax.swing.JFrame {
         cancelReservationButton = new javax.swing.JButton();
         GuestSearchButton = new javax.swing.JButton();
         floorLayoutTab = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox();
+        floorTabPane = new javax.swing.JTabbedPane();
+        floor1Tab = new javax.swing.JTabbedPane();
+        floor1Layout = new javax.swing.JPanel();
+        floor1Background = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        floor2Tab = new javax.swing.JTabbedPane();
+        floor3Tab = new javax.swing.JTabbedPane();
         kitchenTab = new javax.swing.JPanel();
         kitchenPanel = new javax.swing.JPanel();
         CurrentOrdersLabel1 = new javax.swing.JLabel();
@@ -71,6 +79,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         searchTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         newReservationButton.setText("New Reservation");
         newReservationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +113,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                         .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(620, Short.MAX_VALUE))
+                .addContainerGap(692, Short.MAX_VALUE))
         );
         reserveTabLayout.setVerticalGroup(
             reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,24 +129,68 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         mainFrame.addTab("Reservation", reserveTab);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        floor1Background.setBackground(new java.awt.Color(255, 255, 255));
+        floor1Background.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainframe/resources/floorlayout.jpg"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        floor1Background.add(jLabel1, gridBagConstraints);
+
+        jPanel1.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 936, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 538, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        floor1Background.add(jPanel1, gridBagConstraints);
+
+        javax.swing.GroupLayout floor1LayoutLayout = new javax.swing.GroupLayout(floor1Layout);
+        floor1Layout.setLayout(floor1LayoutLayout);
+        floor1LayoutLayout.setHorizontalGroup(
+            floor1LayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(floor1Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        floor1LayoutLayout.setVerticalGroup(
+            floor1LayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(floor1Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        floor1Tab.addTab("Floor Plan", floor1Layout);
+
+        floorTabPane.addTab("Floor 1", floor1Tab);
+        floorTabPane.addTab("Floor 2", floor2Tab);
+        floorTabPane.addTab("Floor 3", floor3Tab);
 
         javax.swing.GroupLayout floorLayoutTabLayout = new javax.swing.GroupLayout(floorLayoutTab);
         floorLayoutTab.setLayout(floorLayoutTabLayout);
         floorLayoutTabLayout.setHorizontalGroup(
             floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(floorLayoutTabLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(756, Short.MAX_VALUE))
+            .addComponent(floorTabPane)
         );
         floorLayoutTabLayout.setVerticalGroup(
             floorLayoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(floorLayoutTabLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(527, Short.MAX_VALUE))
+            .addComponent(floorTabPane)
         );
+
+        floorTabPane.getAccessibleContext().setAccessibleName("FloorTabPane");
 
         mainFrame.addTab("Floor Layout", floorLayoutTab);
 
@@ -248,7 +301,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addComponent(EditInventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(48, 48, 48)
                 .addComponent(currentOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
                         .addComponent(activeOrdersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -411,7 +464,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                                 .addGroup(checkoutTabLayout.createSequentialGroup()
                                     .addGap(15, 15, 15)
                                     .addComponent(CheckOutButton))))))
-                .addContainerGap(599, Short.MAX_VALUE))
+                .addContainerGap(695, Short.MAX_VALUE))
         );
         checkoutTabLayout.setVerticalGroup(
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +507,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         searchTab.setLayout(searchTabLayout);
         searchTabLayout.setHorizontalGroup(
             searchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 874, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         searchTabLayout.setVerticalGroup(
             searchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,8 +522,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainFrame)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,17 +668,24 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelReservationButton;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
+    private javax.swing.JPanel floor1Background;
+    private javax.swing.JPanel floor1Layout;
+    private javax.swing.JTabbedPane floor1Tab;
+    private javax.swing.JTabbedPane floor2Tab;
+    private javax.swing.JTabbedPane floor3Tab;
     private javax.swing.JPanel floorLayoutTab;
+    private javax.swing.JTabbedPane floorTabPane;
     private javax.swing.JTextField guestIDField;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
