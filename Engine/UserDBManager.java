@@ -186,7 +186,7 @@ public int addGuest(GuestInfo NewGuest){
     } //method
 */
 
-//method to search for guest entry given either last name or guest ID
+//method to search for username or password. This is actually bad and doesn't make sure that they are for the same user id.
 public int searchDB(UserInfo ExistingUser) {
     //Variables
     nameOfFile = nameOfFile + "\\userDatabaseFile.txt";
@@ -203,7 +203,7 @@ public int searchDB(UserInfo ExistingUser) {
         System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
     } //catch
     
-    //searching for matching records for GuestID and LastName 
+    //searching for matching records for UserName and Password
     for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
         strLine = (String)it.next();
         strLine = strLine.trim();
