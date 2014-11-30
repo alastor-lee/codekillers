@@ -88,7 +88,7 @@ public class HotelManager {
             }
             //creation of User Database
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(UserDB), "utf-8"))) {
-                writer.write("DB5 UserDB DB");
+                writer.write("DB5 UserDB DB;1;admin;password");
             } 
             catch (IOException ex){
                 System.out.println("Exception found: "+ex);

@@ -19,6 +19,8 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+        LoginField.setText("admin");
+        PasswordField.setText("password");
     }
 
     /**
@@ -163,10 +165,10 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;
-    private javax.swing.JTextField LoginField;
+    public static javax.swing.JTextField LoginField;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField PasswordField;
+    public static javax.swing.JPasswordField PasswordField;
     // End of variables declaration//GEN-END:variables
 }

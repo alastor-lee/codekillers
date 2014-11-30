@@ -3,6 +3,8 @@
  */
 package engine;
 
+import mainframe.gui.LoginFrame;
+
 public class InputManager {
     
     //methods
@@ -65,13 +67,27 @@ public class InputManager {
     }
     
     public static int validateUser(String userName, char[] password){
-        int userlevel = 1; //Should be initially set to 0. It is set to 1 here so that you can log-in without username or password.
+        int userlevel = 0; //Should be initially set to 0. It is set to 1 here so that you can log-in without username or password.
         // Need to query UserDB here to check if username and password combo exists.
         // If it does, set userlevel = int.
         // 1 = Front Desk
         // 2 = Restaurant Host
         // 3 = Kitchen Employee
         // 4 = Manager
+        
+        database.info.UserInfo UserSearch = new database.info.UserInfo();
+        UserSearch.setUserName(LoginFrame.LoginField.getText());
+        UserSearch.setPassword(LoginFrame.PasswordField.getPassword());
+        //System.out.println("TESTING USER INPUT: "+LoginFrame.LoginField.getText() + " " + LoginFrame.PasswordField.getPassword());
+        //System.out.println("TESTING VARS SET IN GUESTINFO: "+UserSearch.getUserName() + " " + UserSearch.getPassword());
+        
+        //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
+        engine.UserDBManager manager = new engine.UserDBManager();
+        int searchReturn = manager.searchDB(UserSearch);
+        System.out.println("Is valid user? "+searchReturn);
+        userlevel = searchReturn;
+        
+        
         
         return userlevel;
     }
