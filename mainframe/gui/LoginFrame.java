@@ -113,6 +113,7 @@ public class LoginFrame extends javax.swing.JFrame {
         if (InputManager.validateUser(LoginField.getText(),PasswordField.getPassword()) > 0){
             this.dispose();
             MainContainerFrame MainContainer = new MainContainerFrame();
+            MainContainer.setLocationRelativeTo(null);
             MainContainer.setVisible(true);
         } else {
             System.out.println("Invalid username or password.");
