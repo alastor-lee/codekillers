@@ -35,6 +35,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         newReservationButton = new javax.swing.JButton();
         cancelReservationButton = new javax.swing.JButton();
         GuestSearchButton = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
         floorLayoutTab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -95,17 +96,29 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
+        LogOutButton.setText("Log Out");
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout reserveTabLayout = new javax.swing.GroupLayout(reserveTab);
         reserveTab.setLayout(reserveTabLayout);
         reserveTabLayout.setHorizontalGroup(
             reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reserveTabLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
                 .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                        .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(reserveTabLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(reserveTabLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(LogOutButton)))
                 .addContainerGap(668, Short.MAX_VALUE))
         );
         reserveTabLayout.setVerticalGroup(
@@ -117,7 +130,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addComponent(cancelReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addComponent(LogOutButton)
+                .addContainerGap())
         );
 
         mainFrame.addTab("Reservation", reserveTab);
@@ -507,16 +522,19 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
         //here the button calls on the search frame from the reservation.gui package, same functionality needed
         reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
+        SearchFrame.setLocationRelativeTo(null); //Center the frame
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
     private void EditInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditInventoryButtonActionPerformed
         kitchen.gui.EditInventoryFrame EditInventoryFrame = new kitchen.gui.EditInventoryFrame(); //Create a new instance of the frame
+        EditInventoryFrame.setLocationRelativeTo(null); //Center the frame
         EditInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_EditInventoryButtonActionPerformed
 
     private void ViewInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewInventoryButtonActionPerformed
         kitchen.gui.ViewInventoryFrame ViewInventoryFrame = new kitchen.gui.ViewInventoryFrame(); //Create a new instance of the frame
+        ViewInventoryFrame.setLocationRelativeTo(null); //Center the frame
         ViewInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewInventoryButtonActionPerformed
 
@@ -531,17 +549,20 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
     private void EditOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditOrderButtonActionPerformed
         kitchen.gui.OrderFrame OrderFrame = new kitchen.gui.OrderFrame(); //Create a new instance of the frame
+        OrderFrame.setLocationRelativeTo(null); //Center the frame
         OrderFrame.setVisible(true); //Make the frame visible
         // Not exactly sure how this is going to work.
     }//GEN-LAST:event_EditOrderButtonActionPerformed
 
     private void OrderHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryButtonActionPerformed
         kitchen.gui.OrderHistoryFrame OrderHistoryFrame = new kitchen.gui.OrderHistoryFrame(); //Create a new instance of the frame
+        OrderHistoryFrame.setLocationRelativeTo(null); //Center the frame
         OrderHistoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_OrderHistoryButtonActionPerformed
 
     private void NewOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewOrderButtonActionPerformed
         kitchen.gui.OrderFrame OrderFrame = new kitchen.gui.OrderFrame(); //Create a new instance of the frame
+        OrderFrame.setLocationRelativeTo(null); //Center the frame
         OrderFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
@@ -554,6 +575,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
     private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
         reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
+        SearchFrame.setLocationRelativeTo(null); //Center the frame
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
@@ -563,6 +585,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
     private void newReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReservationButtonActionPerformed
         reservation.gui.NewReservationFrame NewReservation = new reservation.gui.NewReservationFrame();
+        NewReservation.setLocationRelativeTo(null); //Center the frame
         NewReservation.setVisible(true);
     }//GEN-LAST:event_newReservationButtonActionPerformed
 
@@ -581,6 +604,14 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
+       this.dispose();
+       //restart the program
+       mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
+       master.setLocationRelativeTo(null);
+       master.setVisible(true);
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -624,6 +655,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
     private javax.swing.JButton GuestSearchButton;
+    private javax.swing.JButton LogOutButton;
     private javax.swing.JButton NewOrderButton;
     private javax.swing.JButton OrderHistoryButton;
     private javax.swing.JButton ProcessPaymentButton;
