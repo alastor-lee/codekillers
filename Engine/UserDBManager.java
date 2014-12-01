@@ -204,13 +204,15 @@ public int searchDB(UserInfo ExistingUser) {
     } //catch
     
     //searching for matching records for UserName and Password
-    for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
+    Iterator it = theRecords.iterator();
+    //for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
+    do {
         strLine = (String)it.next();
         strLine = strLine.trim();
         fields = strLine.split(";");    //delimiter is ;
         
-        _UserName = fields[2].trim();
-        _Password = fields[3].trim();
+        _UserName = fields[1].trim();
+        _Password = fields[2].trim();
         
         /* For debug purposes
         System.out.println("_UserName: "+_UserName);
@@ -221,10 +223,11 @@ public int searchDB(UserInfo ExistingUser) {
         
         if (ExistingUser.getUserName().equals(_UserName) && new String(ExistingUser.getPassword()).equals(_Password)) {
             return 1;
-        }
-    } //for
+        } 
+    } while(it.hasNext());
     return 0;
 }  //method
+    
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Methods: DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate, int fieldPosition, String newValue)
