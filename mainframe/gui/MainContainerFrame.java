@@ -6,6 +6,7 @@
 package mainframe.gui;
 
 import java.awt.CardLayout;
+import static java.lang.Integer.parseInt;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 
@@ -68,9 +69,16 @@ public class MainContainerFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         ccYearField = new javax.swing.JComboBox();
         ProcessPaymentButton = new javax.swing.JButton();
-        checkoutOutputField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         CheckOutButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        checkoutInfoOutput = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        checkoutBillOutput = new javax.swing.JTextArea();
+        GuestInfoLabel = new javax.swing.JLabel();
+        BillLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        checkoutOutputField = new javax.swing.JTextArea();
         searchTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -351,6 +359,12 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Guest ID:");
 
+        guestIDField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                guestIDFieldFocusLost(evt);
+            }
+        });
+
         CheckoutGuestSearchButton.setText("Guest Search");
         CheckoutGuestSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,6 +413,22 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
+        checkoutInfoOutput.setColumns(20);
+        checkoutInfoOutput.setRows(5);
+        jScrollPane1.setViewportView(checkoutInfoOutput);
+
+        checkoutBillOutput.setColumns(20);
+        checkoutBillOutput.setRows(5);
+        jScrollPane2.setViewportView(checkoutBillOutput);
+
+        GuestInfoLabel.setText("Guest Info");
+
+        BillLabel.setText("Bill");
+
+        checkoutOutputField.setColumns(20);
+        checkoutOutputField.setRows(5);
+        jScrollPane3.setViewportView(checkoutOutputField);
+
         javax.swing.GroupLayout checkoutTabLayout = new javax.swing.GroupLayout(checkoutTab);
         checkoutTab.setLayout(checkoutTabLayout);
         checkoutTabLayout.setHorizontalGroup(
@@ -411,71 +441,92 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CheckoutGuestSearchButton))
-                    .addComponent(paymentInfoLabel)
+                        .addComponent(CheckoutGuestSearchButton)
+                        .addGap(150, 150, 150)
+                        .addComponent(GuestInfoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BillLabel)
+                        .addGap(178, 178, 178))
                     .addGroup(checkoutTabLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(checkoutTabLayout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                            .addGap(79, 79, 79)
-                            .addComponent(ProcessPaymentButton))
-                        .addGroup(checkoutTabLayout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(checkoutOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(checkoutTabLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                    .addGap(79, 79, 79)
+                                    .addComponent(ProcessPaymentButton))
                                 .addGroup(checkoutTabLayout.createSequentialGroup()
-                                    .addGap(15, 15, 15)
-                                    .addComponent(CheckOutButton))))))
-                .addContainerGap(671, Short.MAX_VALUE))
+                                    .addComponent(jLabel10)
+                                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(checkoutTabLayout.createSequentialGroup()
+                                            .addGap(19, 19, 19)
+                                            .addComponent(CheckOutButton))
+                                        .addGroup(checkoutTabLayout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(paymentInfoLabel)
+                            .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(checkoutTabLayout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(53, Short.MAX_VALUE))))
         );
         checkoutTabLayout.setVerticalGroup(
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(checkoutTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckoutGuestSearchButton))
-                .addGap(36, 36, 36)
-                .addComponent(paymentInfoLabel)
-                .addGap(18, 18, 18)
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ProcessPaymentButton)
-                .addGap(13, 13, 13)
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkoutOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(38, 38, 38)
-                .addComponent(CheckOutButton)
+                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(checkoutTabLayout.createSequentialGroup()
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BillLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(GuestInfoLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(checkoutTabLayout.createSequentialGroup()
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(guestIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckoutGuestSearchButton))
+                        .addGap(36, 36, 36)
+                        .addComponent(paymentInfoLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ProcessPaymentButton)
+                        .addGap(16, 16, 16)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(CheckOutButton))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(264, Short.MAX_VALUE))
         );
 
@@ -515,27 +566,31 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtonActionPerformed
         
         if (!(guestIDField.getText().equals(""))){ //TODO: needs better validation Should be an existing guest ID in guest DB
-            if(!(ccCVVField.getText().equals(""))){ //TODO: needs better validation. Should be a 3 digit integer.
-                String gID = guestIDField.getText(); //SET GUEST ID HERE
-                database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+            if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16)){ //TODO:  needs better validation. Needs to make sure it is an integer. parseInt() has issues.
+                if((!(ccCVVField.getText().equals(""))) && ((ccCVVField.getText().length() == 3) || (ccCVVField.getText().length() == 4))){ //TODO: needs better validation. Should be a 3 digit integer. parseInt() has issues.
+                    String gID = guestIDField.getText(); //SET GUEST ID HERE
+                    database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
 
-                GuestSearch.setGuestID(gID);
-                //System.out.println("gID: "+gID);
-                //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
+                    GuestSearch.setGuestID(gID); 
+                    //System.out.println("gID: "+gID);
+                    //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
 
-                engine.GuestDBManager manager = new engine.GuestDBManager();
-                String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
-                String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-                //System.out.println("email: "+split[5]);
+                    engine.GuestDBManager manager = new engine.GuestDBManager();
+                    String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
+                    String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+                    //System.out.println("email: "+split[5]);
 
 
-                //Email receipt
-                Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
-                //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
-                smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
-                checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
+                    //Email receipt
+                    Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
+                    //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
+                    smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
+                    checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
+                } else {
+                    checkoutOutputField.setText("Error: invalid CVV number.");
+                }
             } else {
-                checkoutOutputField.setText("Error: invalid CVV number.");
+                checkoutOutputField.setText("Error. invalid credit card number. Must be a 16 digit integer.");
             }
         } else {
             checkoutOutputField.setText("Error: invalid Guest ID.");
@@ -640,6 +695,27 @@ public class MainContainerFrame extends javax.swing.JFrame {
        master.setVisible(true);
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
+    private void guestIDFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_guestIDFieldFocusLost
+        database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+        if(!(guestIDField.getText().equals(""))){ //TODO: Should actually validate that it's a real guest ID
+            GuestSearch.setGuestID(guestIDField.getText());
+            GuestSearch.setLastName("99999999999999999999"); //a value that should never be in DB
+        
+            //GuestSearch.setGuestID(IDField.getText());
+            //GuestSearch.setLastName(LastNameField.getText());
+            //System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
+            //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
+
+            //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
+            engine.GuestDBManager manager = new engine.GuestDBManager();
+            String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
+            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+            checkoutInfoOutput.setText("Guest ID: "+split[0]+"\nFirst Name: "+split[1]+"\nLast Name: "+split[2]+"\nAddress: "+split[3]+"\nPhone Number: "+split[4]+"\nEmail Address: "+split[5]);
+            
+            //ALSO PRINT BILLING INFORMATION TO checkoutBillOutput
+        }
+    }//GEN-LAST:event_guestIDFieldFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -676,11 +752,13 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BillLabel;
     private javax.swing.JButton CheckOutButton;
     private javax.swing.JButton CheckoutGuestSearchButton;
     private javax.swing.JLabel CurrentOrdersLabel1;
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
+    private javax.swing.JLabel GuestInfoLabel;
     private javax.swing.JButton GuestSearchButton;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JButton NewOrderButton;
@@ -696,7 +774,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox ccMonthField;
     private javax.swing.JTextField ccNumberField;
     private javax.swing.JComboBox ccYearField;
-    private javax.swing.JTextField checkoutOutputField;
+    private javax.swing.JTextArea checkoutBillOutput;
+    private javax.swing.JTextArea checkoutInfoOutput;
+    private javax.swing.JTextArea checkoutOutputField;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
     private javax.swing.JPanel floorLayoutTab;
@@ -709,6 +789,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel kitchenPanel;
     private javax.swing.JPanel kitchenTab;
     private javax.swing.JTabbedPane mainFrame;
