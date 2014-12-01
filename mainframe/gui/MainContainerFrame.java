@@ -6,6 +6,7 @@
 package mainframe.gui;
 
 import java.awt.CardLayout;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 
 /**
@@ -61,13 +62,13 @@ public class MainContainerFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        ccNumberField = new javax.swing.JTextField();
+        ccCVVField = new javax.swing.JTextField();
+        ccMonthField = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        ccYearField = new javax.swing.JComboBox();
         ProcessPaymentButton = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
+        checkoutOutputField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         CheckOutButton = new javax.swing.JButton();
         searchTab = new javax.swing.JPanel();
@@ -365,20 +366,20 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         jLabel8.setText("CVV");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        ccNumberField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                ccNumberFieldActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01 - Jan", "02 - Feb", "03 - Mar", "04 - Apr", "05 - May", "06 - Jun", "07 - Jul", "08 - Aug", "09 - Sep", "10 - Oct", "11 - Nov", "12 - Dec" }));
+        ccMonthField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01 - Jan", "02 - Feb", "03 - Mar", "04 - Apr", "05 - May", "06 - Jun", "07 - Jul", "08 - Aug", "09 - Sep", "10 - Oct", "11 - Nov", "12 - Dec" }));
 
         jLabel9.setText("/");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        ccYearField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
+        ccYearField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                ccYearFieldActionPerformed(evt);
             }
         });
 
@@ -415,20 +416,20 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addGroup(checkoutTabLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(checkoutTabLayout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
                             .addGap(79, 79, 79)
@@ -437,7 +438,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkoutOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(checkoutTabLayout.createSequentialGroup()
                                     .addGap(15, 15, 15)
                                     .addComponent(CheckOutButton))))))
@@ -456,22 +457,22 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProcessPaymentButton)
                 .addGap(13, 13, 13)
                 .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkoutOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(38, 38, 38)
                 .addComponent(CheckOutButton)
@@ -512,10 +513,33 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtonActionPerformed
-        //Email receipt
-        Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
-        //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
-        smtp.sendMail("cmckenzie6@student.gsu.edu","This is a test."); //Send the email. First argument is Guest email address, second argument is the message
+        
+        if (!(guestIDField.getText().equals(""))){ //TODO: needs better validation Should be an existing guest ID in guest DB
+            if(!(ccCVVField.getText().equals(""))){ //TODO: needs better validation. Should be a 3 digit integer.
+                String gID = guestIDField.getText(); //SET GUEST ID HERE
+                database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+
+                GuestSearch.setGuestID(gID);
+                //System.out.println("gID: "+gID);
+                //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
+
+                engine.GuestDBManager manager = new engine.GuestDBManager();
+                String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
+                String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+                //System.out.println("email: "+split[5]);
+
+
+                //Email receipt
+                Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
+                //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
+                smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
+                checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
+            } else {
+                checkoutOutputField.setText("Error: invalid CVV number.");
+            }
+        } else {
+            checkoutOutputField.setText("Error: invalid Guest ID.");
+        }
     }//GEN-LAST:event_CheckOutButtonActionPerformed
 
     private void ProcessPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessPaymentButtonActionPerformed
@@ -592,13 +616,13 @@ public class MainContainerFrame extends javax.swing.JFrame {
         NewReservation.setVisible(true);
     }//GEN-LAST:event_newReservationButtonActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void ccNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccNumberFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_ccNumberFieldActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void ccYearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccYearFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_ccYearFieldActionPerformed
 
     private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
         //TODO
@@ -668,12 +692,15 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel activeOrdersLabel;
     private javax.swing.JPanel activeOrdersPanel;
     private javax.swing.JButton cancelReservationButton;
+    private javax.swing.JTextField ccCVVField;
+    private javax.swing.JComboBox ccMonthField;
+    private javax.swing.JTextField ccNumberField;
+    private javax.swing.JComboBox ccYearField;
+    private javax.swing.JTextField checkoutOutputField;
     private javax.swing.JPanel checkoutTab;
     private javax.swing.JPanel currentOrdersPanel;
     private javax.swing.JPanel floorLayoutTab;
     private javax.swing.JTextField guestIDField;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
@@ -682,9 +709,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel kitchenPanel;
     private javax.swing.JPanel kitchenTab;
     private javax.swing.JTabbedPane mainFrame;
