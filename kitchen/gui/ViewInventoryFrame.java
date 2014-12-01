@@ -5,6 +5,9 @@
  */
 package kitchen.gui;
 
+import static engine.InputManager.isInteger;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Colin
@@ -111,7 +114,30 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        // TODO add your handling code here:
+        if(SearchField.getText().equals("")){
+            //display all items
+        } else {
+            String query = SearchField.getText(); //SET GUEST ID HERE
+            database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
+
+            if (isInteger(query)) {
+                try {
+                    InventorySearch.setItemID(query);
+                } catch (NullPointerException e) {
+                    //error output is done in InputManager
+                }
+            } else {
+                InventorySearch.setItemName(query);
+            }
+            System.out.println("query: "+query);
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemID: "+InventorySearch.getItemID());
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
+
+            engine.InventoryDBManager manager = new engine.InventoryDBManager();
+            String nonSplit = manager.searchDB(InventorySearch); //return fields
+            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+            System.out.println("results: "+nonSplit);
+        }
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed

@@ -91,4 +91,13 @@ public class InputManager {
         
         return userlevel;
     }
+    
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false; //is not an integer
+        }
+        return true; //is an integer
+    }
 }
