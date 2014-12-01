@@ -696,8 +696,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
     private void guestIDFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_guestIDFieldFocusLost
-        database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+        
         if(!(guestIDField.getText().equals(""))){ //TODO: Should actually validate that it's a real guest ID
+            database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
             GuestSearch.setGuestID(guestIDField.getText());
             GuestSearch.setLastName("99999999999999999999"); //a value that should never be in DB
         
