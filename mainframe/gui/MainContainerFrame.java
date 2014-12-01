@@ -514,6 +514,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtonActionPerformed
         //Email receipt
         Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
+        //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
         smtp.sendMail("cmckenzie6@student.gsu.edu","This is a test."); //Send the email. First argument is Guest email address, second argument is the message
     }//GEN-LAST:event_CheckOutButtonActionPerformed
 
