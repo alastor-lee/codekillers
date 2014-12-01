@@ -566,7 +566,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtonActionPerformed
         
         if (!(guestIDField.getText().equals(""))){ //TODO: needs better validation Should be an existing guest ID in guest DB
-            if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16)){ //TODO:  needs better validation. Needs to make sure it is an integer. parseInt() has issues.
+            if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16) && (isInteger(ccNumberField.getText()))){ 
                 if((!(ccCVVField.getText().equals(""))) && ((ccCVVField.getText().length() == 3) || (ccCVVField.getText().length() == 4))){ //TODO: needs better validation. Should be a 3 digit integer. parseInt() has issues.
                     String gID = guestIDField.getText(); //SET GUEST ID HERE
                     database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
