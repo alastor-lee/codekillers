@@ -224,13 +224,13 @@ public String searchDB(InventoryInfo Inventory) {
         */
         
         if (isInteger(Inventory.getItemID())){
-            if (Inventory.getItemID().equals(_ItemID)){
+            if (Inventory.getItemID().equalsIgnoreCase(_ItemID)){
                 return strLine;
             }
         }
         
         try {
-            if (new String(Inventory.getItemName()).equals(_ItemName)) {
+            if (Inventory.getItemName().equalsIgnoreCase(_ItemName)) {
                 return strLine;
             }
         } catch(NullPointerException e) {

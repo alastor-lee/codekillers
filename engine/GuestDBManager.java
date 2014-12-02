@@ -221,7 +221,7 @@ public String searchDB(GuestInfo OldGuest) {
         if (OldGuest.getGuestID().equals(_GuestID)) {
             return strLine;
         } //if
-        else if (OldGuest.getLastName().equals(_LastName)) {
+        else if (OldGuest.getLastName().equalsIgnoreCase(_LastName)) {
             return strLine;
         }
     } //if
