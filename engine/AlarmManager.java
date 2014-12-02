@@ -1,14 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This may or may not be developed for the final project.
  */
 package engine;
 
-/**
- *
- * @author Colin
- */
 public class AlarmManager {
-    
+    //TODO stuff here
 }

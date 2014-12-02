@@ -176,7 +176,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
         */
         int check=0;
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
-        engine.GuestDBManager GuestDBWriter = new engine.GuestDBManager();
+        engine.GuestDBManager guestAdder = new engine.GuestDBManager();
         //setting vars in GuestInfo
         NewGuest.setGuestID(GuestIDField.getText());
         NewGuest.setFirstName(FirstNameField.getText());    //no error check
@@ -192,7 +192,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
             check = NewGuest.setEmail(EmailField.getText());            //error flag returns 4
         }
         if(check==0){
-            check = GuestDBWriter.addGuest(NewGuest);
+            check = guestAdder.addGuest(NewGuest);
         }
         //switch either calls on GuestDBManager to write to file or gives error message
         switch(check) {
