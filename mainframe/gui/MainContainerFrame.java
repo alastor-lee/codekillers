@@ -564,50 +564,50 @@ public class MainContainerFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtonActionPerformed
-        
-        if (!(guestIDField.getText().equals(""))){ //TODO: needs better validation Should be an existing guest ID in guest DB
-            if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16) && (isInteger(ccNumberField.getText()))){ 
-                if((!(ccCVVField.getText().equals(""))) && ((ccCVVField.getText().length() == 3) || (ccCVVField.getText().length() == 4))){ //TODO: needs better validation. Should be a 3 digit integer. parseInt() has issues.
-                    String gID = guestIDField.getText(); //SET GUEST ID HERE
-                    database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
 
-                    GuestSearch.setGuestID(gID); 
-                    //System.out.println("gID: "+gID);
-                    //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
-
-                    engine.GuestDBManager manager = new engine.GuestDBManager();
-                    String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
-                    String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-                    //System.out.println("email: "+split[5]);
+//!!!ALL BUTTON ACTIONS GO BELOW!!!
 
 
-                    //Email receipt
-                    Engine.MailManager smtp = new Engine.MailManager(); //Create a new instance of the mail class
-                    //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
-                    smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
-                    checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
-                } else {
-                    checkoutOutputField.setText("Error: invalid CVV number.");
-                }
-            } else {
-                checkoutOutputField.setText("Error. invalid credit card number. Must be a 16 digit integer.");
-            }
-        } else {
-            checkoutOutputField.setText("Error: invalid Guest ID.");
-        }
-    }//GEN-LAST:event_CheckOutButtonActionPerformed
-
-    private void ProcessPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessPaymentButtonActionPerformed
-        // Do stuff here.
-    }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
-
-    private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
-        //here the button calls on the search frame from the reservation.gui package, same functionality needed
+    //RESERVATION TAB ACTIONS
+    
+    private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
         reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setLocationRelativeTo(null); //Center the frame
         SearchFrame.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
+    }//GEN-LAST:event_GuestSearchButtonActionPerformed
+
+    private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
+        //TODO
+    }//GEN-LAST:event_cancelReservationButtonActionPerformed
+
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
+       this.dispose();
+       //restart the program
+       mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
+       master.setLocationRelativeTo(null);
+       master.setVisible(true);
+    }//GEN-LAST:event_LogOutButtonActionPerformed
+
+
+
+    //FLOOR LAYOUT TAB ACTIONS
+
+    private void FloorSelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FloorSelectorItemStateChanged
+        /*
+        @Pre
+        Display the floor layout for the floor selected.
+        */
+    }//GEN-LAST:event_FloorSelectorItemStateChanged
+
+    private void newReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReservationButtonActionPerformed
+        reservation.gui.NewReservationFrame NewReservation = new reservation.gui.NewReservationFrame();
+        NewReservation.setLocationRelativeTo(null); //Center the frame
+        NewReservation.setVisible(true);
+    }//GEN-LAST:event_newReservationButtonActionPerformed
+
+
+
+    //KITCHEN TAB ACTIONS
 
     private void EditInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditInventoryButtonActionPerformed
         kitchen.gui.EditInventoryFrame EditInventoryFrame = new kitchen.gui.EditInventoryFrame(); //Create a new instance of the frame
@@ -649,52 +649,57 @@ public class MainContainerFrame extends javax.swing.JFrame {
         OrderFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
-    private void FloorSelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_FloorSelectorItemStateChanged
-        /*
-        @Pre
-        Display the floor layout for the floor selected.
-        */
-    }//GEN-LAST:event_FloorSelectorItemStateChanged
-
-    private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
-        reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
-        SearchFrame.setLocationRelativeTo(null); //Center the frame
-        SearchFrame.setVisible(true); //Make the frame visible
-    }//GEN-LAST:event_GuestSearchButtonActionPerformed
-
     private void orderPickupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPickupButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_orderPickupButtonActionPerformed
 
-    private void newReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReservationButtonActionPerformed
-        reservation.gui.NewReservationFrame NewReservation = new reservation.gui.NewReservationFrame();
-        NewReservation.setLocationRelativeTo(null); //Center the frame
-        NewReservation.setVisible(true);
-    }//GEN-LAST:event_newReservationButtonActionPerformed
 
-    private void ccNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccNumberFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ccNumberFieldActionPerformed
 
-    private void ccYearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccYearFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ccYearFieldActionPerformed
+    //CHECKOUT TAB ACTIONS
 
-    private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
-        //TODO
-    }//GEN-LAST:event_cancelReservationButtonActionPerformed
+    private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        if (!(guestIDField.getText().equals(""))){ //TODO: needs better validation Should be an existing guest ID in guest DB
+            if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16) && (isInteger(ccNumberField.getText()))){ 
+                if((!(ccCVVField.getText().equals(""))) && ((ccCVVField.getText().length() == 3) || (ccCVVField.getText().length() == 4))){ //TODO: needs better validation. Should be a 3 digit integer. parseInt() has issues.
+                    String gID = guestIDField.getText(); //SET GUEST ID HERE
+                    database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+                    GuestSearch.setGuestID(gID); 
+                    //System.out.println("gID: "+gID);
+                    //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
 
-    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
-       this.dispose();
-       //restart the program
-       mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
-       master.setLocationRelativeTo(null);
-       master.setVisible(true);
-    }//GEN-LAST:event_LogOutButtonActionPerformed
+                    engine.GuestDBManager manager = new engine.GuestDBManager();
+                    String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
+                    String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+                    //System.out.println("email: "+split[5]);
+
+
+                    //Email receipt
+                    Engine.MailManager smtp = new Engine.MailManager(); //Create a new instance of the mail class
+                    //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
+                    smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
+                    checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
+                } else {
+                    checkoutOutputField.setText("Error: invalid CVV number.");
+                }
+            } else {
+                checkoutOutputField.setText("Error. invalid credit card number. Must be a 16 digit integer.");
+            }
+        } else {
+            checkoutOutputField.setText("Error: invalid Guest ID.");
+        }
+    }
+
+    private void ProcessPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessPaymentButtonActionPerformed
+        // Do stuff here.
+    }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
+
+    private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
+        //here the button calls on the search frame from the reservation.gui package, same functionality needed
+        reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
+        SearchFrame.setLocationRelativeTo(null); //Center the frame
+        SearchFrame.setVisible(true); //Make the frame visible
+    }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
     private void guestIDFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_guestIDFieldFocusLost
         
@@ -717,6 +722,22 @@ public class MainContainerFrame extends javax.swing.JFrame {
             //ALSO PRINT BILLING INFORMATION TO checkoutBillOutput
         }
     }//GEN-LAST:event_guestIDFieldFocusLost
+
+    private void ccNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccNumberFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ccNumberFieldActionPerformed
+
+    private void ccYearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccYearFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ccYearFieldActionPerformed
+
+
+
+    //SEARCH/UPDATE TAB ACTIONS
+
+    //N/A so far
+    
+
 
     /**
      * @param args the command line arguments

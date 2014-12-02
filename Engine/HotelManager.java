@@ -3,7 +3,7 @@
 
   PROGRAM OUTLINE 
        engine
-            - only contains MANAGERS and WRITERS
+            - only contains MANAGERS, READERS, or WRITERS that do some sort of logical work
             - does all logic handling and database management
             - handles all input verification
        database.info
@@ -30,7 +30,7 @@ public class HotelManager {
     
     public static void main(String[] args){
         mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
-        master.setLocationRelativeTo(null);
+        master.setLocationRelativeTo(null); //centers spawned window
         master.setVisible(true);
         
     /*

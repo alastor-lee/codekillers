@@ -75,38 +75,7 @@ public class GuestDBManager {
     static final int FOUND_RECORD_TO_MODIFY = 41;
     static final int FAILED_MODIFIED_RECORD = 43;
     static final int NO_MODIFY_RECORD_ABSENT = 45;
-
-    //DBreadFile is important to all database handling, as it reads the entire
-    //database file into an Arraylist in which each index refers to a line in the file
-    //The file path is passed in through a String, and an Arraylist containing the entire data file
-    //is returned out.
-    //THIS METHOD IS NEEDED FOR EVERY DATABASE MANAGER CLASS
-    public ArrayList DBreadFile(String reservationFile){
-        System.out.println(reservationFile);
-        ArrayList records = new ArrayList();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(reservationFile));
-            String line;
-            //MAKE SURE reader.readLine() is set to line, as this conditional
-            //will not work otherwise, even when manually casting as a (String)
-            //Unclear as to why
-            while ((line = reader.readLine()) != null) {
-                //line = reader.readLine();   //readline method works off of \n character as line designator 
-                line = line.trim(); //cleaning up
-                if (!line.equals(" ")) {
-                    records.add(line);  //if line is not empty, add it to next spot in Arraylist records
-                }
-            }        
-            reader.close();
-            return records;     //Arraylist with data file is returned to calling method
-        }
-        catch (Exception e) { 
-            System.out.println("Exception occurred trying to read.");
-            e.printStackTrace();
-            return null;
-        }
-    }
-
+    
     //attempts to add new guest to database
     //checks database to prevent duplication of guests
     //GuestInfo class is passed in to obtain necessary new guest info
@@ -134,7 +103,7 @@ public class GuestDBManager {
             }
         */
         try {   //theRecords will hold everything in the data file if this is successful
-            theRecords = DBreadFile(nameOfFile);
+            theRecords = DatabaseReader.DBreadFile(nameOfFile);
         }
         catch (Exception ee) {
             System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString());
@@ -233,7 +202,7 @@ public class GuestDBManager {
 
 
         try {
-            theRecords = DBreadFile(reservationFile);
+            theRecords = DatabaseReader.DBreadFile(reservationFile);
         } //try
 
         catch (Exception ee) {
@@ -329,7 +298,7 @@ public class GuestDBManager {
         //opening and reading database file for comparison purposes
         try {
         //Get all the file records in the Array
-            theRecords = DBreadFile(nameOfFile);
+            theRecords = DatabaseReader.DBreadFile(nameOfFile);
         } //try
 
         catch (Exception ee) {
@@ -391,7 +360,7 @@ public class GuestDBManager {
         }
 
         try {
-            theRecords = DBreadFile(reservationFile);
+            theRecords = DatabaseReader.DBreadFile(nameOfFile);
         } //try
 
         catch (Exception ee) {
@@ -527,7 +496,7 @@ public class GuestDBManager {
     try {
     //Get all the file records in the Array
 
-        theRecords = DBreadFile(reservationFile);
+        theRecords = DatabaseReader.DBreadFile(nameOfFile);
     } //try
 
     catch (Exception ee) {
@@ -571,7 +540,7 @@ public class GuestDBManager {
     ArrayList records = new ArrayList();
 
     //DBfileName = DBgetReservationFileName();
-    records = DBreadFile(DBfileName); 
+    records = DatabaseReader.DBreadFile(nameOfFile);
     return records;
     }
 
@@ -596,7 +565,7 @@ public class GuestDBManager {
         }
 
     try {
-        theRecords = DBreadFile(reservationFile);
+        theRecords = DatabaseReader.DBreadFile(nameOfFile);
     } //try
     catch (Exception ee) {
         System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
