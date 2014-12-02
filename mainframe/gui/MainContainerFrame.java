@@ -5,6 +5,7 @@
  */
 package mainframe.gui;
 
+import static engine.InputManager.isInteger;
 import java.awt.CardLayout;
 import static java.lang.Integer.parseInt;
 import java.util.regex.Pattern;
