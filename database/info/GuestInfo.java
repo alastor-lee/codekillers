@@ -5,10 +5,6 @@
  */
 package database.info;
 
-/**
- *
- * @author alastor
- */
 public class GuestInfo {
     //guest variables
     String GuestID;
@@ -20,8 +16,10 @@ public class GuestInfo {
     //InputManager handles input error checking
     engine.InputManager verify = new engine.InputManager();
     //setters
-    public void setGuestID(String a){
-        GuestID = a;
+    public String setGuestID(){
+        engine.GuestIDManager idCreate = new engine.GuestIDManager();
+        GuestID = idCreate.createGuestID();
+        return GuestID;
     }
     public void setFirstName(String b){
         FirstName = b;

@@ -664,7 +664,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     String gID = guestIDField.getText(); //SET GUEST ID HERE
                     database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
 
-                    GuestSearch.setGuestID(gID); 
+                    //GuestSearch.setGuestID(gID); 
                     //System.out.println("gID: "+gID);
                     //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
 
@@ -705,7 +705,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         
         if(!(guestIDField.getText().equals(""))){ //TODO: Should actually validate that it's a real guest ID
             database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
-            GuestSearch.setGuestID(guestIDField.getText());
+            //GuestSearch.setGuestID(guestIDField.getText());
             GuestSearch.setLastName("99999999999999999999"); //a value that should never be in DB
         
             //GuestSearch.setGuestID(IDField.getText());

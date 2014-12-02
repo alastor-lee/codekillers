@@ -18,14 +18,6 @@ public class NewGuestCreate extends javax.swing.JFrame {
         initComponents();
     }
     
-   /*
-    String guestID;
-    String firstName;
-    String lastName;
-    String phoneNum;
-    String address;
-    String email;
-   */ 
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,7 +170,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
         engine.GuestDBManager guestAdder = new engine.GuestDBManager();
         //setting vars in GuestInfo
-        NewGuest.setGuestID(GuestIDField.getText());
+        GuestIDField.setText(NewGuest.setGuestID());
         NewGuest.setFirstName(FirstNameField.getText());    //no error check
         NewGuest.setLastName(LastNameField.getText());      //no error check
         

@@ -129,12 +129,12 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
         if(focus == 1){
-            GuestSearch.setGuestID(IDField.getText());
+            //GuestSearch.setGuestID();
             GuestSearch.setLastName("99999999999999999999"); //the purpose of this is to set it equal to a value that should never be in database
         }
         
         if(focus == 2){
-            GuestSearch.setGuestID("qqqqqqqqqqqqqqqqqqqqq"); //the purpose of this is to set it equal to a value that should never be in database
+            //GuestSearch.setGuestID("qqqqqqqqqqqqqqqqqqqqq"); //the purpose of this is to set it equal to a value that should never be in database
             GuestSearch.setLastName(LastNameField.getText());
         }
         //GuestSearch.setGuestID(IDField.getText());

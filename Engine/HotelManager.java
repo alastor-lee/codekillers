@@ -37,7 +37,8 @@ public class HotelManager {
      * The following will check for flat file existence
      * If needed files do not exist, they will be created in a new database folder
      */
-        
+    
+     
     String GuestDB = new File("").getAbsolutePath()+"\\database_files\\guestDatabaseFile.txt";
     String RoomReservationDB = new File("").getAbsolutePath()+"\\database_files\\reservationDatabaseFile.txt";
     String InventoryDB = new File("").getAbsolutePath()+"\\database_files\\inventoryDatabaseFile.txt";
@@ -54,9 +55,16 @@ public class HotelManager {
         else {
             result = directory.mkdirs();
             System.out.println(result);
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(GuestDB), "utf-8"))) {
+                writer.write("DB1 Guest DB:0"); //:0 is essential for guestID creation
+            } 
+            catch (IOException ex){
+                System.out.println("Exception found: "+ex);
+                System.exit(1);
+            }
             //creation of Guest Database
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(GuestDB), "utf-8"))) {
-                writer.write("DB1 Guest DB");
+                writer.write("DB1 Guest DB:0"); //:0 is essential for guestID creation
             } 
             catch (IOException ex){
                 System.out.println("Exception found: "+ex);
