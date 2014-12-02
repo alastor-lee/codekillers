@@ -120,17 +120,12 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             String query = SearchField.getText(); //SET GUEST ID HERE
             database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
 
-            if (isInteger(query)) {
-                try {
-                    InventorySearch.setItemID(query);
-                } catch (NullPointerException e) {
-                    //error output is done in InputManager
-                }
-            } else {
+            try{
                 InventorySearch.setItemName(query);
+            } catch(NullPointerException e) {
+                System.out.println("Error: Item not found in itemDatabaseFile.txt.");
             }
             System.out.println("query: "+query);
-            System.out.println("TESTING VARS SET IN InventoryInfo ItemID: "+InventorySearch.getItemID());
             System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();

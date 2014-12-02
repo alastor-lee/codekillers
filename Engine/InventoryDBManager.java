@@ -196,36 +196,28 @@ public String searchDB(InventoryInfo Inventory) {
     catch (Exception ee) {
         System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
     } //catch
-    
-    //searching for matching records for UserName and Password
-    Iterator it = theRecords.iterator();
-    //for (Iterator it = theRecords.iterator(); it.hasNext(); ) {
-    do {
-        strLine = (String)it.next();
-        strLine = strLine.trim();
-        fields = strLine.split(";");    //delimiter is ;
-        
-        _ItemName = fields[1].trim();
-        _ItemQuantity = fields[2].trim();
-        _ItemPrice = fields[3].trim();
-        
-        /* For debug purposes
-        System.out.println("_UserName: "+_UserName);
-        System.out.println("_Password: "+_Password);
-        System.out.println("ExistingUser.getPassword(): "+ExistingUser.getUserName());
-        System.out.println("new String(ExistingUser.getPassword()): "+new String(ExistingUser.getPassword()));
-        */
-             
-        try {
-            if (Inventory.getItemName().equalsIgnoreCase(_ItemName)) {
-                return strLine;
-            }
-        } catch(NullPointerException e) {
-            return "Error: Item not found in inventoryDatabaseFile.txt.";
-        }
-    } while(it.hasNext());
-    return "Error: Item not found in inventoryDatabaseFile.txt.";
-}  //method
+        int iCount = 1;
+        int nRecCount = theRecords.size();
+        Iterator itr = theRecords.iterator();
+        itr.next();     //skips the first line of file, which contains database name
+        while (itr.hasNext()) {
+            if (iCount < nRecCount + 1) {
+                strLine = (String) theRecords.get(iCount);
+                strLine = strLine.trim();
+                System.out.println(strLine);
+                fields = strLine.split(";");    //delimiter is ;
+
+                _ItemName = fields[0].trim();
+
+                if (Inventory.getItemName().equalsIgnoreCase(_ItemName)) {
+                    return strLine;
+                }
+            } //if
+            iCount++;
+        } //while
+        return "Error: no matching item found in inventoryDatabaseFile.txt.";
+
+    }
     
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
