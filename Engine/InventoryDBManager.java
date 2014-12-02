@@ -24,9 +24,9 @@ import java.lang.reflect.*;
 public class InventoryDBManager {
 
 //variables
-public static String _ItemID;
 public static String _ItemName;
 public static String _ItemQuantity;
+public static String _ItemPrice;
 
 //gets path to flat files
 String nameOfFile = new File("").getAbsolutePath()+"\\database_files";
@@ -71,13 +71,13 @@ static final int FOUND_RECORD_TO_MODIFY = 41;
 static final int FAILED_MODIFIED_RECORD = 43;
 static final int NO_MODIFY_RECORD_ABSENT = 45;
 
-/*
+
 //method to check for duplicate entries and add guests to database
-public int addGuest(GuestInfo NewGuest){
-     nameOfFile = nameOfFile + "\\userDatabaseFile.txt";
+public int addItem(InventoryInfo NewItem){
+     nameOfFile = nameOfFile + "\\inventoryDatabaseFile.txt";
      System.out.println("File path is:" + nameOfFile);
      String newRecord; 
-     newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
+     newRecord = NewItem.getItemName()+";"+NewItem.getItemQuantity()+";"+NewItem.getItemPrice();
     //Variables
     int nReturnValue = 0;
     int iCount = 0;
@@ -125,20 +125,13 @@ public int addGuest(GuestInfo NewGuest){
                 System.out.println(fields[i].trim() );
             }
             //setting variables to values of preesxisting entry
-            _GuestID = fields[0].trim();
-            _FirstName = fields[1].trim();
-            _LastName = fields[2].trim();
-            _Address = fields[3].trim();
-            _ContactNumber = fields[4].trim();
-            _Email = fields[5].trim();
-            //_Charges = fields[6].trim();      //no handling this yet
+            _ItemName = fields[0].trim();
+            _ItemQuantity = fields[1].trim();
+            _ItemPrice = fields[2].trim();
             
             //comparing current entry at given iterator count to the new entry
-            //only guestID and email need to be checked for duplicate records
-            if (_GuestID.trim().equalsIgnoreCase(newRecordFields[0].trim()) || 
-                _Email.trim().equalsIgnoreCase(newRecordFields[5].trim())
-            )
-            {
+            //only ItemName need to be checked for duplicate records
+            if (_ItemName.trim().equalsIgnoreCase(newRecordFields[0].trim())){
                 System.out.println("Duplicate Record");
                 //returns int value 13, which is understood as a write fail due to duplicates
                 nReturnValue = FAILED_DUPLICATE_RECORD ;
@@ -185,7 +178,7 @@ public int addGuest(GuestInfo NewGuest){
     return nReturnValue;
 
     } //method
-*/
+
 
 //method to search for items
 public String searchDB(InventoryInfo Inventory) {
@@ -212,9 +205,9 @@ public String searchDB(InventoryInfo Inventory) {
         strLine = strLine.trim();
         fields = strLine.split(";");    //delimiter is ;
         
-        _ItemID = fields[1].trim();
-        _ItemName = fields[2].trim();
-        _ItemQuantity = fields[3].trim();
+        _ItemName = fields[1].trim();
+        _ItemQuantity = fields[2].trim();
+        _ItemPrice = fields[3].trim();
         
         /* For debug purposes
         System.out.println("_UserName: "+_UserName);
@@ -222,13 +215,7 @@ public String searchDB(InventoryInfo Inventory) {
         System.out.println("ExistingUser.getPassword(): "+ExistingUser.getUserName());
         System.out.println("new String(ExistingUser.getPassword()): "+new String(ExistingUser.getPassword()));
         */
-        
-        if (isInteger(Inventory.getItemID())){
-            if (Inventory.getItemID().equalsIgnoreCase(_ItemID)){
-                return strLine;
-            }
-        }
-        
+             
         try {
             if (Inventory.getItemName().equalsIgnoreCase(_ItemName)) {
                 return strLine;
@@ -709,7 +696,7 @@ return nReturnValue;
 }  //method
 
 */
-/*
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBisValidRecord(String dbRecord)
 //------------------------------------------------------------------------------------------------------------
@@ -787,7 +774,7 @@ else {
 
 return nReturnValue;
 }//method
-*/
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBgetReservationFileName()

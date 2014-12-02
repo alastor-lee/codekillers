@@ -112,7 +112,22 @@ public class AddItemFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemButtonActionPerformed
-        // Do stuff
+        // TODO: Add item to database
+        /*
+            GuestInfo class will set guest information and check for input error
+            GuestDBManager will write to the database if input is correct
+        */
+        int check=0;
+        database.info.InventoryInfo NewItem = new database.info.InventoryInfo();
+        engine.InventoryDBManager InventoryDBWriter = new engine.InventoryDBManager();
+        //setting vars in GuestInfo
+        NewItem.setItemName(ItemNameField.getText());
+        NewItem.setItemQuantity(ItemQuantityField.getText());    //no error check
+        NewItem.setItemPrice(ItemPriceField.getText());      //no error check
+        NewItem.setItemID("1");
+        
+        InventoryDBWriter.addItem(NewItem);
+        
         this.dispose(); //Close the frame
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
