@@ -1,19 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package engine;
+package Engine;
 
-/**
- *
- * @author Colin
+import java.net.*;
+import java.io.*;
+
+/*
+ * Super simple email class that sends an email using SMTP. Currently I'm using the GSU mail server, not sure if that is okay... haha
  */
 public class MailManager {
-    // Good news #1: Java has a mail API to make sending mail relatively painless
-    // Bad news #1: That API is only available in the Enterprise Edition. We'll need to see what Bhola is expecting us to use.
-    // Good news #2: It IS possible to implement mail sending through SMTP in Java Standard Edition
-    // Bad news #2: It's pretty damn complicated to implement it using SMTP in Standard Edition and is essentially a project itself
-    // Good news #3: I have actually done that before in Networking class (made a Java mail client using SMTP)
-    // Bad news #3: I don't know where my old code is, haha.
+
+    public void sendMail(String guestEmail, String message) {
+        try {
+            Socket GSUmail = new Socket("mail.gsu.edu", 25);
+            outStream = new PrintWriter(GSUmail.getOutputStream());
+            inStream = new BufferedReader(new InputStreamReader(GSUmail.getInputStream()));
+            String host = InetAddress.getLocalHost().getHostName();
+            send("HELO " + host);
+            send("MAIL FROM: " + "hotelmanagementsystem@codekillers.com");
+            send("RCPT TO: " + guestEmail);
+            send("DATA\n"+message+"\n.");
+            send("QUIT");
+            GSUmail.close();
+            outStream.close();
+            inStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+}
+
+    public void send(String s) throws IOException {
+        if (s != null) {
+            outStream.println(s);
+            outStream.flush();
+        }
+        String line;
+        if ((line = inStream.readLine()) != null)
+        {
+            System.out.println(line);
+        }
+    }
+
+    private PrintWriter outStream;
+    private BufferedReader inStream;
 }

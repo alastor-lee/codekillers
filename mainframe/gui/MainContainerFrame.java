@@ -583,7 +583,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
 
                     //Email receipt
-                    Engine.Mail smtp = new Engine.Mail(); //Create a new instance of the mail class
+                    Engine.MailManager smtp = new Engine.MailManager(); //Create a new instance of the mail class
                     //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
                     smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
                     checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
