@@ -212,8 +212,8 @@ public int searchDB(UserInfo ExistingUser) {
         fields = strLine.split(";");    //delimiter is ;
         
         // fields[1] is user ID. Not used at the moment but it exists if we want to use it.
-        _UserName = fields[2].trim();
-        _Password = fields[3].trim();
+        _UserName = fields[1].trim();
+        _Password = fields[2].trim();
         
         /* For debug purposes
         System.out.println("_UserName: "+_UserName);
@@ -222,7 +222,7 @@ public int searchDB(UserInfo ExistingUser) {
         System.out.println("new String(ExistingUser.getPassword()): "+new String(ExistingUser.getPassword()));
         */
         
-        if (ExistingUser.getUserName().equals(_UserName) && new String(ExistingUser.getPassword()).equals(_Password)) {
+        if (ExistingUser.getUserName().equalsIgnoreCase(_UserName) && new String(ExistingUser.getPassword()).equals(_Password)) {
             return 1;
         } 
     } while(it.hasNext());
