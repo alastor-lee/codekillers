@@ -209,7 +209,7 @@ public String searchDB(InventoryInfo Inventory) {
 
                 _ItemName = fields[0].trim();
 
-                if (Inventory.getItemName().equalsIgnoreCase(_ItemName)) {
+                if (_ItemName.toLowerCase().contains(Inventory.getItemName().toLowerCase())) {
                     return strLine;
                 }
             } //if
