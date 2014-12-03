@@ -128,6 +128,8 @@ public class AddItemFrame extends javax.swing.JFrame {
         
         InventoryDBWriter.addItem(NewItem);
         
+        EditInventoryFrame.ViewInventoryOutput.setText(ItemNameField.getText()+" successfully added."); //TODO: this should print the entire inventory
+        
         this.dispose(); //Close the frame
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
