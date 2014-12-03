@@ -81,10 +81,10 @@ public class GuestDBManager {
     //GuestInfo class is passed in to obtain necessary new guest info
     public int addGuest(GuestInfo NewGuest){
         nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";   //provides full path to file
-        System.out.println("File path is:" + nameOfFile);  //TEST
+        //System.out.println("File path is:" + nameOfFile);  //TEST
         //piecing together the new line to be added to data file
         String newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
-        System.out.println(newRecord);  //TEST
+        //System.out.println(newRecord);  //TEST
 
         int nReturnValue;
         //int iCount = 1; //must start @ 1
@@ -125,8 +125,8 @@ public class GuestDBManager {
             //strLine = (String)theRecords.get(iCount);   //strLine is now the info for guest at line iCount in file
             fields = strLine.split(";");
             //pretty sure the following is just to test that strLine is getting placed into fields[] correctly
-            System.out.print("...\n");
-            System.out.println(strLine);
+            //System.out.print("...\n");
+            //System.out.println(strLine);
             /*
             for (int i=0; i<fields.length; i++)  {
                 System.out.println(fields[i].trim());

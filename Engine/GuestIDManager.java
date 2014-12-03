@@ -8,8 +8,8 @@ import java.io.*;
 import java.util.*;
 
 public class GuestIDManager {
-    //IMPORTANT: gets path to database files 
     int intGuestCount;
+    //Getting path to guest database file
     String nameOfFile = new File("").getAbsolutePath()+"\\database_files\\guestDatabaseFile.txt";
     String strLine, strGlobalCount;
     String[] fields;
@@ -35,15 +35,20 @@ public class GuestIDManager {
         
     public void globalIDUpdate(int count, ArrayList oldFile){
         String newCount;
-        count++;    //increments global ID count
-        newCount = "DB1 Guest DB:"+Integer.toString(count);
+        intGuestCount++;    //increments global ID count
+        System.out.println("new count: "+intGuestCount);
+        newCount = "DB1 Guest DB:"+Integer.toString(intGuestCount);
+        System.out.println(newCount);
         oldFile.set(0, newCount);  //should set new String w/ updatead count
+        System.out.println(oldFile.get(0));
         try {
             writer = new FileWriter(file, true);
             PrintWriter printer = new PrintWriter(writer);
             Iterator itr = oldFile.iterator();
             while(itr.hasNext()){
                 printer.write(itr.toString());
+                System.out.println("SUCCESSFUL WRITE");
+                System.out.println(itr.toString());
                 itr.next();
             }
         }

@@ -48,6 +48,8 @@ public class NewGuestCreate extends javax.swing.JFrame {
 
         jLabel1.setText("Guest ID:");
 
+        GuestIDField.setEditable(false);
+
         FirstNameLabel.setText("First Name:");
 
         LastNameLabel.setText("Last Name: ");
@@ -169,8 +171,8 @@ public class NewGuestCreate extends javax.swing.JFrame {
         int check=0;
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
         engine.GuestDBManager guestAdder = new engine.GuestDBManager();
-        //setting vars in GuestInfo
-        GuestIDField.setText(NewGuest.setGuestID());
+        //setting vars into and from GuestInfo
+        GuestIDField.setText(NewGuest.setGuestID());    //getting new ID from GuestInfo
         NewGuest.setFirstName(FirstNameField.getText());    //no error check
         NewGuest.setLastName(LastNameField.getText());      //no error check
         
