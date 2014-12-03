@@ -5,6 +5,8 @@
  */
 package kitchen.gui;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Colin
@@ -176,7 +178,30 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteItemButtonActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        // Do stuff here
+        if(SearchField.getText().equals("")){
+            //display all items
+        } else {
+            String query = SearchField.getText(); //SET GUEST ID HERE
+            database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
+
+            try{
+                InventorySearch.setItemName(query);
+            } catch(NullPointerException e) {
+                System.out.println("Error: Item not found in itemDatabaseFile.txt.");
+            }
+            System.out.println("query: "+query);
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
+
+            engine.InventoryDBManager manager = new engine.InventoryDBManager();
+            String nonSplit = manager.searchDB(InventorySearch); //return fields
+            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+            System.out.println("Results: "+nonSplit);
+            try {
+                ViewInventoryOutput.setText("Item Name: "+split[0]+"\nItem Quantity: "+split[1]+"\nItem Price: $"+split[2]);
+            } catch(ArrayIndexOutOfBoundsException e){
+                ViewInventoryOutput.setText("No matching item found in inventory.");
+            }
+        }
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
@@ -226,7 +251,7 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane OutputContainer;
     private javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchField;
-    private javax.swing.JTextArea ViewInventoryOutput;
+    public static javax.swing.JTextArea ViewInventoryOutput;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
