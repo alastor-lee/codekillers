@@ -328,7 +328,7 @@ public class GuestDBManager {
         } //if
         iCount++;
         } //while
-        return "No matching guests in database";
+        return "No matching records found.";
     }
 
     //something like this may be needed, will probably modify greatly for our purposes

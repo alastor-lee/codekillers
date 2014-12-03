@@ -80,6 +80,13 @@ public class MainContainerFrame extends javax.swing.JFrame {
         BillLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         checkoutOutputField = new javax.swing.JTextArea();
+        cashButton = new javax.swing.JButton();
+        totalAmountDueLabel = new javax.swing.JLabel();
+        totalAmountDueField = new javax.swing.JTextField();
+        changeDueField = new javax.swing.JTextField();
+        changeDueLabel = new javax.swing.JLabel();
+        amountPaidLabel = new javax.swing.JLabel();
+        amountPaidField = new javax.swing.JTextField();
         searchTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -398,7 +405,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
-        ProcessPaymentButton.setText("Process Payment");
+        ProcessPaymentButton.setText("Process Credit Card");
         ProcessPaymentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProcessPaymentButtonActionPerformed(evt);
@@ -430,6 +437,19 @@ public class MainContainerFrame extends javax.swing.JFrame {
         checkoutOutputField.setRows(5);
         jScrollPane3.setViewportView(checkoutOutputField);
 
+        cashButton.setText("Pay with Cash");
+        cashButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashButtonActionPerformed(evt);
+            }
+        });
+
+        totalAmountDueLabel.setText("Total Amount Due:");
+
+        changeDueLabel.setText("Change Due:");
+
+        amountPaidLabel.setText("Amount Paid:");
+
         javax.swing.GroupLayout checkoutTabLayout = new javax.swing.GroupLayout(checkoutTab);
         checkoutTab.setLayout(checkoutTabLayout);
         checkoutTabLayout.setHorizontalGroup(
@@ -451,37 +471,58 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addGroup(checkoutTabLayout.createSequentialGroup()
                         .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(checkoutTabLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                                    .addGap(79, 79, 79)
-                                    .addComponent(ProcessPaymentButton))
-                                .addGroup(checkoutTabLayout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(checkoutTabLayout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ccMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ccYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(paymentInfoLabel)
+                                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(checkoutTabLayout.createSequentialGroup()
-                                            .addGap(19, 19, 19)
-                                            .addComponent(CheckOutButton))
-                                        .addGroup(checkoutTabLayout.createSequentialGroup()
+                                            .addComponent(jLabel8)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(paymentInfoLabel)
-                            .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(checkoutTabLayout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(53, 53, 53)
+                                            .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(ccNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(checkoutTabLayout.createSequentialGroup()
+                                        .addComponent(totalAmountDueLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(totalAmountDueField))
+                                    .addGroup(checkoutTabLayout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(checkoutTabLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(cashButton))
+                                            .addComponent(ProcessPaymentButton))))
+                                .addGap(53, 53, 53))
+                            .addGroup(checkoutTabLayout.createSequentialGroup()
+                                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                        .addComponent(amountPaidLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(amountPaidField))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
+                                        .addComponent(jLabel10)
+                                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(checkoutTabLayout.createSequentialGroup()
+                                                .addGap(19, 19, 19)
+                                                .addComponent(CheckOutButton))
+                                            .addGroup(checkoutTabLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                        .addComponent(changeDueLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(changeDueField)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,13 +532,17 @@ public class MainContainerFrame extends javax.swing.JFrame {
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(checkoutTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(checkoutTabLayout.createSequentialGroup()
-                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BillLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(GuestInfoLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(checkoutTabLayout.createSequentialGroup()
+                                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BillLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(GuestInfoLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(checkoutTabLayout.createSequentialGroup()
                         .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -520,15 +565,28 @@ public class MainContainerFrame extends javax.swing.JFrame {
                             .addComponent(ccCVVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalAmountDueLabel)
+                            .addComponent(totalAmountDueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ProcessPaymentButton)
-                        .addGap(16, 16, 16)
+                        .addGap(3, 3, 3)
+                        .addComponent(cashButton)
+                        .addGap(1, 1, 1)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(amountPaidLabel)
+                            .addComponent(amountPaidField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(changeDueLabel)
+                            .addComponent(changeDueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
-                        .addComponent(CheckOutButton))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(264, Short.MAX_VALUE))
+                        .addComponent(CheckOutButton)
+                        .addGap(173, 173, 173))))
         );
 
         mainFrame.addTab("Check Out", checkoutTab);
@@ -731,6 +789,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ccYearFieldActionPerformed
 
+    private void cashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashButtonActionPerformed
+        checkoutOutputField.setText("Cash payment authorized: Please put cash in the register.");
+    }//GEN-LAST:event_cashButtonActionPerformed
+
 
 
     //SEARCH/UPDATE TAB ACTIONS
@@ -792,11 +854,16 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton ViewMenuButton;
     private javax.swing.JLabel activeOrdersLabel;
     private javax.swing.JPanel activeOrdersPanel;
+    private javax.swing.JTextField amountPaidField;
+    private javax.swing.JLabel amountPaidLabel;
     private javax.swing.JButton cancelReservationButton;
+    private javax.swing.JButton cashButton;
     private javax.swing.JTextField ccCVVField;
     private javax.swing.JComboBox ccMonthField;
     private javax.swing.JTextField ccNumberField;
     private javax.swing.JComboBox ccYearField;
+    private javax.swing.JTextField changeDueField;
+    private javax.swing.JLabel changeDueLabel;
     private javax.swing.JTextArea checkoutBillOutput;
     private javax.swing.JTextArea checkoutInfoOutput;
     private javax.swing.JTextArea checkoutOutputField;
@@ -823,5 +890,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel paymentInfoLabel;
     private javax.swing.JPanel reserveTab;
     private javax.swing.JPanel searchTab;
+    private javax.swing.JTextField totalAmountDueField;
+    private javax.swing.JLabel totalAmountDueLabel;
     // End of variables declaration//GEN-END:variables
 }
