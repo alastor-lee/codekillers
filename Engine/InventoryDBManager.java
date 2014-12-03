@@ -218,7 +218,45 @@ public String searchDB(InventoryInfo Inventory) {
         return "Error: no matching item found in inventoryDatabaseFile.txt.";
 
     }
-    
+   
+//method to print all items in db
+public String printAllRecords(InventoryInfo Inventory) {
+        //Variables
+        nameOfFile = nameOfFile + "\\inventoryDatabaseFile.txt";
+        String strLine = "";
+        String[] fields;
+        ArrayList theRecords = new ArrayList();
+        boolean isSearching = true;
+        String finalOutput = "";
+        //opening and reading database file for comparison purposes
+        try {
+            //Get all the file records in the Array
+            theRecords = DBreadFile(nameOfFile);
+        } //try
+        catch (Exception ee) {
+            System.err.println("Error: " + ee.getMessage() + "..stack: " + ee.getStackTrace().toString());
+        } //catch
+        int iCount = 1;
+        int nRecCount = theRecords.size();
+        Iterator itr = theRecords.iterator();
+        itr.next();     //skips the first line of file, which contains database name
+        while (itr.hasNext() && isSearching == true) {
+            if (iCount < nRecCount + 1) {
+                try {
+                    strLine = (String) theRecords.get(iCount);
+                    strLine = strLine.trim();
+                    finalOutput += strLine;
+                    System.out.println(strLine);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Reached end of file.");
+                    isSearching = false;
+                }
+            } //if
+            iCount++;
+        } //while
+        return finalOutput;
+
+    }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Methods: DBmodifyCustomerRecord(String reservationFile,String CustomerName, String checkInDate, int fieldPosition, String newValue)

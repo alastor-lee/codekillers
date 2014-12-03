@@ -179,7 +179,23 @@ public class EditInventoryFrame extends javax.swing.JFrame {
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         if(SearchField.getText().equals("")){
-            //display all items
+            String query = "";
+            database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
+
+            try{
+                InventorySearch.setItemName(query);
+            } catch(NullPointerException e) {
+                System.out.println("Error: Item not found in itemDatabaseFile.txt.");
+            }
+            System.out.println("query: "+query);
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
+
+            engine.InventoryDBManager manager = new engine.InventoryDBManager();
+            try {
+                ViewInventoryOutput.setText(manager.printAllRecords(InventorySearch));
+            } catch(ArrayIndexOutOfBoundsException e){
+                ViewInventoryOutput.setText("No matching item found in inventory.");
+            }
         } else {
             String query = SearchField.getText(); //SET GUEST ID HERE
             database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
