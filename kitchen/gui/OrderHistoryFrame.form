@@ -20,7 +20,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="587" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="655" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -125,7 +125,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="OrderNumberLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Order Number:"/>
+            <Property name="text" type="java.lang.String" value="Order Number / Guest Name:"/>
           </Properties>
         </Component>
       </SubComponents>
