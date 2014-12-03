@@ -132,6 +132,7 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             String nonSplit = manager.searchDB(InventorySearch); //return fields
             String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
             System.out.println("results: "+nonSplit);
+            ViewInventoryOutput.setText("Item Name: "+split[0]+"\nItem Quantity: "+split[1]+"\nItem Price: $"+split[2]);
         }
     }//GEN-LAST:event_SearchButtonActionPerformed
 
