@@ -131,8 +131,12 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
             String nonSplit = manager.searchDB(InventorySearch); //return fields
             String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-            System.out.println("results: "+nonSplit);
-            ViewInventoryOutput.setText("Item Name: "+split[0]+"\nItem Quantity: "+split[1]+"\nItem Price: $"+split[2]);
+            System.out.println("Results: "+nonSplit);
+            try {
+                ViewInventoryOutput.setText("Item Name: "+split[0]+"\nItem Quantity: "+split[1]+"\nItem Price: $"+split[2]);
+            } catch(ArrayIndexOutOfBoundsException e){
+                ViewInventoryOutput.setText("No matching item found in inventory.");
+            }
         }
     }//GEN-LAST:event_SearchButtonActionPerformed
 
