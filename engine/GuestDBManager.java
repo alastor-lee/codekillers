@@ -322,7 +322,7 @@ public class GuestDBManager {
             if (OldGuest.getGuestID().equals(_GuestID)) {
                 return strLine;
             } //if
-            else if (OldGuest.getLastName().equalsIgnoreCase(_LastName)) {
+            else if (_LastName.toLowerCase().contains(OldGuest.getLastName().toLowerCase())) {
                 return strLine;
             }
         } //if
