@@ -19,6 +19,7 @@ public class GuestInfo {
     public String setGuestID(){
         engine.GuestIDManager idCreate = new engine.GuestIDManager();
         GuestID = idCreate.createGuestID();
+        System.out.println("GuestID returned: "+GuestID);
         return GuestID;
     }
     public void setFirstName(String b){

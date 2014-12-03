@@ -42,7 +42,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
         EmailField = new javax.swing.JTextField();
         AddGuestButton = new javax.swing.JButton();
         ErrorTextField = new javax.swing.JLabel();
-        NewGuestCancelButton = new javax.swing.JButton();
+        NewGuestCloseButton = new javax.swing.JButton();
 
         setResizable(false);
 
@@ -69,10 +69,10 @@ public class NewGuestCreate extends javax.swing.JFrame {
 
         ErrorTextField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        NewGuestCancelButton.setText("Cancel");
-        NewGuestCancelButton.addActionListener(new java.awt.event.ActionListener() {
+        NewGuestCloseButton.setText("Close");
+        NewGuestCloseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewGuestCancelButtonActionPerformed(evt);
+                NewGuestCloseButtonActionPerformed(evt);
             }
         });
 
@@ -114,7 +114,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(AddGuestButton)
                         .addGap(15, 15, 15)
-                        .addComponent(NewGuestCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(NewGuestCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -152,7 +152,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddGuestButton)
-                    .addComponent(NewGuestCancelButton))
+                    .addComponent(NewGuestCloseButton))
                 .addContainerGap())
         );
 
@@ -168,29 +168,27 @@ public class NewGuestCreate extends javax.swing.JFrame {
             GuestInfo class will set guest information and check for input error
             GuestDBManager will write to the database if input is correct
         */
-        int check=0;
+        int check;  //var to handle errors and display status message
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
         engine.GuestDBManager guestAdder = new engine.GuestDBManager();
-        //setting vars into and from GuestInfo
-        GuestIDField.setText(NewGuest.setGuestID());    //getting new ID from GuestInfo
+        //getting and setting guest info into/from GuestInfo class
+        GuestIDField.setText(NewGuest.setGuestID());    //guest ID creation initiated here
         NewGuest.setFirstName(FirstNameField.getText());    //no error check
         NewGuest.setLastName(LastNameField.getText());      //no error check
         
         check = NewGuest.setAddress(AddressField.getText());    //error flag returns 2
-        //if error has already been returned by setAddress, this is skipped
-        if(check==0) {
+        if(check==0) {//if error has already been returned, this is skipped
             check = NewGuest.setContactNum(PhoneNumField.getText());    //error flag returns 3
         }
-        //if error has already been returned by setAddress or setContactNum, this is skipped
-        if(check==0){
+        if(check==0){//if error has already been returned, this is skipped
             check = NewGuest.setEmail(EmailField.getText());            //error flag returns 4
         }
         if(check==0){
             check = guestAdder.addGuest(NewGuest);
         }
-        //switch either calls on GuestDBManager to write to file or gives error message
+        System.out.println(NewGuest.toString());    //TEST
+        //switch gives status message for GUI to display
         switch(check) {
-            //case 0 means no errors, passes GuestInfo to GuestDBManager for writing
             case 1: ErrorTextField.setText("Guest Added");
                 break;
             case 2: ErrorTextField.setText("Invalid Address");  
@@ -206,9 +204,9 @@ public class NewGuestCreate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AddGuestButtonActionPerformed
 
-    private void NewGuestCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGuestCancelButtonActionPerformed
+    private void NewGuestCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGuestCloseButtonActionPerformed
         this.dispose(); //Close the window
-    }//GEN-LAST:event_NewGuestCancelButtonActionPerformed
+    }//GEN-LAST:event_NewGuestCloseButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,7 +255,7 @@ public class NewGuestCreate extends javax.swing.JFrame {
     private javax.swing.JTextField GuestIDField;
     private javax.swing.JTextField LastNameField;
     private javax.swing.JLabel LastNameLabel;
-    private javax.swing.JButton NewGuestCancelButton;
+    private javax.swing.JButton NewGuestCloseButton;
     private javax.swing.JTextField PhoneNumField;
     private javax.swing.JLabel PhoneNumLabel;
     private javax.swing.JLabel jLabel1;

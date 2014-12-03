@@ -84,7 +84,7 @@ public class GuestDBManager {
         //System.out.println("File path is:" + nameOfFile);  //TEST
         //piecing together the new line to be added to data file
         String newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
-        //System.out.println(newRecord);  //TEST
+        System.out.println("newRecord Test: "+newRecord);  //TEST
 
         int nReturnValue;
         //int iCount = 1; //must start @ 1
@@ -117,16 +117,15 @@ public class GuestDBManager {
         //nRecCount = theRecords.size();  //hold # of lines in the current data file
         Iterator itr = theRecords.iterator();
         itr.next(); //skips first line in data file, as it contains only the name of the file
-
         //while loop makes sure there is a next line in the file
         while (itr.hasNext()) {
             //if (iCount < nRecCount + 1) {   //makes sure the end of the file has not been reached
-            strLine = (String)itr.next();
+            strLine = itr.next().toString();
             //strLine = (String)theRecords.get(iCount);   //strLine is now the info for guest at line iCount in file
             fields = strLine.split(";");
             //pretty sure the following is just to test that strLine is getting placed into fields[] correctly
             //System.out.print("...\n");
-            //System.out.println(strLine);
+            System.out.println(strLine);
             /*
             for (int i=0; i<fields.length; i++)  {
                 System.out.println(fields[i].trim());
@@ -164,7 +163,8 @@ public class GuestDBManager {
             try {
                 writer = new FileWriter(file, true);
                 PrintWriter printer = new PrintWriter(writer);
-                printer.append("\n");
+                //
+                //printer.append("\n"); //most other Managers will need this
                 printer.append(newRecord);
                 printer.close();
                 System.out.println("SUCCESSFUL WRITE");
