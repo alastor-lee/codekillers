@@ -22,6 +22,10 @@ public class GuestInfo {
         System.out.println("GuestID returned: "+GuestID);
         return GuestID;
     }
+    //method overloading for test purposes
+    public void setGuestID(String a){
+        GuestID = a;
+    }
     public void setFirstName(String b){
         FirstName = b;
     }

@@ -5,13 +5,7 @@
  */
 package reservation.gui;
 
-/**
- *
- * @author alastor
- */
-
 public class SearchGuestFrame extends javax.swing.JFrame {
-
     /**
      * Creates new form SearchGuestFrame
      */
@@ -138,20 +132,20 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
         if(focus == 1){
-            //GuestSearch.setGuestID();
+            GuestSearch.setGuestID(IDField.getText()); //this cannot be used like this, modifies DB file when setGuestID is called w/o String input
             GuestSearch.setLastName("99999999999999999999"); //the purpose of this is to set it equal to a value that should never be in database
         }
         
         if(focus == 2){
-            //GuestSearch.setGuestID("qqqqqqqqqqqqqqqqqqqqq"); //the purpose of this is to set it equal to a value that should never be in database
+            GuestSearch.setGuestID("qqqqqqqqqqqqqqqqqqqqq"); //the purpose of this is to set it equal to a value that should never be in database
             GuestSearch.setLastName(LastNameField.getText());
         }
         //GuestSearch.setGuestID(IDField.getText());
         //GuestSearch.setLastName(LastNameField.getText());
-        //System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
-        //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
+        System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
+        System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
         
-        //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
+        //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());       
         engine.GuestDBManager manager = new engine.GuestDBManager();
         searchReturn = manager.searchDB(GuestSearch);
         GuestInfoText.setText("Guest Information:\n"+searchReturn.replace(";" , "\n"));

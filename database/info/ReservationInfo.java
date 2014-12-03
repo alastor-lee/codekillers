@@ -5,10 +5,14 @@
  */
 package database.info;
 
-/**
- *
- * @author alastor
- */
 public class ReservationInfo {
-    
+    //class variables 
+    String GuestID;
+    String NumOfPersons;
+    String TypeOfRoom;
+    String CheckIn;
+    String CheckOut;
+    String RoomNum;
+    String SpecialPref;
+    String Comments;
 }

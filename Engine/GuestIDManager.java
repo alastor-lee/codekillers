@@ -51,21 +51,15 @@ public class GuestIDManager {
         try {
             writer = new FileWriter(file, true);
             PrintWriter printer = new PrintWriter(file);
-            //clearWrite = new RandomAccessFile(file, "rw");
-            //clearWrite.setLength(0);    //clearing file
-            //clearWrite.close();
             writer.write("");
-            //writer.close();  //cleaning file
             Iterator itr = dataFile.iterator();
             while(itr.hasNext()){
                 strLine = itr.next().toString();
                 printer.write(strLine+"\n");
-                //clearWrite.writeChars(strLine+"\n");
                 System.out.println("written to file: "+strLine);    //TEST
                 System.out.println("SUCCESSFUL WRITE");     //TEST
             }
             printer.close();
-            //clearWrite.close();
         }
         catch(IOException ee) {
             System.err.println("Id writer error: " + ee.getMessage() +", stack: " + ee.getStackTrace().toString() );
