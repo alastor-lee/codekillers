@@ -684,18 +684,18 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="12">
-                    <StringItem index="0" value="01 - Jan"/>
-                    <StringItem index="1" value="02 - Feb"/>
-                    <StringItem index="2" value="03 - Mar"/>
-                    <StringItem index="3" value="04 - Apr"/>
-                    <StringItem index="4" value="05 - May"/>
-                    <StringItem index="5" value="06 - Jun"/>
-                    <StringItem index="6" value="07 - Jul"/>
-                    <StringItem index="7" value="08 - Aug"/>
-                    <StringItem index="8" value="09 - Sep"/>
-                    <StringItem index="9" value="10 - Oct"/>
-                    <StringItem index="10" value="11 - Nov"/>
-                    <StringItem index="11" value="12 - Dec"/>
+                    <StringItem index="0" value="01"/>
+                    <StringItem index="1" value="02"/>
+                    <StringItem index="2" value="03"/>
+                    <StringItem index="3" value="04"/>
+                    <StringItem index="4" value="05"/>
+                    <StringItem index="5" value="06"/>
+                    <StringItem index="6" value="07"/>
+                    <StringItem index="7" value="08"/>
+                    <StringItem index="8" value="09"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
                   </StringArray>
                 </Property>
               </Properties>

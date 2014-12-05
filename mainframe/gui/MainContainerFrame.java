@@ -6,6 +6,9 @@
 package mainframe.gui;
 
 import static engine.InputManager.isInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
@@ -391,7 +394,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
-        ccMonthField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01 - Jan", "02 - Feb", "03 - Mar", "04 - Apr", "05 - May", "06 - Jun", "07 - Jul", "08 - Aug", "09 - Sep", "10 - Oct", "11 - Nov", "12 - Dec" }));
+        ccMonthField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
         jLabel9.setText("/");
 
@@ -750,7 +753,39 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }
 
     private void ProcessPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessPaymentButtonActionPerformed
-        // Do stuff here.
+        //Get current date
+        DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
+        Date date = new Date();
+        String currentDate = dateFormat.format(date);
+        String[] splitDate = currentDate.split("/");
+        String ccMonth = ccMonthField.getSelectedItem().toString();
+        String ccYear = ccYearField.getSelectedItem().toString();
+        Boolean isExpired = false;
+        
+        System.out.println("splitDate[0]: "+splitDate[0]);
+        System.out.println("splitDate[1]: "+splitDate[1]);
+        System.out.println("ccMonth: "+ccMonth);
+        System.out.println("ccYear: "+ccYear);
+        
+        if (splitDate[0].equals(ccMonth) && splitDate[1].equals(ccYear)){
+            checkoutOutputField.setText("Error: Credit card is expired.");
+            isExpired = true;
+        }
+        
+        if (Integer.parseInt(splitDate[1]) > Integer.parseInt(ccYearField.getSelectedItem().toString())){
+            checkoutOutputField.setText("Error: Credit card is expired.");
+            isExpired = true;
+        }
+        
+        if (splitDate[1].equals(ccYearField.getSelectedItem().toString()) && Integer.parseInt(splitDate[0]) > Integer.parseInt(ccMonthField.getSelectedItem().toString())){
+            checkoutOutputField.setText("Error: Credit card is expired.");
+            isExpired = true;
+        }
+        
+        if(isExpired == false){
+            checkoutOutputField.setText("Success! Credit card accepted.");
+            //set guest bill = 0 or whatever
+        }
     }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
 
     private void CheckoutGuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutGuestSearchButtonActionPerformed
