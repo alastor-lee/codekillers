@@ -818,8 +818,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="totalAmountDueField">
+              <Properties>
+                <Property name="focusable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="changeDueField">
+              <Properties>
+                <Property name="focusable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="changeDueLabel">
               <Properties>

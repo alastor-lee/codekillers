@@ -446,6 +446,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         totalAmountDueLabel.setText("Total Amount Due:");
 
+        totalAmountDueField.setFocusable(false);
+
+        changeDueField.setFocusable(false);
+
         changeDueLabel.setText("Change Due:");
 
         amountPaidLabel.setText("Amount Paid:");
@@ -790,6 +794,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ccYearFieldActionPerformed
 
     private void cashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashButtonActionPerformed
+        changeDueField.setText(Double.toString(Double.parseDouble(amountPaidField.getText()) - Double.parseDouble(totalAmountDueField.getText())));
         checkoutOutputField.setText("Cash payment authorized: Please put cash in the register.");
     }//GEN-LAST:event_cashButtonActionPerformed
 
