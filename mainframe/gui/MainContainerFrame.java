@@ -6,10 +6,7 @@
 package mainframe.gui;
 
 import static engine.InputManager.isInteger;
-import java.awt.CardLayout;
-import static java.lang.Integer.parseInt;
 import java.util.regex.Pattern;
-import javax.swing.JFrame;
 
 /**
  *
@@ -765,23 +762,21 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
     private void guestIDFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_guestIDFieldFocusLost
         
-        if(!(guestIDField.getText().equals(""))){ //TODO: Should actually validate that it's a real guest ID
-            database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
-            //GuestSearch.setGuestID(guestIDField.getText());
-            GuestSearch.setLastName("99999999999999999999"); //a value that should never be in DB
-        
-            //GuestSearch.setGuestID(IDField.getText());
-            //GuestSearch.setLastName(LastNameField.getText());
-            //System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
-            //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
+        if (!(guestIDField.getText().equals(""))) { //TODO: Should actually validate that it's a real guest ID
+            try {
+                database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+                GuestSearch.setGuestID(guestIDField.getText());
+                GuestSearch.setLastName("99999999999999999999"); //a value that should never be in DB
+      
+                engine.GuestDBManager manager = new engine.GuestDBManager();
+                String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
+                String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+                checkoutInfoOutput.setText("Guest ID: " + split[0] + "\nFirst Name: " + split[1] + "\nLast Name: " + split[2] + "\nAddress: " + split[3] + "\nPhone Number: " + split[4] + "\nEmail Address: " + split[5]);
 
-            //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());        
-            engine.GuestDBManager manager = new engine.GuestDBManager();
-            String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
-            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-            checkoutInfoOutput.setText("Guest ID: "+split[0]+"\nFirst Name: "+split[1]+"\nLast Name: "+split[2]+"\nAddress: "+split[3]+"\nPhone Number: "+split[4]+"\nEmail Address: "+split[5]);
-            
-            //ALSO PRINT BILLING INFORMATION TO checkoutBillOutput
+                //ALSO PRINT BILLING INFORMATION TO checkoutBillOutput
+            } catch (IndexOutOfBoundsException e) {
+                 checkoutInfoOutput.setText("Error: there are no guests in the database with the ID: "+guestIDField.getText());
+            }
         }
     }//GEN-LAST:event_guestIDFieldFocusLost
 
@@ -794,8 +789,16 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ccYearFieldActionPerformed
 
     private void cashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashButtonActionPerformed
-        changeDueField.setText(Double.toString(Double.parseDouble(amountPaidField.getText()) - Double.parseDouble(totalAmountDueField.getText())));
-        checkoutOutputField.setText("Cash payment authorized: Please put cash in the register.");
+        if(amountPaidField.getText().equals("")){
+            checkoutOutputField.setText("Error: Please enter the amount paid in cash by the guest.");
+        } else {
+            try {
+                changeDueField.setText(Double.toString(Double.parseDouble(amountPaidField.getText()) - Double.parseDouble(totalAmountDueField.getText())));
+                checkoutOutputField.setText("Cash payment authorized: Please put cash in the register.");
+            } catch (NumberFormatException e) {
+                checkoutOutputField.setText("Error: Total amount due field is blank.");
+            }
+        }
     }//GEN-LAST:event_cashButtonActionPerformed
 
 
