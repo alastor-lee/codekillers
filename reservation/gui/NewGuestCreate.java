@@ -52,6 +52,18 @@ public class NewGuestCreate extends javax.swing.JFrame {
 
         FirstNameLabel.setText("First Name:");
 
+        FirstNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FirstNameFieldFocusGained(evt);
+            }
+        });
+
+        LastNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                LastNameFieldFocusGained(evt);
+            }
+        });
+
         LastNameLabel.setText("Last Name: ");
 
         PhoneNumLabel.setText("Phone #:");
@@ -59,6 +71,27 @@ public class NewGuestCreate extends javax.swing.JFrame {
         AddressLabel.setText("Address:");
 
         EmailLabel.setText("Email:");
+
+        PhoneNumField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PhoneNumFieldFocusGained(evt);
+            }
+        });
+
+        AddressField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                AddressFieldFocusGained(evt);
+            }
+        });
+
+        EmailField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                EmailFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EmailFieldFocusLost(evt);
+            }
+        });
 
         AddGuestButton.setText("Add Guest");
         AddGuestButton.addActionListener(new java.awt.event.ActionListener() {
@@ -172,10 +205,9 @@ public class NewGuestCreate extends javax.swing.JFrame {
         database.info.GuestInfo NewGuest = new database.info.GuestInfo();
         engine.GuestDBManager guestAdder = new engine.GuestDBManager();
         //getting and setting guest info into/from GuestInfo class
-        GuestIDField.setText(NewGuest.setGuestID());    //guest ID creation initiated here
         NewGuest.setFirstName(FirstNameField.getText());    //no error check
         NewGuest.setLastName(LastNameField.getText());      //no error check
-        
+        //series of input validation
         check = NewGuest.setAddress(AddressField.getText());    //error flag returns 2
         if(check==0) {//if error has already been returned, this is skipped
             check = NewGuest.setContactNum(PhoneNumField.getText());    //error flag returns 3
@@ -184,6 +216,8 @@ public class NewGuestCreate extends javax.swing.JFrame {
             check = NewGuest.setEmail(EmailField.getText());            //error flag returns 4
         }
         if(check==0){
+            //guest ID creation initiated here
+            GuestIDField.setText(NewGuest.setGuestID());
             check = guestAdder.addGuest(NewGuest);
         }
         System.out.println(NewGuest.toString());    //TEST
@@ -207,6 +241,30 @@ public class NewGuestCreate extends javax.swing.JFrame {
     private void NewGuestCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGuestCloseButtonActionPerformed
         this.dispose(); //Close the window
     }//GEN-LAST:event_NewGuestCloseButtonActionPerformed
+
+    private void FirstNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FirstNameFieldFocusGained
+        FirstNameField.selectAll();
+    }//GEN-LAST:event_FirstNameFieldFocusGained
+
+    private void LastNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LastNameFieldFocusGained
+        LastNameField.selectAll();
+    }//GEN-LAST:event_LastNameFieldFocusGained
+
+    private void PhoneNumFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumFieldFocusGained
+        PhoneNumField.selectAll();
+    }//GEN-LAST:event_PhoneNumFieldFocusGained
+
+    private void AddressFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AddressFieldFocusGained
+        AddressField.selectAll();
+    }//GEN-LAST:event_AddressFieldFocusGained
+    
+    private void EmailFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFieldFocusGained
+        EmailField.selectAll();
+    }//GEN-LAST:event_EmailFieldFocusGained
+
+        private void EmailFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFieldFocusGained
+        //TODO here
+    }//GEN-LAST:event_EmailFieldFocusLost
 
     /**
      * @param args the command line arguments

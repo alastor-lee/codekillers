@@ -1,6 +1,8 @@
 
 /*
- * Database manager class modified to handle information relevant 
+ * Database manager class modified to handle information relevant
+ * to rservation creation.  Guest ID will be used to link the guest to the
+ * appropriate reservation.
  */
 
 package engine;

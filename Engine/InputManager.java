@@ -7,37 +7,17 @@ import mainframe.gui.LoginFrame;
 
 public class InputManager {
     
-    //methods
     //ADDRESS ERRROR CHECKING
+    //returns 2 for error, 0 otherwise
     public int checkAddress(String a) {
-        String[] addr;
-        addr = a.split(" ");
-        //TESTING
-        //testing for all address information
-        if (addr.length < 6 || addr.length > 6) {
-            //address does not have enough fields
-            System.out.println("wrong address length");
-            return 2;
-        }
-        //Printing fields TEST
-        /*
-        for(int i=0; i<addr.length; i++){
-            System.out.println(addr[i]);
-        }
-        */
-        //checking for comma after city
-        if(addr[3].charAt(addr[3].length()-1) != ',') {
-            System.out.println("No comma, instead: "+addr[3].charAt(addr[3].length()-1));
-            return 2;
-        }
-        //checking that state is in abbreviated form only
-        if(addr[4].length() > 2 || addr[4].length() < 2) {
-            System.out.println("Improper State input");
+        //needs slight modification, allow "." in street name
+        if(!a.matches("([0-9]+ ){1}([A-Z]*?[a-z]*? )+([A-Z]*?[a-z]*?, ){1}[A-Z]{2} ([0-9]+){1}")){
             return 2;
         }
         return 0;
     }
-    //PHONE NUMBER ERROR CHECKING
+    //phone number error checking
+    //NEED TO CHANGE THIS TO REGEX
     public int checkPhoneNum(String phone) {
         //anything other than a dash is considered error
         phone = phone.replaceAll("-", "");
@@ -57,15 +37,15 @@ public class InputManager {
         }
         return 0;
     }
-    //EMAIL ADDRESS ERROR CHECKING
+    //email address error checking
+    //need to modfiy to allow the many chars allowed in email addresses
     public int checkEmail(String e){
-        //using regex to verify email address format
         if(!e.matches("(.+@{1}){1}([a-zA-Z]+[\\.]{1})+[a-zA-Z]+")){
             return 4; 
         }
         return 0;
     }
-    //
+    
     public static int validateUser(String userName, char[] password){
         int userlevel = 0; //Should be initially set to 0. It is set to 1 here so that you can log-in without username or password.
         // Need to query UserDB here to check if username and password combo exists.

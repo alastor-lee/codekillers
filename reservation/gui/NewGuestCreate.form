@@ -140,8 +140,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="FirstNameField">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="FirstNameFieldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="LastNameField">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="LastNameFieldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="LastNameLabel">
       <Properties>
@@ -164,10 +170,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="PhoneNumField">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PhoneNumFieldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="AddressField">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="AddressFieldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="EmailField">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="EmailFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="EmailFieldFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="AddGuestButton">
       <Properties>

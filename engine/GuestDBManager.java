@@ -81,27 +81,17 @@ public class GuestDBManager {
     //GuestInfo class is passed in to obtain necessary new guest info
     public int addGuest(GuestInfo NewGuest){
         nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";   //provides full path to file
-        //System.out.println("File path is:" + nameOfFile);  //TEST
         //piecing together the new line to be added to data file
         String newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
         System.out.println("newRecord Test: "+newRecord);  //TEST
 
         int nReturnValue;
-        //int iCount = 1; //must start @ 1
-        //int nRecCount;
         String strLine; //will hold one line of file at a time
         String[] fields;
         String[] newRecordFields;
-        ArrayList theRecords = new ArrayList();     //theRecords will hold entire database file
+        ArrayList theRecords = new ArrayList();  //theRecords will hold entire database file
         File file = new File(nameOfFile);
         FileWriter writer;
-
-        //not convinced this conditional is necessary, all input validation is done elsewhere
-        /*
-        if (DBisValidRecord(newRecord) != true) {
-            return FAILED_INVALID_RECORD;
-            }
-        */
         try {   //theRecords will hold everything in the data file if this is successful
             theRecords = DatabaseReader.DBreadFile(nameOfFile);
         }
@@ -113,23 +103,13 @@ public class GuestDBManager {
         //setting each value(guest ID, name, address, email, phone #, etc.) into
         //separate array indexes for comparison to fields in data file
         newRecordFields = newRecord.split(";");
-
-        //nRecCount = theRecords.size();  //hold # of lines in the current data file
         Iterator itr = theRecords.iterator();
         itr.next(); //skips first line in data file, as it contains only the name of the file
         //while loop makes sure there is a next line in the file
         while (itr.hasNext()) {
-            //if (iCount < nRecCount + 1) {   //makes sure the end of the file has not been reached
             strLine = itr.next().toString();
-            //strLine = (String)theRecords.get(iCount);   //strLine is now the info for guest at line iCount in file
             fields = strLine.split(";");
-            //pretty sure the following is just to test that strLine is getting placed into fields[] correctly
-            //System.out.print("...\n");
             System.out.println(strLine);
-            /*
-            for (int i=0; i<fields.length; i++)  {
-                System.out.println(fields[i].trim());
-            }*/
             //setting variables to values of preexisting entry, for comparison
             _GuestID = fields[0].trim();
             _FirstName = fields[1].trim();
@@ -138,7 +118,6 @@ public class GuestDBManager {
             _ContactNumber = fields[4].trim();
             _Email = fields[5].trim();
             //_Charges = fields[6].trim();      //not handling this yet
-
             //comparing current entry at given iterator count to the new entry
             //only guestID and email need to be checked for duplicate records
             if (_GuestID.equalsIgnoreCase(newRecordFields[0]) || _Email.equalsIgnoreCase(newRecordFields[5]))
@@ -150,20 +129,14 @@ public class GuestDBManager {
             else{
                 System.out.println("NOT A DUP");
                 nReturnValue = NEW_RECORD;
-            //}
-            //iCount++;
             }
         }
-        //once the iterator has hit the end of file nReturnValue needs to be set 
-        //so that a new recod is created in the file
-        //to get to this point means there is no next line in the file
-        //nReturnValue = NEW_RECORD;
-
-        //if (NEW_RECORD == nReturnValue){
+        //once the iterator has hit the end of file it means there is no
+        //duplicate record in the preexisting file, so go ahead with the guest
+        //addition to database
             try {
                 writer = new FileWriter(file, true);
                 PrintWriter printer = new PrintWriter(writer);
-                //
                 //printer.append("\n"); //most other Managers will need this
                 printer.append(newRecord);
                 printer.close();
@@ -177,7 +150,6 @@ public class GuestDBManager {
                 nReturnValue = FAILED_ADDED_RECORD;
                 return nReturnValue;
             }
-        //}  //if
         return nReturnValue;
         }
 

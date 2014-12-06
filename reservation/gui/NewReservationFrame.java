@@ -63,6 +63,11 @@ public class NewReservationFrame extends javax.swing.JFrame {
                 GuestIDFieldActionPerformed(evt);
             }
         });
+        GuestIDField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                GuestIDFieldFocusGained(evt);
+            }
+        });
 
         NumberPersonsLabel.setText("Number of Persons:");
 
@@ -290,6 +295,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
     private void GuestIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestIDFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GuestIDFieldActionPerformed
+
+    private void GuestIDFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GuestIDFieldFocusGained
+        GuestIDField.selectAll();
+    }//GEN-LAST:event_GuestIDFieldFocusGained
 
     /**
      * @param args the command line arguments

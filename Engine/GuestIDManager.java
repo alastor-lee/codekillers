@@ -27,7 +27,7 @@ public class GuestIDManager {
             //} else return "file is not being read properly";
             fields = strLine.split(":");    //splitting up first line to find needed var
             strGuestCount = fields[1];
-            System.out.println("curr val from array: "+fields[1]+" from String: "+strGuestCount);  //TEST
+            //System.out.println("curr val from array: "+fields[1]+" from String: "+strGuestCount);  //TEST
             globalIDUpdate();    //calling other class method to update guest count
             return strGuestCount;   //this is not changed by globalIDUpdate
         }
@@ -41,12 +41,11 @@ public class GuestIDManager {
         String newCount;
         intGuestCount = Integer.parseInt(strGuestCount.trim());   //for incrementing
         intGuestCount++;    //incrementing for future guest add
-        System.out.println("new count: "+intGuestCount);    //TEST
+        //System.out.println("new count: "+intGuestCount);    //TEST
         newCount = "DB1 Guest DB:"+Integer.toString(intGuestCount);
         newCount.replace("\n", ""); //clearing all \n chars
         //System.out.println("to be written: "+newCount);   //TEST
         dataFile.set(0, newCount);  //do not put \n here
-        System.out.println("new first line: "+dataFile.get(0));
         //clearing and rewriting file
         try {
             writer = new FileWriter(file, true);
@@ -56,8 +55,8 @@ public class GuestIDManager {
             while(itr.hasNext()){
                 strLine = itr.next().toString();
                 printer.write(strLine+"\n");
-                System.out.println("written to file: "+strLine);    //TEST
-                System.out.println("SUCCESSFUL WRITE");     //TEST
+                //System.out.println("written to file: "+strLine);    //TEST
+                //System.out.println("SUCCESSFUL WRITE");     //TEST
             }
             printer.close();
         }
