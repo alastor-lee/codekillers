@@ -246,9 +246,8 @@ public ArrayList<String> printAllRecords(InventoryInfo Inventory) {
                     strLine = (String) theRecords.get(iCount);
                     strLine = strLine.trim();
                     finalOutput.add(strLine);
-                    System.out.println(strLine);
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Reached end of file.");
+                    //reached end of file
                     isSearching = false;
                 }
             } //if

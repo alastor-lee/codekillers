@@ -145,24 +145,18 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             try{
                 InventorySearch.setItemName(query);
             } catch(NullPointerException e) {
-                System.out.println("Error: Item not found in itemDatabaseFile.txt.");
+                //item not found. error output is below.
             }
-            System.out.println("query: "+query);
-            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
             try {
                 ArrayList<String> output = manager.printAllRecords(InventorySearch);
-                System.out.println("output: "+output);
                 
                 String listString = "";
                 for (String s : output) {
                     listString += s + "\t";
                 }
-                System.out.println("liststring: "+listString);
                 String[] split = listString.split(Pattern.quote("\t")); //split into pieces
-                System.out.println("split[0]: "+split[0]);
-                System.out.println("split[1]: "+split[1]);
                 
                 DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
                 model.setRowCount(0);
@@ -185,17 +179,14 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             try {
                 InventorySearch.setItemName(query);
             } catch (NullPointerException e) {
-                System.out.println("Error: Item not found in itemDatabaseFile.txt.");
+                //no item found. error output is elsewhere
             }
-            System.out.println("query: " + query);
-            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: " + InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
             try {
                 String nonSplit = manager.searchDB(InventorySearch); //return fields
 
                 String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-                System.out.println("Results: " + nonSplit);
 
                 try {
                     model.addRow(split);
@@ -249,6 +240,10 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
                 new ViewInventoryFrame().setVisible(true);
             }
         });
+    }
+    
+    public void performSearch(){
+        SearchButton.doClick();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

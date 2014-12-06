@@ -684,6 +684,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         kitchen.gui.ViewInventoryFrame ViewInventoryFrame = new kitchen.gui.ViewInventoryFrame(); //Create a new instance of the frame
         ViewInventoryFrame.setLocationRelativeTo(null); //Center the frame
         ViewInventoryFrame.getRootPane().setDefaultButton(ViewInventoryFrame.SearchButton);
+        ViewInventoryFrame.performSearch();
         ViewInventoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewInventoryButtonActionPerformed
 
