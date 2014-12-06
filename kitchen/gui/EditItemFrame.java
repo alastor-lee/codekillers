@@ -5,6 +5,9 @@
  */
 package kitchen.gui;
 
+import static engine.InputManager.isPositiveInteger;
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Colin
@@ -35,12 +38,19 @@ public class EditItemFrame extends javax.swing.JFrame {
         ItemPriceField = new javax.swing.JTextField();
         CancelButton = new javax.swing.JButton();
         EditItemButton = new javax.swing.JButton();
+        outputLabel = new javax.swing.JLabel();
 
         ItemNameLabel.setText("Item Name:");
 
         ItemQuantityLabel.setText("Quantity:");
 
         ItemPriceLabel.setText("Price:");
+
+        ItemNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ItemNameFieldFocusGained(evt);
+            }
+        });
 
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -65,25 +75,30 @@ public class EditItemFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(CancelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(EditItemButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ItemPriceLabel)
-                            .addComponent(ItemQuantityLabel)
-                            .addComponent(ItemNameLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ItemNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(ItemQuantityField)
-                            .addComponent(ItemPriceField))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ItemPriceLabel)
+                                    .addComponent(ItemQuantityLabel)
+                                    .addComponent(ItemNameLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ItemNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(ItemQuantityField)
+                                    .addComponent(ItemPriceField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(outputLabel)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ItemNameLabel)
                     .addComponent(ItemNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -96,6 +111,8 @@ public class EditItemFrame extends javax.swing.JFrame {
                     .addComponent(ItemPriceLabel)
                     .addComponent(ItemPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(outputLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton)
                     .addComponent(EditItemButton))
@@ -110,9 +127,45 @@ public class EditItemFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void EditItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditItemButtonActionPerformed
-        // Delete old record and make new record. Old one must be deleted because we don't have item IDs.
+if(!(ItemNameField.getText().equals("")) && isPositiveInteger(ItemQuantityField.getText()) && (ItemPriceField.getText().matches("^[0-9]*([.]{1}[0-9]{0,2}){0,1}$"))){
+            // Delete old record and make new record. Old one must be deleted because we don't have item IDs.
+            database.info.InventoryInfo DeleteItem = new database.info.InventoryInfo();
+            engine.InventoryDBManager InventoryDelete = new engine.InventoryDBManager();
+            System.out.println("Name: "+toBeDeletedName);
+            System.out.println("Quantity: "+toBeDeletedQuantity);
+            System.out.println("Price: "+toBeDeletedPrice);
+            DeleteItem.setItemName(toBeDeletedName);
+            DeleteItem.setItemQuantity(toBeDeletedQuantity);
+            DeleteItem.setItemPrice(toBeDeletedPrice);
+            InventoryDelete.DBremoveRecord(toBeDeletedName+";"+toBeDeletedQuantity+";"+toBeDeletedPrice);
+    
+            database.info.InventoryInfo NewItem = new database.info.InventoryInfo();
+            engine.InventoryDBManager InventoryDBWriter = new engine.InventoryDBManager();
+            //setting vars in GuestInfo
+            double doublePrice = Double.parseDouble(ItemPriceField.getText());
+            DecimalFormat df = new DecimalFormat("#.00");
+            String formattedPrice = df.format(doublePrice);
+            NewItem.setItemName(ItemNameField.getText());
+            NewItem.setItemQuantity(ItemQuantityField.getText());    //no error check
+            NewItem.setItemPrice(formattedPrice);      //no error check
+
+            InventoryDBWriter.addItem(NewItem);
+
+            //EditInventoryFrame.SearchField.setText(""); //
+            EditInventoryFrame.performSearch();
+
+            this.dispose(); //Close the frame
+        } else {
+            outputLabel.setText("Error: Invalid Input.");
+        }     
         this.dispose(); //Close the frame
     }//GEN-LAST:event_EditItemButtonActionPerformed
+
+    private void ItemNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ItemNameFieldFocusGained
+        toBeDeletedName = ItemNameField.getText(); //get name of selected item
+        toBeDeletedQuantity = ItemQuantityField.getText(); //get quantity
+        toBeDeletedPrice = ItemPriceField.getText(); //get price
+    }//GEN-LAST:event_ItemNameFieldFocusGained
 
     /**
      * @param args the command line arguments
@@ -151,12 +204,16 @@ public class EditItemFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;
-    private javax.swing.JButton EditItemButton;
+    public javax.swing.JButton EditItemButton;
     public javax.swing.JTextField ItemNameField;
     private javax.swing.JLabel ItemNameLabel;
     public javax.swing.JTextField ItemPriceField;
     private javax.swing.JLabel ItemPriceLabel;
     public javax.swing.JTextField ItemQuantityField;
     private javax.swing.JLabel ItemQuantityLabel;
+    private javax.swing.JLabel outputLabel;
     // End of variables declaration//GEN-END:variables
+    String toBeDeletedName; //get name of selected item
+    String toBeDeletedQuantity; //get quantity
+    String toBeDeletedPrice; //get price
 }

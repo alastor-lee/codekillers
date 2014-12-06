@@ -143,7 +143,7 @@ public class AddItemFrame extends javax.swing.JFrame {
 
             InventoryDBWriter.addItem(NewItem);
 
-            EditInventoryFrame.SearchField.setText(ItemNameField.getText()); //
+            //EditInventoryFrame.SearchField.setText(""); //
             EditInventoryFrame.performSearch();
 
             this.dispose(); //Close the frame
@@ -196,7 +196,7 @@ public class AddItemFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddItemButton;
+    public javax.swing.JButton AddItemButton;
     private javax.swing.JButton CancelButton;
     private javax.swing.JTextField ItemNameField;
     private javax.swing.JLabel ItemNameLabel;

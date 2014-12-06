@@ -616,12 +616,14 @@ return nReturnValue;
 
 } //method
 */
-/*
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBremoveRecord(String fullPathFileName, String deleteRecord)
 //------------------------------------------------------------------------------------------------------------
-public static int DBremoveRecord(String reservationFile, String delRecord){
+public int DBremoveRecord(String delRecord){
 
+String reservationFile = nameOfFile + "\\inventoryDatabaseFile.txt";
+    
 //Variables
 int nReturnValue = 0;
 int nRecCount = 0;
@@ -648,15 +650,22 @@ catch (Exception ee) {
     System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
 }  //catch
 
-delRecordFields = delRecord.split(",");
+delRecordFields = delRecord.split(";");
 
 iCount =0;
 
 nRecCount = theRecords.size();
 
 for (it = theRecords.iterator(); it.hasNext(); ) {
-    if (iCount < nRecCount + 1) {
-        strLine = (String) it.next();
+    it.next(); //skip first value
+    if (iCount < nRecCount + 1) { //HAS ISSUES DELETING WHEN ONLY 2 ITEMS REMAIN
+        try{
+            if(it.hasNext()){
+                strLine = (String) it.next();
+            }
+        } catch (NoSuchElementException e) {
+            //error
+        }
         strLine = strLine.trim();
         
         if (strLine.equals("") || strLine.equals(" ")) {
@@ -665,13 +674,18 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
         }
 
         else{
-            fields = strLine.split(",");
-            _GuestID = fields[0].trim();
-            _LastName = fields[1].trim();
-            _Address = fields[2].trim();
-            _ContactNumber = fields[3].trim();
-            _Email = fields[4].trim();
-            _Charges = fields[5].trim();
+            System.out.println("strLine: "+strLine);
+            fields = strLine.split(";");
+            _ItemName = fields[0].trim();
+            _ItemQuantity = fields[1].trim();
+            _ItemPrice = fields[2].trim();
+            
+            System.out.println("_ItemName: "+_ItemName);
+            System.out.println("_ItemQuantity: "+_ItemQuantity);
+            System.out.println("_ItemPrice: "+_ItemPrice);
+            System.out.println("delRecordFields[0]: "+delRecordFields[0]);
+            System.out.println("delRecordFields[1]: "+delRecordFields[1]);
+            System.out.println("delRecordFields[2]: "+delRecordFields[2]);
 
             //
             //If all of the fields in the newRecord are equal to theRecords 
@@ -680,12 +694,9 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
 
             iCount++;
             
-            if (_GuestID.trim().equalsIgnoreCase(delRecordFields[0].trim()) &&
-                _LastName.trim().equalsIgnoreCase(delRecordFields[1].trim()) &&
-                _Address.trim().equalsIgnoreCase(delRecordFields[2].trim()) &&
-                _ContactNumber.trim().equalsIgnoreCase(delRecordFields[3].trim()) &&
-                _Email.trim().equalsIgnoreCase(delRecordFields[4].trim()) &&
-                _Charges.trim().equalsIgnoreCase(delRecordFields[5].trim())) 
+            if (_ItemName.trim().equalsIgnoreCase(delRecordFields[0].trim()) &&
+                _ItemQuantity.trim().equalsIgnoreCase(delRecordFields[1].trim()) &&
+                _ItemPrice.trim().equalsIgnoreCase(delRecordFields[2].trim())) 
             {
                     nReturnValue = FOUND_RECORD_TO_DELETE;  
                     it.remove();
@@ -724,8 +735,6 @@ if (nReturnValue == FOUND_RECORD_TO_DELETE)	{
 
 return nReturnValue;
 }  //method
-
-*/
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBisValidRecord(String dbRecord)
