@@ -343,11 +343,15 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     public static void performSearch(){
         SearchButton.doClick();
     }
+    
+    public static void deleteItem(){
+        DeleteItemButton.doClick();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddItemButton;
     private javax.swing.JButton CloseButton;
-    private javax.swing.JButton DeleteItemButton;
+    private static javax.swing.JButton DeleteItemButton;
     private javax.swing.JButton EditItemButton;
     public static javax.swing.JButton SearchButton;
     public static javax.swing.JTextField SearchField;

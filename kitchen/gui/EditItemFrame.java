@@ -129,15 +129,7 @@ public class EditItemFrame extends javax.swing.JFrame {
     private void EditItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditItemButtonActionPerformed
 if(!(ItemNameField.getText().equals("")) && isPositiveInteger(ItemQuantityField.getText()) && (ItemPriceField.getText().matches("^[0-9]*([.]{1}[0-9]{0,2}){0,1}$"))){
             // Delete old record and make new record. Old one must be deleted because we don't have item IDs.
-            database.info.InventoryInfo DeleteItem = new database.info.InventoryInfo();
-            engine.InventoryDBManager InventoryDelete = new engine.InventoryDBManager();
-            System.out.println("Name: "+toBeDeletedName);
-            System.out.println("Quantity: "+toBeDeletedQuantity);
-            System.out.println("Price: "+toBeDeletedPrice);
-            DeleteItem.setItemName(toBeDeletedName);
-            DeleteItem.setItemQuantity(toBeDeletedQuantity);
-            DeleteItem.setItemPrice(toBeDeletedPrice);
-            InventoryDelete.DBremoveRecord(toBeDeletedName+";"+toBeDeletedQuantity+";"+toBeDeletedPrice);
+            EditInventoryFrame.deleteItem();
     
             database.info.InventoryInfo NewItem = new database.info.InventoryInfo();
             engine.InventoryDBManager InventoryDBWriter = new engine.InventoryDBManager();
