@@ -59,6 +59,7 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             }
         });
 
+        outputTable.setAutoCreateRowSorter(true);
         outputTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
