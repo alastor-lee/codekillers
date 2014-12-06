@@ -220,14 +220,14 @@ public String searchDB(InventoryInfo Inventory) {
     }
    
 //method to print all items in db
-public String printAllRecords(InventoryInfo Inventory) {
+public ArrayList<String> printAllRecords(InventoryInfo Inventory) {
         //Variables
         nameOfFile = nameOfFile + "\\inventoryDatabaseFile.txt";
         String strLine = "";
         String[] fields;
         ArrayList theRecords = new ArrayList();
         boolean isSearching = true;
-        String finalOutput = "";
+        ArrayList<String> finalOutput = new ArrayList<String>();
         //opening and reading database file for comparison purposes
         try {
             //Get all the file records in the Array
@@ -245,7 +245,7 @@ public String printAllRecords(InventoryInfo Inventory) {
                 try {
                     strLine = (String) theRecords.get(iCount);
                     strLine = strLine.trim();
-                    finalOutput += strLine;
+                    finalOutput.add(strLine);
                     System.out.println(strLine);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Reached end of file.");

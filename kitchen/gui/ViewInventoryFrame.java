@@ -6,7 +6,9 @@
 package kitchen.gui;
 
 import static engine.InputManager.isInteger;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,10 +34,12 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         CloseButton = new javax.swing.JButton();
-        OutputPane = new javax.swing.JScrollPane();
-        ViewInventoryOutput = new javax.swing.JTextArea();
         SearchField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputTable = new javax.swing.JTable();
+
+        setResizable(false);
 
         CloseButton.setText("Close");
         CloseButton.addActionListener(new java.awt.event.ActionListener() {
@@ -44,10 +48,6 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             }
         });
 
-        ViewInventoryOutput.setColumns(20);
-        ViewInventoryOutput.setRows(5);
-        OutputPane.setViewportView(ViewInventoryOutput);
-
         SearchButton.setText("Search");
         SearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,25 +55,44 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             }
         });
 
+        outputTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item Name", "Quantity", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        outputTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(outputTable);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(179, 179, 179)
+                .addComponent(CloseButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(OutputPane))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(CloseButton)
-                        .addGap(0, 247, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchButton)))
-                .addContainerGap())
+                        .addComponent(SearchButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(359, 359, 359))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,32 +101,32 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchButton)
                     .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OutputPane, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CloseButton)
-                .addContainerGap())
+                .addGap(199, 199, 199))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 325, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -116,8 +135,7 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         if(SearchField.getText().equals("")){
             //display all items
-        } else {
-            String query = SearchField.getText(); //SET GUEST ID HERE
+            String query = "";
             database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
 
             try{
@@ -129,13 +147,63 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
             System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
-            String nonSplit = manager.searchDB(InventorySearch); //return fields
-            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-            System.out.println("Results: "+nonSplit);
             try {
-                ViewInventoryOutput.setText("Item Name: "+split[0]+"\nItem Quantity: "+split[1]+"\nItem Price: $"+split[2]);
+                ArrayList<String> output = manager.printAllRecords(InventorySearch);
+                System.out.println("output: "+output);
+                
+                String listString = "";
+                for (String s : output) {
+                    listString += s + "\t";
+                }
+                System.out.println("liststring: "+listString);
+                String[] split = listString.split(Pattern.quote("\t")); //split into pieces
+                System.out.println("split[0]: "+split[0]);
+                System.out.println("split[1]: "+split[1]);
+                
+                DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+                model.setRowCount(0);
+                
+                for (int i = 0; i <= split.length; i++) {
+                    String[] newSplit = split[i].split(Pattern.quote(";"));
+                    model.addRow(newSplit);
+                }
             } catch(ArrayIndexOutOfBoundsException e){
-                ViewInventoryOutput.setText("No matching item found in inventory.");
+                //ViewInventoryOutput.setText("No matching item found in inventory.");
+            }
+        } else {
+            //display one item
+            String query = SearchField.getText();
+            database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
+
+            DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+            model.setRowCount(0);
+
+            try {
+                InventorySearch.setItemName(query);
+            } catch (NullPointerException e) {
+                System.out.println("Error: Item not found in itemDatabaseFile.txt.");
+            }
+            System.out.println("query: " + query);
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: " + InventorySearch.getItemName());
+
+            engine.InventoryDBManager manager = new engine.InventoryDBManager();
+            try {
+                String nonSplit = manager.searchDB(InventorySearch); //return fields
+
+                String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+                System.out.println("Results: " + nonSplit);
+
+                try {
+                    model.addRow(split);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    model.setRowCount(0);
+                    String[] errorArray = {"Error: No items found", "", ""};
+                    model.addRow(errorArray);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                model.setRowCount(0);
+                String[] errorArray = {"Error: No items found", "", ""};
+                model.addRow(errorArray);
             }
         }
     }//GEN-LAST:event_SearchButtonActionPerformed
@@ -181,10 +249,10 @@ public class ViewInventoryFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseButton;
-    private javax.swing.JScrollPane OutputPane;
-    private javax.swing.JButton SearchButton;
+    public javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchField;
-    private javax.swing.JTextArea ViewInventoryOutput;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable outputTable;
     // End of variables declaration//GEN-END:variables
 }
