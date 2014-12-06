@@ -40,7 +40,11 @@ public class EditInventoryFrame extends javax.swing.JFrame {
         EditItemButton = new javax.swing.JButton();
         DeleteItemButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        outputTable = new javax.swing.JTable();
+        outputTable = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int column){
+                return false;//you can set which column/row can be edited.
+            }
+        };
 
         setResizable(false);
 

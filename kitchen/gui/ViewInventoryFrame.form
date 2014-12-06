@@ -133,6 +133,9 @@
                   <Color id="Default Cursor"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xd;&#xa;    public boolean isCellEditable(int row, int column){&#xd;&#xa;        return false;//you can set which column/row can be edited.&#xd;&#xa;    }&#xd;&#xa;}"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
