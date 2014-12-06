@@ -152,6 +152,7 @@
             <Component class="javax.swing.JButton" name="EditItemButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit Item"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EditItemButtonActionPerformed"/>
@@ -160,6 +161,7 @@
             <Component class="javax.swing.JButton" name="DeleteItemButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Item"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteItemButtonActionPerformed"/>
@@ -182,6 +184,9 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="outputTableFocusGained"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xd;&#xa;    public boolean isCellEditable(int row, int column){&#xd;&#xa;        return false;//you can set which column/row can be edited.&#xd;&#xa;    }&#xd;&#xa;}"/>
                   </AuxValues>

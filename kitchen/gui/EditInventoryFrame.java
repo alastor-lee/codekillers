@@ -70,6 +70,7 @@ public class EditInventoryFrame extends javax.swing.JFrame {
         });
 
         EditItemButton.setText("Edit Item");
+        EditItemButton.setEnabled(false);
         EditItemButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditItemButtonActionPerformed(evt);
@@ -77,6 +78,7 @@ public class EditInventoryFrame extends javax.swing.JFrame {
         });
 
         DeleteItemButton.setText("Delete Item");
+        DeleteItemButton.setEnabled(false);
         DeleteItemButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteItemButtonActionPerformed(evt);
@@ -97,6 +99,11 @@ public class EditInventoryFrame extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        outputTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                outputTableFocusGained(evt);
             }
         });
         jScrollPane1.setViewportView(outputTable);
@@ -187,13 +194,25 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
     private void EditItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditItemButtonActionPerformed
+        System.out.println(outputTable.getValueAt(outputTable.getSelectedRow(),0));
+        
         EditItemFrame EditItemFrame = new EditItemFrame(); //create the frame
         EditItemFrame.setLocationRelativeTo(null); //center the frame
+        EditItemFrame.ItemNameField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),0).toString());
+        EditItemFrame.ItemPriceField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),1).toString());
+        EditItemFrame.ItemQuantityField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),2).toString());
         EditItemFrame.setVisible(true); //make it visible
     }//GEN-LAST:event_EditItemButtonActionPerformed
 
     private void DeleteItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemButtonActionPerformed
-        // Do stuff here
+        String toBeDeleted = outputTable.getValueAt(outputTable.getSelectedRow(), 0).toString(); //get name of selected item
+        /*delete it!
+        database.info.InventoryInfo DeleteItem = new database.info.InventoryInfo();
+        engine.InventoryDBManager InventoryDelete = new engine.InventoryDBManager();
+        DeleteItem.setItemName(outputTable.getValueAt(outputTable.getSelectedRow(), 0).toString());
+        DeleteItem.setItemQuantity(outputTable.getValueAt(outputTable.getSelectedRow(), 1).toString());
+        DeleteItem.setItemPrice(outputTable.getValueAt(outputTable.getSelectedRow(), 2).toString());
+        */
     }//GEN-LAST:event_DeleteItemButtonActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
@@ -275,6 +294,11 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
         this.dispose(); //Close the frame
     }//GEN-LAST:event_CloseButtonActionPerformed
+
+    private void outputTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_outputTableFocusGained
+        EditItemButton.setEnabled(true);
+        DeleteItemButton.setEnabled(true);
+    }//GEN-LAST:event_outputTableFocusGained
 
     /**
      * @param args the command line arguments
