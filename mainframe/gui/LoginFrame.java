@@ -164,7 +164,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoginButton;
+    public javax.swing.JButton LoginButton;
     public static javax.swing.JTextField LoginField;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JLabel UsernameLabel;

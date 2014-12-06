@@ -647,6 +647,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
        //restart the program
        mainframe.gui.LoginFrame master = new mainframe.gui.LoginFrame();
        master.setLocationRelativeTo(null);
+       master.getRootPane().setDefaultButton(master.LoginButton);
        master.setVisible(true);
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
