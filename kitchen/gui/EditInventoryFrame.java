@@ -5,7 +5,9 @@
  */
 package kitchen.gui;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,13 +34,15 @@ public class EditInventoryFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         CloseButton = new javax.swing.JButton();
-        OutputContainer = new javax.swing.JScrollPane();
-        ViewInventoryOutput = new javax.swing.JTextArea();
         SearchField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
         AddItemButton = new javax.swing.JButton();
         EditItemButton = new javax.swing.JButton();
         DeleteItemButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputTable = new javax.swing.JTable();
+
+        setResizable(false);
 
         CloseButton.setText("Close");
         CloseButton.addActionListener(new java.awt.event.ActionListener() {
@@ -46,10 +50,6 @@ public class EditInventoryFrame extends javax.swing.JFrame {
                 CloseButtonActionPerformed(evt);
             }
         });
-
-        ViewInventoryOutput.setColumns(20);
-        ViewInventoryOutput.setRows(5);
-        OutputContainer.setViewportView(ViewInventoryOutput);
 
         SearchButton.setText("Search");
         SearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -79,31 +79,47 @@ public class EditInventoryFrame extends javax.swing.JFrame {
             }
         });
 
+        outputTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item Name", "Quantity", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(outputTable);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(CloseButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(OutputContainer))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(AddItemButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EditItemButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DeleteItemButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SearchButton)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(CloseButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,11 +131,11 @@ public class EditInventoryFrame extends javax.swing.JFrame {
                     .addComponent(DeleteItemButton)
                     .addComponent(SearchButton)
                     .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(OutputContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CloseButton)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -127,35 +143,34 @@ public class EditInventoryFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 564, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -178,44 +193,77 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteItemButtonActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        if(SearchField.getText().equals("")){
+        if (SearchField.getText().equals("")) {
+            //display all items
             String query = "";
             database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
 
-            try{
+            try {
                 InventorySearch.setItemName(query);
-            } catch(NullPointerException e) {
+            } catch (NullPointerException e) {
                 System.out.println("Error: Item not found in itemDatabaseFile.txt.");
             }
-            System.out.println("query: "+query);
-            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
+            System.out.println("query: " + query);
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: " + InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
             try {
-                ViewInventoryOutput.setText(manager.printAllRecords(InventorySearch));
-            } catch(ArrayIndexOutOfBoundsException e){
-                ViewInventoryOutput.setText("No matching item found in inventory.");
+                ArrayList<String> output = manager.printAllRecords(InventorySearch);
+                System.out.println("output: " + output);
+
+                String listString = "";
+                for (String s : output) {
+                    listString += s + "\t";
+                }
+                System.out.println("liststring: " + listString);
+                String[] split = listString.split(Pattern.quote("\t")); //split into pieces
+                System.out.println("split[0]: " + split[0]);
+                System.out.println("split[1]: " + split[1]);
+
+                DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+                model.setRowCount(0);
+
+                for (int i = 0; i <= split.length; i++) {
+                    String[] newSplit = split[i].split(Pattern.quote(";"));
+                    model.addRow(newSplit);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                //ViewInventoryOutput.setText("No matching item found in inventory.");
             }
         } else {
-            String query = SearchField.getText(); //SET GUEST ID HERE
+            //display one item
+            String query = SearchField.getText();
             database.info.InventoryInfo InventorySearch = new database.info.InventoryInfo();
 
-            try{
+            DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+            model.setRowCount(0);
+
+            try {
                 InventorySearch.setItemName(query);
-            } catch(NullPointerException e) {
+            } catch (NullPointerException e) {
                 System.out.println("Error: Item not found in itemDatabaseFile.txt.");
             }
-            System.out.println("query: "+query);
-            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: "+InventorySearch.getItemName());
+            System.out.println("query: " + query);
+            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: " + InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
-            String nonSplit = manager.searchDB(InventorySearch); //return fields
-            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-            System.out.println("Results: "+nonSplit);
             try {
-                ViewInventoryOutput.setText("Item Name: "+split[0]+"\nItem Quantity: "+split[1]+"\nItem Price: $"+split[2]);
-            } catch(ArrayIndexOutOfBoundsException e){
-                ViewInventoryOutput.setText("No matching item found in inventory.");
+                String nonSplit = manager.searchDB(InventorySearch); //return fields
+
+                String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+                System.out.println("Results: " + nonSplit);
+
+                try {
+                    model.addRow(split);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    model.setRowCount(0);
+                    String[] errorArray = {"Error: No items found", "", ""};
+                    model.addRow(errorArray);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                model.setRowCount(0);
+                String[] errorArray = {"Error: No items found", "", ""};
+                model.addRow(errorArray);
             }
         }
     }//GEN-LAST:event_SearchButtonActionPerformed
@@ -258,17 +306,21 @@ public class EditInventoryFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static void performSearch(){
+        SearchButton.doClick();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddItemButton;
     private javax.swing.JButton CloseButton;
     private javax.swing.JButton DeleteItemButton;
     private javax.swing.JButton EditItemButton;
-    private javax.swing.JScrollPane OutputContainer;
-    private javax.swing.JButton SearchButton;
-    private javax.swing.JTextField SearchField;
-    public static javax.swing.JTextArea ViewInventoryOutput;
+    public static javax.swing.JButton SearchButton;
+    public static javax.swing.JTextField SearchField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable outputTable;
     // End of variables declaration//GEN-END:variables
 }

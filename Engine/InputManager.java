@@ -96,4 +96,17 @@ public class InputManager {
         }
         return true; //is an integer
     }
+    
+    public static boolean isPositiveInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false; //is not an integer
+        }
+        if(Integer.parseInt(s) > 0){
+            return true; //is an integer
+        } else {
+            return false;
+        }
+    }
 }

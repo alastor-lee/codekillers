@@ -5,6 +5,9 @@
  */
 package kitchen.gui;
 
+import static engine.InputManager.isPositiveInteger;
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Colin
@@ -117,20 +120,26 @@ public class AddItemFrame extends javax.swing.JFrame {
             GuestInfo class will set guest information and check for input error
             GuestDBManager will write to the database if input is correct
         */
-        int check=0;
-        database.info.InventoryInfo NewItem = new database.info.InventoryInfo();
-        engine.InventoryDBManager InventoryDBWriter = new engine.InventoryDBManager();
-        //setting vars in GuestInfo
-        NewItem.setItemName(ItemNameField.getText());
-        NewItem.setItemQuantity(ItemQuantityField.getText());    //no error check
-        NewItem.setItemPrice(ItemPriceField.getText());      //no error check
-        NewItem.setItemID("1");
-        
-        InventoryDBWriter.addItem(NewItem);
-        
-        EditInventoryFrame.ViewInventoryOutput.setText(ItemNameField.getText()+" successfully added."); //TODO: this should print the entire inventory
-        
-        this.dispose(); //Close the frame
+        if(!(ItemNameField.getText().equals("")) && isPositiveInteger(ItemQuantityField.getText()) && (ItemPriceField.getText().matches("^[0-9]*([.]{1}[0-9]{0,2}){0,1}$"))){
+            int check = 0;
+            database.info.InventoryInfo NewItem = new database.info.InventoryInfo();
+            engine.InventoryDBManager InventoryDBWriter = new engine.InventoryDBManager();
+            //setting vars in GuestInfo
+            double doublePrice = Double.parseDouble(ItemPriceField.getText());
+            DecimalFormat df = new DecimalFormat("#.00");
+            String formattedPrice = df.format(doublePrice);
+            NewItem.setItemName(ItemNameField.getText());
+            NewItem.setItemQuantity(ItemQuantityField.getText());    //no error check
+            NewItem.setItemPrice(formattedPrice);      //no error check
+            NewItem.setItemID("1");
+
+            InventoryDBWriter.addItem(NewItem);
+
+            EditInventoryFrame.SearchField.setText(ItemNameField.getText()); //
+            EditInventoryFrame.performSearch();
+
+            this.dispose(); //Close the frame
+        }
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
