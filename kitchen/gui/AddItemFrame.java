@@ -38,6 +38,7 @@ public class AddItemFrame extends javax.swing.JFrame {
         ItemPriceField = new javax.swing.JTextField();
         CancelButton = new javax.swing.JButton();
         AddItemButton = new javax.swing.JButton();
+        outputLabel = new javax.swing.JLabel();
 
         ItemNameLabel.setText("Item Name:");
 
@@ -73,20 +74,25 @@ public class AddItemFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ItemPriceLabel)
-                            .addComponent(ItemQuantityLabel)
-                            .addComponent(ItemNameLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ItemNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(ItemQuantityField)
-                            .addComponent(ItemPriceField))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(CancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AddItemButton)))
+                        .addComponent(AddItemButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ItemPriceLabel)
+                                    .addComponent(ItemQuantityLabel)
+                                    .addComponent(ItemNameLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ItemNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(ItemQuantityField)
+                                    .addComponent(ItemPriceField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(outputLabel)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,11 +110,13 @@ public class AddItemFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ItemPriceLabel)
                     .addComponent(ItemPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(outputLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton)
                     .addComponent(AddItemButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -139,6 +147,8 @@ public class AddItemFrame extends javax.swing.JFrame {
             EditInventoryFrame.performSearch();
 
             this.dispose(); //Close the frame
+        } else {
+            outputLabel.setText("Error: Invalid Input.");
         }
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
@@ -194,5 +204,6 @@ public class AddItemFrame extends javax.swing.JFrame {
     private javax.swing.JLabel ItemPriceLabel;
     private javax.swing.JTextField ItemQuantityField;
     private javax.swing.JLabel ItemQuantityLabel;
+    private javax.swing.JLabel outputLabel;
     // End of variables declaration//GEN-END:variables
 }
