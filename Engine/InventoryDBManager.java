@@ -673,19 +673,10 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
         }
 
         else{
-            System.out.println("strLine: "+strLine);
             fields = strLine.split(";");
             _ItemName = fields[0].trim();
             _ItemQuantity = fields[1].trim();
             _ItemPrice = fields[2].trim();
-            
-            System.out.println("_ItemName: "+_ItemName);
-            System.out.println("_ItemQuantity: "+_ItemQuantity);
-            System.out.println("_ItemPrice: "+_ItemPrice);
-            System.out.println("delRecordFields[0]: "+delRecordFields[0]);
-            System.out.println("delRecordFields[1]: "+delRecordFields[1]);
-            System.out.println("delRecordFields[2]: "+delRecordFields[2]);
-
             //
             //If all of the fields in the newRecord are equal to theRecords 
             //Record theres an error

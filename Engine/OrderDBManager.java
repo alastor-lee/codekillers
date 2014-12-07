@@ -220,7 +220,6 @@ public class OrderDBManager {
             if (iCount < nRecCount + 1) {
             strLine = (String)theRecords.get(iCount);
             strLine = strLine.trim();
-            System.out.println(strLine);
             fields = strLine.split(";");    //delimiter is ;
 
             _OrderID = fields[0].trim();

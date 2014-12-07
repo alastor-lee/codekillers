@@ -232,22 +232,16 @@ public class EditInventoryFrame extends javax.swing.JFrame {
             } catch (NullPointerException e) {
                 System.out.println("Error: Item not found in itemDatabaseFile.txt.");
             }
-            System.out.println("query: " + query);
-            System.out.println("TESTING VARS SET IN InventoryInfo ItemName: " + InventorySearch.getItemName());
 
             engine.InventoryDBManager manager = new engine.InventoryDBManager();
             try {
                 ArrayList<String> output = manager.printAllRecords(InventorySearch);
-                System.out.println("output: " + output);
 
                 String listString = "";
                 for (String s : output) {
                     listString += s + "\t";
                 }
-                System.out.println("liststring: " + listString);
                 String[] split = listString.split(Pattern.quote("\t")); //split into pieces
-                System.out.println("split[0]: " + split[0]);
-                System.out.println("split[1]: " + split[1]);
 
                 DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
                 model.setRowCount(0);
