@@ -233,36 +233,24 @@ public class OrderDBManager {
         return "No matching records found.";
     }
 
-    /*
     //something like this is needed, will heavily modify later
-    public int DBremoveGuest(String reservationFile, String delRecord){
-
+    public int DBremoveOrder(String delRecord){
         int nReturnValue = 0;
         int nRecCount = 0;
         int iCount = 0;
         String strLine = null;
         String[] fields = null;
-        String[] delRecordFields = null;
         ArrayList theRecords = new ArrayList();
         BufferedWriter out = null;
         Iterator it = null;
 
-        //Code
-        if (DBisValidRecord(delRecord) != true) {
-            //the Record was not valid; so do not process it
-            return FAILED_INVALID_RECORD;
-        }
-
-
         try {
-            theRecords = DatabaseReader.DBreadFile(reservationFile);
+            theRecords = DatabaseReader.DBreadFile(nameOfFile+"\\orderDatabaseFile.txt");
         } //try
 
         catch (Exception ee) {
             System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
         }  //catch
-
-        delRecordFields = delRecord.split(",");
 
         iCount =0;
 
@@ -279,13 +267,8 @@ public class OrderDBManager {
                 }
 
                 else{
-                    fields = strLine.split(",");
-                    _GuestID = fields[0].trim();
-                    _LastName = fields[1].trim();
-                    _Address = fields[2].trim();
-                    _ContactNumber = fields[3].trim();
-                    _Email = fields[4].trim();
-                    _Charges = fields[5].trim();
+                    fields = strLine.split(";");
+                    _OrderID = fields[0].trim();
 
                     //
                     //If all of the fields in the newRecord are equal to theRecords 
@@ -294,12 +277,7 @@ public class OrderDBManager {
 
                     iCount++;
 
-                    if (_GuestID.trim().equalsIgnoreCase(delRecordFields[0].trim()) &&
-                        _LastName.trim().equalsIgnoreCase(delRecordFields[1].trim()) &&
-                        _Address.trim().equalsIgnoreCase(delRecordFields[2].trim()) &&
-                        _ContactNumber.trim().equalsIgnoreCase(delRecordFields[3].trim()) &&
-                        _Email.trim().equalsIgnoreCase(delRecordFields[4].trim()) &&
-                        _Charges.trim().equalsIgnoreCase(delRecordFields[5].trim())) 
+                    if (_OrderID.trim().equalsIgnoreCase(delRecord.trim())) 
                     {
                             nReturnValue = FOUND_RECORD_TO_DELETE;  
                             it.remove();
@@ -317,7 +295,7 @@ public class OrderDBManager {
 
         if (nReturnValue == FOUND_RECORD_TO_DELETE)	{
             try {
-                out = new BufferedWriter(new FileWriter(reservationFile));
+                out = new BufferedWriter(new FileWriter(nameOfFile+"\\orderDatabaseFile.txt"));
                 for (it = theRecords.iterator(); it.hasNext(); ) {
                 strLine = (String) it.next();
                 strLine = strLine.trim();
@@ -338,52 +316,8 @@ public class OrderDBManager {
 
         return nReturnValue;
     }
-
-    //method to search for guest entry given either last name or guest ID
-    //GuestInfo class is passed in containing info on desired guest
-    //String containing all guest information is passed back out
-    public String searchDB(GuestInfo OldGuest) {
-        //Variables
-        nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";
-        String strLine;
-        String[] fields;
-        ArrayList theRecords = new ArrayList();
-        //opening and reading database file for comparison purposes
-        try {
-        //Get all the file records in the Array
-            theRecords = DatabaseReader.DBreadFile(nameOfFile);
-        } //try
-
-        catch (Exception ee) {
-            System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
-        } //catch
-
-        int iCount = 1;
-        int nRecCount = theRecords.size();
-        Iterator itr = theRecords.iterator();
-        itr.next();     //skips the first line of file, which contains database name
-        while (itr.hasNext()) {
-            if (iCount < nRecCount + 1) {
-            strLine = (String)theRecords.get(iCount);
-            strLine = strLine.trim();
-            System.out.println(strLine);
-            fields = strLine.split(";");    //delimiter is ;
-
-            _GuestID = fields[0].trim();
-            _LastName = fields[2].trim();
-
-            if (OldGuest.getGuestID().equals(_GuestID)) {
-                return strLine;
-            } //if
-            else if (_LastName.toLowerCase().contains(OldGuest.getLastName().toLowerCase())) {
-                return strLine;
-            }
-        } //if
-        iCount++;
-        } //while
-        return "No matching records found.";
-    }
-
+ 
+/*
     //something like this may be needed, will probably modify greatly for our purposes
     public int  DBmodifyCustomerRecord(String reservationFile, String GuestID, String CustomerName, int fieldPosition, String newValue){
 
