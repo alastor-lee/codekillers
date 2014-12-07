@@ -130,7 +130,7 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //planning on changing this later
-    //currently get an error if match is not found
+    //currently getting an error if match is not found
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
         if(focus == 1){

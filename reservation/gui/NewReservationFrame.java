@@ -41,9 +41,6 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CheckOutLabel = new javax.swing.JLabel();
         RoomNumberLabel = new javax.swing.JLabel();
         RoomNumberField = new javax.swing.JTextField();
-        BeachViewCheckbox = new javax.swing.JCheckBox();
-        LandViewCheckbox = new javax.swing.JCheckBox();
-        SmokingCheckbox = new javax.swing.JCheckBox();
         SpecialPreferencesLabel = new javax.swing.JLabel();
         CommentsLabel = new javax.swing.JLabel();
         ContainerPane = new javax.swing.JScrollPane();
@@ -52,9 +49,11 @@ public class NewReservationFrame extends javax.swing.JFrame {
         CancelButton = new javax.swing.JButton();
         CreateNewGuestButton = new javax.swing.JButton();
         GuestLookupButton = new javax.swing.JButton();
-        CheckInSpinner = new javax.swing.JSpinner();
         CheckDateAvailabilityButton = new javax.swing.JButton();
+        ErrorTextField = new javax.swing.JLabel();
+        CheckInSpinner = new javax.swing.JSpinner();
         CheckOutSpinner = new javax.swing.JSpinner();
+        SpecialPrefComboBox = new javax.swing.JComboBox();
 
         setResizable(false);
 
@@ -73,6 +72,12 @@ public class NewReservationFrame extends javax.swing.JFrame {
 
         GuestIDLabel.setText("Guest ID:");
 
+        NumPersonsField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                NumPersonsFieldFocusGained(evt);
+            }
+        });
+
         TypeRoomLabel.setText("Type of Room:");
 
         TypeRoomComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Two Double Beds", "One King Bed", "Suite" }));
@@ -89,12 +94,6 @@ public class NewReservationFrame extends javax.swing.JFrame {
         RoomNumberLabel.setText("Room Number:");
 
         RoomNumberField.setFocusable(false);
-
-        BeachViewCheckbox.setText("Beach View");
-
-        LandViewCheckbox.setText("Land View");
-
-        SmokingCheckbox.setText("Near Smoking Areas");
 
         SpecialPreferencesLabel.setText("Special Preferences:");
 
@@ -132,9 +131,6 @@ public class NewReservationFrame extends javax.swing.JFrame {
             }
         });
 
-        CheckInSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MONTH));
-        CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, "dd/MM/yyyy"));
-
         CheckDateAvailabilityButton.setText("Check Date Availability");
         CheckDateAvailabilityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,8 +138,12 @@ public class NewReservationFrame extends javax.swing.JFrame {
             }
         });
 
-        CheckOutSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MONTH));
-        CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, "dd/MM/yyyy"));
+        CheckInSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+        CheckInSpinner.setToolTipText("");
+
+        CheckOutSpinner.setModel(new javax.swing.SpinnerDateModel());
+
+        SpecialPrefComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Beach View", "Land View", "Near Smoking Areas" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,11 +163,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
                                         .addComponent(CommentsLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LandViewCheckbox)
-                                    .addComponent(BeachViewCheckbox)
-                                    .addComponent(SmokingCheckbox)
                                     .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(SpecialPrefComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(TypeRoomLabel)
@@ -177,22 +176,28 @@ public class NewReservationFrame extends javax.swing.JFrame {
                                     .addComponent(CheckOutLabel)
                                     .addComponent(RoomNumberLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(GuestIDField)
-                                    .addComponent(NumPersonsField)
-                                    .addComponent(TypeRoomComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CheckInSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                    .addComponent(RoomNumberField)
-                                    .addComponent(CheckOutSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(GuestIDField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(NumPersonsField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TypeRoomComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(RoomNumberField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CheckOutSpinner)
+                                    .addComponent(CheckInSpinner))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CreateNewGuestButton)
                                     .addComponent(GuestLookupButton)
                                     .addComponent(CheckDateAvailabilityButton)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(CancelButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(124, 124, 124)
+                        .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(CancelButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,23 +233,24 @@ public class NewReservationFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RoomNumberLabel)
                     .addComponent(RoomNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BeachViewCheckbox)
-                    .addComponent(SpecialPreferencesLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LandViewCheckbox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SmokingCheckbox)
-                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CommentsLabel)
-                    .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(SpecialPreferencesLabel)
+                    .addComponent(SpecialPrefComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(CommentsLabel)))
+                .addGap(42, 42, 42)
+                .addComponent(ErrorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(CancelButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,8 +262,9 @@ public class NewReservationFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -280,7 +287,53 @@ public class NewReservationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_GuestLookupButtonActionPerformed
 
     private void CreateReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateReservationButtonActionPerformed
-        // Do stuff here
+        int check = 0;  //must be initialized to 0
+        database.info.ReservationInfo newReserv = new database.info.ReservationInfo();
+        
+        //fields are preset for following, no error handling required
+        newReserv.setTypeOfRoom(Integer.toString(TypeRoomComboBox.getSelectedIndex()));
+        
+        //check looks for error return values
+        check = newReserv.setGuestID(GuestIDField.getText());
+        //setGuestID error returns 2
+        if(check==0){   //setNumOfPersons error returns 3
+            check = newReserv.setNumOfPersons(NumPersonsField.getText());
+        }       
+        if(check==0){   //setCheckIn error returns 5
+            check = newReserv.setCheckIn(CheckInSpinner.getValue().toString());
+        }            
+        if(check==0){   //setCheckOut error returns 6
+            check = newReserv.setCheckOut(CheckOutSpinner.getValue().toString());
+        }
+        if(check==0){   //setRoomNum error returns 7
+            check = newReserv.setRoomNum(RoomNumberField.getText());
+        }
+        if(check==0){   //setSpecialPref error returns 8
+            check = newReserv.setSpecialPref(SpecialPrefComboBox.getSelectedIndex());
+            //INDEX: 0 - Beach View, 1 - Land View, 2 - Near Smoking Area
+        }
+        if(check==0){   //setComments error returns 9(should never happen?)
+            check = newReserv.setComments(CommentsTextArea.getText());
+        }
+        if(check==0){   //creating reservation error returns 13, successful operation returns 1
+            //check = engine.ReservationDBManager reservationAdd = new engine.ReservationDBManager();
+        }
+        
+            switch(check) {
+            case 1: ErrorTextField.setText("Reservation Added");
+                break;
+            case 2: ErrorTextField.setText("Invalid Guest ID");  
+                break;
+            case 3: ErrorTextField.setText("Invalid # of people");
+                break;
+            case 4: ErrorTextField.setText("");
+                break;
+            case 13: ErrorTextField.setText("");
+                break;
+            default: ErrorTextField.setText("");
+                break;
+        }
+        
         this.dispose(); //Close the frame
     }//GEN-LAST:event_CreateReservationButtonActionPerformed
 
@@ -289,7 +342,8 @@ public class NewReservationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void CheckDateAvailabilityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDateAvailabilityButtonActionPerformed
-        // Do stuff here
+        //TEST CODE
+        System.out.println(CheckInSpinner.getValue());
     }//GEN-LAST:event_CheckDateAvailabilityButtonActionPerformed
 
     private void GuestIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestIDFieldActionPerformed
@@ -299,6 +353,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
     private void GuestIDFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GuestIDFieldFocusGained
         GuestIDField.selectAll();
     }//GEN-LAST:event_GuestIDFieldFocusGained
+
+    private void NumPersonsFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NumPersonsFieldFocusGained
+        NumPersonsField.selectAll();
+    }//GEN-LAST:event_NumPersonsFieldFocusGained
 
     /**
      * @param args the command line arguments
@@ -336,7 +394,6 @@ public class NewReservationFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox BeachViewCheckbox;
     private javax.swing.JButton CancelButton;
     private javax.swing.JButton CheckDateAvailabilityButton;
     private javax.swing.JLabel CheckInLabel;
@@ -348,15 +405,15 @@ public class NewReservationFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane ContainerPane;
     private javax.swing.JButton CreateNewGuestButton;
     private javax.swing.JButton CreateReservationButton;
+    private javax.swing.JLabel ErrorTextField;
     private javax.swing.JTextField GuestIDField;
     private javax.swing.JLabel GuestIDLabel;
     private javax.swing.JButton GuestLookupButton;
-    private javax.swing.JCheckBox LandViewCheckbox;
     private javax.swing.JTextField NumPersonsField;
     private javax.swing.JLabel NumberPersonsLabel;
     private javax.swing.JTextField RoomNumberField;
     private javax.swing.JLabel RoomNumberLabel;
-    private javax.swing.JCheckBox SmokingCheckbox;
+    private javax.swing.JComboBox SpecialPrefComboBox;
     private javax.swing.JLabel SpecialPreferencesLabel;
     private javax.swing.JComboBox TypeRoomComboBox;
     private javax.swing.JLabel TypeRoomLabel;

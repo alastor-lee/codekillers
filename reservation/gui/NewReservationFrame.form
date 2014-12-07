@@ -29,8 +29,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,14 +42,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Component id="SpecialPreferencesLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       </Group>
@@ -58,11 +59,11 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LandViewCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="BeachViewCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="SmokingCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ContainerPane" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="CreateReservationButton" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                                      <Component id="ContainerPane" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Component id="SpecialPrefComboBox" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -75,13 +76,13 @@
                                       <Component id="RoomNumberLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="GuestIDField" alignment="1" max="32767" attributes="0"/>
                                       <Component id="NumPersonsField" alignment="1" max="32767" attributes="0"/>
                                       <Component id="TypeRoomComboBox" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="CheckInSpinner" alignment="1" pref="0" max="32767" attributes="0"/>
                                       <Component id="RoomNumberField" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="CheckOutSpinner" alignment="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="CheckOutSpinner" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="CheckInSpinner" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -93,11 +94,19 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                          <Component id="CreateReservationButton" min="-2" pref="161" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
                           <Component id="CancelButton" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="ErrorTextField" min="-2" pref="134" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,25 +153,28 @@
                       <Component id="RoomNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="RoomNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BeachViewCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="SpecialPreferencesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="LandViewCheckbox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="SmokingCheckbox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="CommentsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="ContainerPane" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="SpecialPreferencesLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="SpecialPrefComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="ContainerPane" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="CommentsLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="ErrorTextField" pref="28" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="CreateReservationButton" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="CancelButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -185,6 +197,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="NumPersonsField">
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="NumPersonsFieldFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="TypeRoomLabel">
           <Properties>
@@ -223,21 +238,6 @@
         <Component class="javax.swing.JTextField" name="RoomNumberField">
           <Properties>
             <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="BeachViewCheckbox">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Beach View"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="LandViewCheckbox">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Land View"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="SmokingCheckbox">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Near Smoking Areas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="SpecialPreferencesLabel">
@@ -297,16 +297,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuestLookupButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JSpinner" name="CheckInSpinner">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" stepSize="2" type="date"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, &quot;dd/MM/yyyy&quot;));"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JButton" name="CheckDateAvailabilityButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Check Date Availability"/>
@@ -315,15 +305,33 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckDateAvailabilityButtonActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JLabel" name="ErrorTextField">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="CheckInSpinner">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="now" maximum="now" minimum="now" stepSize="5" type="date"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JSpinner" name="CheckOutSpinner">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" stepSize="2" type="date"/>
+              <SpinnerModel initial="now" stepSize="5" type="date"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="CheckInSpinner.setEditor(new JSpinner.DateEditor(CheckInSpinner, &quot;dd/MM/yyyy&quot;));"/>
-          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="SpecialPrefComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Beach View"/>
+                <StringItem index="1" value="Land View"/>
+                <StringItem index="2" value="Near Smoking Areas"/>
+              </StringArray>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

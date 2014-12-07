@@ -66,7 +66,7 @@ public class ReservationDBManager {
     static final int FAILED_FILE_READ = 17;
 
     static final int INVALID_RESERVATION_FIELD_POSITION = 18;
-    static final int INVALID_RESERVATION_NEW_VALUE	= 19;
+    static final int INVALID_RESERVATION_NEW_VALUE = 19;
 
     static final int NEW_RECORD = 21;
     static final int FAILED_ADDED_RECORD = 23;

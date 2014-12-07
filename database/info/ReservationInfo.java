@@ -15,4 +15,50 @@ public class ReservationInfo {
     String RoomNum;
     String SpecialPref;
     String Comments;
+    engine.InputManager verify = new engine.InputManager();
+    //setters
+    //going to search to make sure guest curently exists in DB
+    public int setGuestID(String ID){
+        GuestID = ID;
+        //return verify.checkIfExist(GuestID);
+        return 0;
+    }
+    
+    public int setNumOfPersons(String numOf){
+        NumOfPersons = numOf;
+        return 0;
+    }
+    
+    public int setTypeOfRoom(String type){
+        TypeOfRoom = type;
+        return 0;
+    }
+    //inputManager handles time clashes within preexisting reservations
+    public int setCheckIn(String timeIn){
+        
+        return 0;
+    }
+    //inputManager handles time clashes within preexisting reservations
+    public int setCheckOut(String timeOut){
+        
+        return 0;
+    }
+    
+    public int setRoomNum(String numOf){
+        
+        return 0;
+    }
+    
+    public int setSpecialPref(int pref){
+        
+        return 0;
+    }
+    
+    public int setComments(String coms){
+        
+        return 0;
+    }
+    public String toString(){
+        return GuestID+" "+NumOfPersons+" "+TypeOfRoom+" "+CheckIn+" "+CheckOut+" "+RoomNum+" "+SpecialPref+" "+Comments;
+    }
 }

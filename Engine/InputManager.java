@@ -89,4 +89,12 @@ public class InputManager {
             return false;
         }
     }
+    
+    //following if for reservation input validation
+    //checks for existence of guest in DB when attempting to create a reservation
+    //searches given Guest ID
+    public int checkIfExist(String id){
+        
+        return 0;
+    }
 }
