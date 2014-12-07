@@ -57,6 +57,7 @@ public class NewReservationFrame extends javax.swing.JFrame {
 
         setResizable(false);
 
+        GuestIDField.setText("(must be preexisting guest)");
         GuestIDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuestIDFieldActionPerformed(evt);
@@ -72,6 +73,7 @@ public class NewReservationFrame extends javax.swing.JFrame {
 
         GuestIDLabel.setText("Guest ID:");
 
+        NumPersonsField.setText("(1-6)");
         NumPersonsField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 NumPersonsFieldFocusGained(evt);
@@ -93,7 +95,12 @@ public class NewReservationFrame extends javax.swing.JFrame {
 
         RoomNumberLabel.setText("Room Number:");
 
-        RoomNumberField.setFocusable(false);
+        RoomNumberField.setText("(100-120, 200-220, 300-320)");
+        RoomNumberField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                RoomNumberFieldFocusGained(evt);
+            }
+        });
 
         SpecialPreferencesLabel.setText("Special Preferences:");
 
@@ -230,9 +237,9 @@ public class NewReservationFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(CheckDateAvailabilityButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RoomNumberLabel)
-                    .addComponent(RoomNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RoomNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SpecialPreferencesLabel)
@@ -292,6 +299,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
         
         //fields are preset for following, no error handling required
         newReserv.setTypeOfRoom(Integer.toString(TypeRoomComboBox.getSelectedIndex()));
+        //0 - Two Double Beds, 1 - One King Bed, 2 - Suite
+        newReserv.setSpecialPref(Integer.toString(SpecialPrefComboBox.getSelectedIndex()));
+        //0 - Beach View, 1 - Land View, 2 - Near Smoking Area
+        newReserv.setComments(CommentsTextArea.getText());
         
         //check looks for error return values
         check = newReserv.setGuestID(GuestIDField.getText());
@@ -308,33 +319,33 @@ public class NewReservationFrame extends javax.swing.JFrame {
         if(check==0){   //setRoomNum error returns 7
             check = newReserv.setRoomNum(RoomNumberField.getText());
         }
-        if(check==0){   //setSpecialPref error returns 8
-            check = newReserv.setSpecialPref(SpecialPrefComboBox.getSelectedIndex());
-            //INDEX: 0 - Beach View, 1 - Land View, 2 - Near Smoking Area
+        if(check==0){   //success returns 1, error returns 13
+            //engine.ReservationDBManager reservationAdd = new engine.ReservationDBManager();
+            //check = reservationAdd.addReservation(newReserv); 
         }
-        if(check==0){   //setComments error returns 9(should never happen?)
-            check = newReserv.setComments(CommentsTextArea.getText());
-        }
-        if(check==0){   //creating reservation error returns 13, successful operation returns 1
-            //check = engine.ReservationDBManager reservationAdd = new engine.ReservationDBManager();
-        }
-        
+        System.out.println(newReserv.toString());
             switch(check) {
+            case 0: ErrorTextField.setText("TESTING HUEHUEHUE");
+                break;
             case 1: ErrorTextField.setText("Reservation Added");
                 break;
             case 2: ErrorTextField.setText("Invalid Guest ID");  
                 break;
             case 3: ErrorTextField.setText("Invalid # of people");
                 break;
-            case 4: ErrorTextField.setText("");
+            case 5: ErrorTextField.setText("Invalid Check In Date");
                 break;
-            case 13: ErrorTextField.setText("");
+            case 6: ErrorTextField.setText("Invalid Check Out Date");
                 break;
-            default: ErrorTextField.setText("");
+            case 7: ErrorTextField.setText("Invalid Room #");
+                break;
+            case 13: ErrorTextField.setText("Invalid Reservation");
+                break;
+            default: ErrorTextField.setText("Improper Handling");
                 break;
         }
         
-        this.dispose(); //Close the frame
+        //this.dispose(); //Close the frame
     }//GEN-LAST:event_CreateReservationButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
@@ -357,6 +368,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
     private void NumPersonsFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NumPersonsFieldFocusGained
         NumPersonsField.selectAll();
     }//GEN-LAST:event_NumPersonsFieldFocusGained
+
+    private void RoomNumberFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RoomNumberFieldFocusGained
+        RoomNumberField.selectAll();
+    }//GEN-LAST:event_RoomNumberFieldFocusGained
 
     /**
      * @param args the command line arguments

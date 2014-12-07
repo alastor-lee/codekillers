@@ -40,22 +40,6 @@ public class ReservationDBManager {
     public static String _Comments;
 
     //FLAG VARIABLES
-    //static final int recPosition_LastName = 1;
-    static final int recPosition_Action	= 2;
-    static final int recPosition_roomCount = 3;
-    static final int recPosition_roomType = 4;
-    static final int recPosition_checkInDate = 5;
-    static final int recPosition_checkOutDate = 6;
-    static final int recPosition_roomRate = 7;
-
-    static final int recPosition_CustomerName = 1;
-    static final int recPosition_Address	= 2;
-    static final int recPosition_ContactNumber = 3;
-    static final int recPosition_Email = 4;
-    static final int recPosition_Charges = 5;
-    //static final int recPosition_checkOutDate = 6;
-    //static final int recPosition_roomRate = 7;
-
     static final int SUCCESSFUL_OPERATION	= 1;
     static final int SUCCESSFUL_ADDED_RECORD = 3;
     static final int SUCCESSFUL_DELETED_RECORD = 5;
@@ -83,11 +67,11 @@ public class ReservationDBManager {
     //attempts to add new guest to database
     //checks database to prevent duplication of guests
     //GuestInfo class is passed in to obtain necessary new guest info
-    public int addGuest(GuestInfo NewGuest){
-        nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";   //provides full path to file
+    public int addReservation(ReservationInfo NewReservation){
+        nameOfFile = nameOfFile + "\\reservationDatabaseFile.txt";   //provides full path to file
         //System.out.println("File path is:" + nameOfFile);  //TEST
         //piecing together the new line to be added to data file
-        String newRecord = NewGuest.getGuestID()+";"+NewGuest.getFirstName()+";"+NewGuest.getLastName()+";"+NewGuest.getAddress()+";"+NewGuest.getContactNum()+";"+NewGuest.getEmail();
+        String newRecord = NewReservation.toString();
         System.out.println("newRecord Test: "+newRecord);  //TEST
 
         int nReturnValue;
@@ -187,3 +171,7 @@ public class ReservationDBManager {
         //}  //if
         return nReturnValue;
         }
+        //fix this
+        return 0;
+    }
+}

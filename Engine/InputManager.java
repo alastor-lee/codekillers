@@ -4,6 +4,7 @@
 package engine;
 
 import mainframe.gui.LoginFrame;
+import java.util.*;
 
 public class InputManager {
     
@@ -92,9 +93,25 @@ public class InputManager {
     
     //following if for reservation input validation
     //checks for existence of guest in DB when attempting to create a reservation
-    //searches given Guest ID
-    public int checkIfExist(String id){
-        
-        return 0;
+    //searches for existence of given guestID
+    public int checkIfExist(String id, String fileName){
+        String[] allFields; //used for holding each line in DB at a time
+        String currID;  //to hold ID of guest at that line
+        int IDcheck = 2;    //starts w/ error value
+        ArrayList guestDB = new ArrayList();
+        guestDB = DatabaseReader.DBreadFile(fileName);  //reading from DB
+        Iterator itr = guestDB.iterator();
+        itr.next(); //skips first line, which is the name of file
+        System.out.println("TEST "+itr.hasNext());
+        while(itr.hasNext()){
+            allFields = itr.next().toString().split(";");   //pulling line from file
+            currID = allFields[0];  //currID set to ID of given line
+            System.out.println("field value: "+allFields[0]+" searching for: "+id);
+            if(currID.equals(id)){
+                System.out.println("there is an ID match");
+                IDcheck = 0;    //there is a match, and tf no error
+            }
+        }
+        return IDcheck;
     }
 }

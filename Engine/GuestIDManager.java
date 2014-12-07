@@ -20,7 +20,7 @@ public class GuestIDManager {
     
     //opens and reads file to find current guest count for ID creation
     public String createGuestID() {
-        try {
+        //try {     //this try should be unneeded as the DBreadFile handles this
             dataFile = DatabaseReader.DBreadFile(nameOfFile);
             //if(dataFile.size() >= 1) {  //MAKING SURE FILE IS READ PROPERLY
                 strLine = (String)dataFile.get(0);  //getting first line of file
@@ -30,11 +30,11 @@ public class GuestIDManager {
             //System.out.println("curr val from array: "+fields[1]+" from String: "+strGuestCount);  //TEST
             globalIDUpdate();    //calling other class method to update guest count
             return strGuestCount;   //this is not changed by globalIDUpdate
-        }
-        catch(Exception ee) {
-            System.err.println("ID read Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString());
-            return null;
-        }
+        //}
+        //catch(Exception ee) {
+            //System.err.println("ID read Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString());
+            //return null;
+        //}
     }
     //writes information back into file to update global guest count
     public void globalIDUpdate(){

@@ -149,9 +149,9 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="RoomNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="RoomNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="RoomNumberLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="RoomNumberField" min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -181,6 +181,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="GuestIDField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="(must be preexisting guest)"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuestIDFieldActionPerformed"/>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="GuestIDFieldFocusGained"/>
@@ -197,6 +200,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="NumPersonsField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="(1-6)"/>
+          </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="NumPersonsFieldFocusGained"/>
           </Events>
@@ -237,8 +243,11 @@
         </Component>
         <Component class="javax.swing.JTextField" name="RoomNumberField">
           <Properties>
-            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="(100-120, 200-220, 300-320)"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="RoomNumberFieldFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="SpecialPreferencesLabel">
           <Properties>

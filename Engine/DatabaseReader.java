@@ -24,7 +24,6 @@ public class DatabaseReader {
             String line;
             //MAKE SURE reader.readLine() is set to line, as this conditional
             //will not work otherwise, even when manually casting as a (String)
-            //Unclear as to why
             while ((line = reader.readLine()) != null) {
                 //line = reader.readLine();   //readline method works off of \n character as line designator 
                 line = line.trim(); //cleaning up
