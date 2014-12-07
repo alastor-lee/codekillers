@@ -285,7 +285,7 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     private javax.swing.JTextField IDField;
     private javax.swing.JTextField LastNameField;
     private javax.swing.JLabel LastNameLabel;
-    private javax.swing.JButton SearchButton;
+    public javax.swing.JButton SearchButton;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable outputTable;
     // End of variables declaration//GEN-END:variables
