@@ -6,6 +6,7 @@
 package mainframe.gui;
 
 import static engine.InputManager.isInteger;
+import engine.OrderDBManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -442,19 +443,27 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
+        checkoutInfoOutput.setEditable(false);
         checkoutInfoOutput.setColumns(20);
+        checkoutInfoOutput.setLineWrap(true);
         checkoutInfoOutput.setRows(5);
+        checkoutInfoOutput.setFocusable(false);
         jScrollPane1.setViewportView(checkoutInfoOutput);
 
+        checkoutBillOutput.setEditable(false);
         checkoutBillOutput.setColumns(20);
+        checkoutBillOutput.setLineWrap(true);
         checkoutBillOutput.setRows(5);
+        checkoutBillOutput.setFocusable(false);
         jScrollPane2.setViewportView(checkoutBillOutput);
 
         GuestInfoLabel.setText("Guest Info");
 
         BillLabel.setText("Bill");
 
+        checkoutOutputField.setEditable(false);
         checkoutOutputField.setColumns(20);
+        checkoutOutputField.setLineWrap(true);
         checkoutOutputField.setRows(5);
         jScrollPane3.setViewportView(checkoutOutputField);
 
@@ -469,6 +478,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         totalAmountDueField.setFocusable(false);
 
+        changeDueField.setEditable(false);
         changeDueField.setFocusable(false);
 
         changeDueLabel.setText("Change Due:");
@@ -528,25 +538,26 @@ public class MainContainerFrame extends javax.swing.JFrame {
                                             .addComponent(ProcessPaymentButton))))
                                 .addGap(53, 53, 53))
                             .addGroup(checkoutTabLayout.createSequentialGroup()
-                                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                                        .addComponent(amountPaidLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(amountPaidField))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                                        .addGap(49, 49, 49)
+                                .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                            .addComponent(amountPaidLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(amountPaidField, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
+                                            .addComponent(changeDueLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(changeDueField)))
+                                    .addGroup(checkoutTabLayout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
                                         .addComponent(jLabel10)
                                         .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(checkoutTabLayout.createSequentialGroup()
-                                                .addGap(19, 19, 19)
-                                                .addComponent(CheckOutButton))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(checkoutTabLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, checkoutTabLayout.createSequentialGroup()
-                                        .addComponent(changeDueLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(changeDueField)))
+                                                .addGap(65, 65, 65)
+                                                .addComponent(CheckOutButton)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
@@ -608,10 +619,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CheckOutButton)
-                        .addGap(173, 173, 173))))
+                        .addGap(144, 144, 144))))
         );
 
         mainFrame.addTab("Check Out", checkoutTab);
@@ -717,7 +728,33 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewMenuButtonActionPerformed
 
     private void RemoveOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveOrderButtonActionPerformed
-        // Do stuff here.
+        //DOESN'T WORK
+        //String toBeDeleted = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
+        engine.OrderDBManager orderManager = new engine.OrderDBManager();
+        //orderManager.DBremoveOrder(toBeDeleted);
+        
+        String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
+
+        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+
+        OrderSearch.setOrderID(query);
+        boolean rfp = false;
+        String nonSplit = orderManager.searchDB(OrderSearch); //return fields
+        String[] split = nonSplit.split(";");
+        String[] orderList = split[5].split(",");
+        String formattedOutput1 = "Order ID: "+split[0]+"\nGuest ID: "+split[1]+"\nGuest Name: "+split[2]+" "+split[3]+"\nRoom Number: "+split[4]+"\nSpecial Requests: "+split[6]+"\n\n";
+        String formattedOutput2 = "------------\n#   Item\n------------\n";
+        for (int i = 0; i < orderList.length; i++){
+            String[] subSplit = orderList[i].split(":");
+            formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+        }
+        if(split[8].equals("0")){
+            rfp = false;
+        } else {
+            rfp = true;
+        }
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
+        ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_RemoveOrderButtonActionPerformed
 
     private void EditOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditOrderButtonActionPerformed
@@ -742,7 +779,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NewOrderButtonActionPerformed
 
     private void orderPickupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPickupButtonActionPerformed
-        // TODO add your handling code here:
+        //edit order rfp to true
     }//GEN-LAST:event_orderPickupButtonActionPerformed
 
 
@@ -750,71 +787,68 @@ public class MainContainerFrame extends javax.swing.JFrame {
     //CHECKOUT TAB ACTIONS
 
     private void CheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        if (!(guestIDField.getText().equals(""))){ //TODO: needs better validation Should be an existing guest ID in guest DB
-            if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16) && (isInteger(ccNumberField.getText()))){ 
-                if((!(ccCVVField.getText().equals(""))) && ((ccCVVField.getText().length() == 3) || (ccCVVField.getText().length() == 4))){ //TODO: needs better validation. Should be a 3 digit integer. parseInt() has issues.
-                    String gID = guestIDField.getText(); //SET GUEST ID HERE
-                    database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+        if (!(changeDueField.getText().equals(""))) {
+            String gID = guestIDField.getText(); //SET GUEST ID HERE
+            database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
 
-                    //GuestSearch.setGuestID(gID); 
+            GuestSearch.setGuestID(gID);
+            GuestSearch.setLastName("99999999999999999");
                     //System.out.println("gID: "+gID);
-                    //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
+            //System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID());
 
-                    engine.GuestDBManager manager = new engine.GuestDBManager();
-                    String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
-                    String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
-                    //System.out.println("email: "+split[5]);
+            engine.GuestDBManager manager = new engine.GuestDBManager();
+            String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
+            String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
+            //System.out.println("email: "+split[5]);
 
-
-                    //Email receipt
-                    Engine.MailManager smtp = new Engine.MailManager(); //Create a new instance of the mail class
-                    //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
-                    smtp.sendMail(split[5],"This is a test."); //Send the email. First argument is Guest email address, second argument is the message
-                    checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
-                } else {
-                    checkoutOutputField.setText("Error: invalid CVV number.");
-                }
-            } else {
-                checkoutOutputField.setText("Error. invalid credit card number. Must be a 16 digit integer.");
-            }
+            //Email receipt
+            Engine.MailManager smtp = new Engine.MailManager(); //Create a new instance of the mail class
+            //The arguments to the sendMail funtion should be the guest email from the DB and the guest's bill from the DB
+            smtp.sendMail(split[5], "This is a test."); //Send the email. First argument is Guest email address, second argument is the message
+            checkoutOutputField.setText("Checkout sucessful. E-mailed receipt."); //print success message
         } else {
-            checkoutOutputField.setText("Error: invalid Guest ID.");
+            checkoutOutputField.setText("Error: Customer has not paid yet.");
         }
     }
 
     private void ProcessPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessPaymentButtonActionPerformed
-        //Get current date
-        DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
-        Date date = new Date();
-        String currentDate = dateFormat.format(date);
-        String[] splitDate = currentDate.split("/");
-        String ccMonth = ccMonthField.getSelectedItem().toString();
-        String ccYear = ccYearField.getSelectedItem().toString();
-        Boolean isExpired = false;
-        
-        System.out.println("splitDate[0]: "+splitDate[0]);
-        System.out.println("splitDate[1]: "+splitDate[1]);
-        System.out.println("ccMonth: "+ccMonth);
-        System.out.println("ccYear: "+ccYear);
-        
-        if (splitDate[0].equals(ccMonth) && splitDate[1].equals(ccYear)){
-            checkoutOutputField.setText("Error: Credit card is expired.");
-            isExpired = true;
-        }
-        
-        if (Integer.parseInt(splitDate[1]) > Integer.parseInt(ccYearField.getSelectedItem().toString())){
-            checkoutOutputField.setText("Error: Credit card is expired.");
-            isExpired = true;
-        }
-        
-        if (splitDate[1].equals(ccYearField.getSelectedItem().toString()) && Integer.parseInt(splitDate[0]) > Integer.parseInt(ccMonthField.getSelectedItem().toString())){
-            checkoutOutputField.setText("Error: Credit card is expired.");
-            isExpired = true;
-        }
-        
-        if(isExpired == false){
-            checkoutOutputField.setText("Success! Credit card accepted.");
-            //set guest bill = 0 or whatever
+        if ((!(ccNumberField.getText().equals(""))) && (ccNumberField.getText().length() == 16) && (ccNumberField.getText().matches("[0-9]+"))) {
+            if ((!(ccCVVField.getText().equals(""))) && ((ccCVVField.getText().length() == 3) || (ccCVVField.getText().length() == 4)) && (ccCVVField.getText().matches("[0-9]+"))) {
+                //Get current date
+                DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
+                Date date = new Date();
+                String currentDate = dateFormat.format(date);
+                String[] splitDate = currentDate.split("/");
+                String ccMonth = ccMonthField.getSelectedItem().toString();
+                String ccYear = ccYearField.getSelectedItem().toString();
+                Boolean isExpired = false;
+
+                if (splitDate[0].equals(ccMonth) && splitDate[1].equals(ccYear)) {
+                    checkoutOutputField.setText("Error: Credit card is expired.");
+                    isExpired = true;
+                }
+
+                if (Integer.parseInt(splitDate[1]) > Integer.parseInt(ccYearField.getSelectedItem().toString())) {
+                    checkoutOutputField.setText("Error: Credit card is expired.");
+                    isExpired = true;
+                }
+
+                if (splitDate[1].equals(ccYearField.getSelectedItem().toString()) && Integer.parseInt(splitDate[0]) > Integer.parseInt(ccMonthField.getSelectedItem().toString())) {
+                    checkoutOutputField.setText("Error: Credit card is expired.");
+                    isExpired = true;
+                }
+
+                if (isExpired == false) {
+                    checkoutOutputField.setText("Success! Credit card accepted.");
+                    amountPaidField.setText(totalAmountDueField.getText());
+                    changeDueField.setText("0.00");
+                    //set guest bill = 0 or whatever
+                }
+            } else {
+                checkoutOutputField.setText("Error: invalid CVV number.");
+            }
+        } else {
+            checkoutOutputField.setText("Error. invalid credit card number. Must be a 16 digit integer.");
         }
     }//GEN-LAST:event_ProcessPaymentButtonActionPerformed
 
@@ -840,6 +874,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 checkoutInfoOutput.setText("Guest ID: " + split[0] + "\nFirst Name: " + split[1] + "\nLast Name: " + split[2] + "\nAddress: " + split[3] + "\nPhone Number: " + split[4] + "\nEmail Address: " + split[5]);
 
                 //ALSO PRINT BILLING INFORMATION TO checkoutBillOutput
+                //totalAmountDueField.setText(split[6]);
             } catch (IndexOutOfBoundsException e) {
                  checkoutInfoOutput.setText("Error: there are no guests in the database with the ID: "+guestIDField.getText());
             }
@@ -879,11 +914,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
         String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
 
         database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
-        
-        boolean rfp = false;
 
         OrderSearch.setOrderID(query);
-
+        boolean rfp = false;
         engine.OrderDBManager orderManager = new engine.OrderDBManager();
         String nonSplit = orderManager.searchDB(OrderSearch); //return fields
         String[] split = nonSplit.split(";");
@@ -893,6 +926,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
         for (int i = 0; i < orderList.length; i++){
             String[] subSplit = orderList[i].split(":");
             formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+        }
+        if(split[8].equals("0")){
+            rfp = false;
+        } else {
+            rfp = true;
         }
         String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
@@ -903,9 +941,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
         
-        boolean rfp = false;
-
         OrderSearch.setOrderID(query);
+        boolean rfp = false;
 
         engine.OrderDBManager orderManager = new engine.OrderDBManager();
         String nonSplit = orderManager.searchDB(OrderSearch); //return fields
@@ -917,6 +954,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
             String[] subSplit = orderList[i].split(":");
             formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
         }
+        if(split[8].equals("0")){
+            rfp = false;
+        } else {
+            rfp = true;
+        }
         String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableMouseClicked
@@ -926,9 +968,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
         
-        boolean rfp = false;
-
         OrderSearch.setOrderID(query);
+        boolean rfp = false;
 
         engine.OrderDBManager orderManager = new engine.OrderDBManager();
         String nonSplit = orderManager.searchDB(OrderSearch); //return fields
@@ -939,6 +980,11 @@ public class MainContainerFrame extends javax.swing.JFrame {
         for (int i = 0; i < orderList.length; i++){
             String[] subSplit = orderList[i].split(":");
             formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+        }
+        if(split[8].equals("0")){
+            rfp = false;
+        } else {
+            rfp = true;
         }
         String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);

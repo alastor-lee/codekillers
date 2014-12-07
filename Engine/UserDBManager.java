@@ -588,7 +588,7 @@ return nReturnValue;
 
 } //method
 */
-/*
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBremoveRecord(String fullPathFileName, String deleteRecord)
 //------------------------------------------------------------------------------------------------------------
@@ -604,13 +604,6 @@ String[] delRecordFields = null;
 ArrayList theRecords = new ArrayList();
 BufferedWriter out = null;
 Iterator it = null;
-
-//Code
-if (DBisValidRecord(delRecord) != true) {
-    //the Record was not valid; so do not process it
-    return FAILED_INVALID_RECORD;
-}
-
 
 try {
     theRecords = DBreadFile(reservationFile);
@@ -637,13 +630,8 @@ for (it = theRecords.iterator(); it.hasNext(); ) {
         }
 
         else{
-            fields = strLine.split(",");
-            _GuestID = fields[0].trim();
-            _LastName = fields[1].trim();
-            _Address = fields[2].trim();
-            _ContactNumber = fields[3].trim();
-            _Email = fields[4].trim();
-            _Charges = fields[5].trim();
+            fields = strLine.split(";");
+            _OrderID = fields[0].trim();
 
             //
             //If all of the fields in the newRecord are equal to theRecords 
@@ -697,7 +685,6 @@ if (nReturnValue == FOUND_RECORD_TO_DELETE)	{
 return nReturnValue;
 }  //method
 
-*/
 /*
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBisValidRecord(String dbRecord)
