@@ -5,6 +5,10 @@
  */
 package kitchen.gui;
 
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Colin
@@ -29,11 +33,11 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         CloseButton = new javax.swing.JButton();
-        OutputPane = new javax.swing.JScrollPane();
-        ViewHistoryOutput = new javax.swing.JTextArea();
         SearchField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
         OrderNumberLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        OrderHistoryTable = new javax.swing.JTable();
 
         CloseButton.setText("Close");
         CloseButton.addActionListener(new java.awt.event.ActionListener() {
@@ -42,9 +46,11 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
             }
         });
 
-        ViewHistoryOutput.setColumns(20);
-        ViewHistoryOutput.setRows(5);
-        OutputPane.setViewportView(ViewHistoryOutput);
+        SearchField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                SearchFieldFocusGained(evt);
+            }
+        });
 
         SearchButton.setText("Search");
         SearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +61,28 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
 
         OrderNumberLabel.setText("Order Number / Guest Name:");
 
+        OrderHistoryTable.setAutoCreateRowSorter(true);
+        OrderHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Order ID", "Guest Name", "Room Number", "Total Cost"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(OrderHistoryTable);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -62,17 +90,17 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OutputPane)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 268, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(OrderNumberLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchButton)))
+                        .addComponent(SearchButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(248, 248, 248)
+                .addGap(289, 289, 289)
                 .addComponent(CloseButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -85,43 +113,76 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
                     .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OrderNumberLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OutputPane, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CloseButton)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(CloseButton))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGap(0, 675, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        //Do stuff here
+        // TO DO: add search feature
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
         this.dispose(); //Close the frame
     }//GEN-LAST:event_CloseButtonActionPerformed
+
+    private void SearchFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchFieldFocusGained
+        //display all items
+        String query = "";
+        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+
+        try {
+            OrderSearch.setFirstName(query);
+        } catch (NullPointerException e) {
+            //stuff
+        }
+        engine.OrderDBManager manager = new engine.OrderDBManager();
+        try {
+            ArrayList<String> output = manager.printAllRecords(OrderSearch);
+
+            String listString = "";
+            for (String s : output) {
+                listString += s + "\t";
+            }
+            String[] split = listString.split(Pattern.quote("\t")); //split into pieces
+
+            DefaultTableModel model = (DefaultTableModel) OrderHistoryTable.getModel();
+            model.setRowCount(0);
+            for (int i = 2; i < split.length; i++) {
+                if (i % 2 == 0) {
+                    String[] subsplit = split[i].split(Pattern.quote(";"));
+                    String[] newArr = {subsplit[0], subsplit[2] + " " + subsplit[3], subsplit[4], subsplit[7]};
+                    model.addRow(newArr);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //stuff
+        }
+    }//GEN-LAST:event_SearchFieldFocusGained
 
     /**
      * @param args the command line arguments
@@ -160,11 +221,11 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseButton;
+    private javax.swing.JTable OrderHistoryTable;
     private javax.swing.JLabel OrderNumberLabel;
-    private javax.swing.JScrollPane OutputPane;
     private javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchField;
-    private javax.swing.JTextArea ViewHistoryOutput;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
