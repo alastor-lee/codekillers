@@ -619,114 +619,105 @@ return nReturnValue;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBremoveRecord(String fullPathFileName, String deleteRecord)
 //------------------------------------------------------------------------------------------------------------
-public int DBremoveRecord(String delRecord){
+public int DBremoveRecord(String delRecord) {
 
-String reservationFile = nameOfFile + "\\inventoryDatabaseFile.txt";
-    
+        String reservationFile = nameOfFile + "\\inventoryDatabaseFile.txt";
+
 //Variables
-int nReturnValue = 0;
-int nRecCount = 0;
-int iCount = 0;
-String strLine = null;
-String[] fields = null;
-String[] delRecordFields = null;
-ArrayList theRecords = new ArrayList();
-BufferedWriter out = null;
-Iterator it = null;
+        int nReturnValue = 0;
+        int nRecCount = 0;
+        int iCount = 0;
+        String strLine = null;
+        String[] fields = null;
+        String[] delRecordFields = null;
+        ArrayList theRecords = new ArrayList();
+        BufferedWriter out = null;
+        Iterator it = null;
 
 //Code
-if (DBisValidRecord(delRecord) != true) {
-    //the Record was not valid; so do not process it
-    return FAILED_INVALID_RECORD;
-}
-
-
-try {
-    theRecords = DBreadFile(reservationFile);
-} //try
-
-catch (Exception ee) {
-    System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
-}  //catch
-
-delRecordFields = delRecord.split(";");
-
-iCount =0;
-
-nRecCount = theRecords.size();
-
-it = theRecords.iterator(); 
-it.next();
-
-while (it.hasNext()) {
-    if (iCount < nRecCount + 1) { //HAS ISSUES DELETING WHEN ONLY 2 ITEMS REMAIN
-        try{
-            if(it.hasNext()){
-                strLine = (String) it.next();
-            }
-        } catch (NoSuchElementException e) {
-            //error
-        }
-        strLine = strLine.trim();
-        
-        if (strLine.equals("") || strLine.equals(" ")) {
-            //if a blank record is in the file ..then skip it
-            iCount++;
+        if (DBisValidRecord(delRecord) != true) {
+            //the Record was not valid; so do not process it
+            return FAILED_INVALID_RECORD;
         }
 
-        else{
-            fields = strLine.split(";");
-            _ItemName = fields[0].trim();
-            _ItemQuantity = fields[1].trim();
-            _ItemPrice = fields[2].trim();
+        try {
+            theRecords = DBreadFile(reservationFile);
+        } //try
+        catch (Exception ee) {
+            System.err.println("Error: " + ee.getMessage() + "..stack: " + ee.getStackTrace().toString());
+        }  //catch
+
+        delRecordFields = delRecord.split(";");
+
+        iCount = 0;
+
+        nRecCount = theRecords.size();
+
+        it = theRecords.iterator();
+        it.next();
+
+        while (it.hasNext()) {
+            if (iCount < nRecCount + 1) { //HAS ISSUES DELETING WHEN ONLY 2 ITEMS REMAIN
+                try {
+                    if (it.hasNext()) {
+                        strLine = (String) it.next();
+                    }
+                } catch (NoSuchElementException e) {
+                    //error
+                }
+                strLine = strLine.trim();
+
+                if (strLine.equals("") || strLine.equals(" ")) {
+                    //if a blank record is in the file ..then skip it
+                    iCount++;
+                } else {
+                    fields = strLine.split(";");
+                    _ItemName = fields[0].trim();
+                    _ItemQuantity = fields[1].trim();
+                    _ItemPrice = fields[2].trim();
             //
-            //If all of the fields in the newRecord are equal to theRecords 
-            //Record theres an error
-            //
+                    //If all of the fields in the newRecord are equal to theRecords 
+                    //Record theres an error
+                    //
 
-            iCount++;
-            
-            if (_ItemName.trim().equalsIgnoreCase(delRecordFields[0].trim()) &&
-                _ItemQuantity.trim().equalsIgnoreCase(delRecordFields[1].trim()) &&
-                _ItemPrice.trim().equalsIgnoreCase(delRecordFields[2].trim())) 
-            {
-                    nReturnValue = FOUND_RECORD_TO_DELETE;  
-                    it.remove();
-                    break;
+                    iCount++;
 
-            }
+                    if (_ItemName.trim().equalsIgnoreCase(delRecordFields[0].trim())
+                            && _ItemQuantity.trim().equalsIgnoreCase(delRecordFields[1].trim())
+                            && _ItemPrice.trim().equalsIgnoreCase(delRecordFields[2].trim())) {
+                        nReturnValue = FOUND_RECORD_TO_DELETE;
+                        it.remove();
+                        break;
 
-            else {
-                nReturnValue = NO_DELETE_RECORD_ABSENT;
-            }  //else
-        }  //else
-    } //if
-}  //for
+                    } else {
+                        nReturnValue = NO_DELETE_RECORD_ABSENT;
+                    }  //else
+                }  //else
+            } //if
+        }  //for
 
+        if (nReturnValue == FOUND_RECORD_TO_DELETE) {
+            try {
+                out = new BufferedWriter(new FileWriter(reservationFile));
+                for (it = theRecords.iterator(); it.hasNext();) {
+                    strLine = (String) it.next();
+                    strLine = strLine.trim();
+                    out.write(strLine);
+                    out.newLine();
+                }
+                out.close();
+                nReturnValue = SUCCESSFUL_OPERATION;
 
-if (nReturnValue == FOUND_RECORD_TO_DELETE)	{
-    try {
-        out = new BufferedWriter(new FileWriter(reservationFile));
-        for (it = theRecords.iterator(); it.hasNext(); ) {
-        strLine = (String) it.next();
-        strLine = strLine.trim();
-        out.write(strLine);
-        out.newLine();
-        }
-    out.close();
-    nReturnValue = SUCCESSFUL_OPERATION;
+            } //try
+            catch (IOException ee) {
+                System.err.println("Error: " + ee.getMessage() + "..stack: " + ee.getStackTrace().toString());
+                ee.printStackTrace();
+            } //catch
 
-    } //try
+        }  //if
 
-    catch (IOException ee) {
-        System.err.println("Error: " + ee.getMessage() +"..stack: " + ee.getStackTrace().toString() );
-        ee.printStackTrace();
-    } //catch
-
-}  //if
-
-return nReturnValue;
-}  //method
+        return nReturnValue;
+    }  //method
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBisValidRecord(String dbRecord)
