@@ -85,6 +85,7 @@ public class EditInventoryFrame extends javax.swing.JFrame {
             }
         });
 
+        outputTable.setAutoCreateRowSorter(true);
         outputTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -190,6 +191,7 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     private void AddItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemButtonActionPerformed
         AddItemFrame AddItemFrame = new AddItemFrame(); //create the frame
         AddItemFrame.setLocationRelativeTo(null); //center the frame
+        AddItemFrame.getRootPane().setDefaultButton(AddItemFrame.AddItemButton);
         AddItemFrame.setVisible(true); //make it visible
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
@@ -198,21 +200,25 @@ public class EditInventoryFrame extends javax.swing.JFrame {
         
         EditItemFrame EditItemFrame = new EditItemFrame(); //create the frame
         EditItemFrame.setLocationRelativeTo(null); //center the frame
+        EditItemFrame.getRootPane().setDefaultButton(EditItemFrame.EditItemButton);
         EditItemFrame.ItemNameField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),0).toString());
-        EditItemFrame.ItemPriceField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),1).toString());
-        EditItemFrame.ItemQuantityField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),2).toString());
+        EditItemFrame.ItemQuantityField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),1).toString());
+        EditItemFrame.ItemPriceField.setText(outputTable.getValueAt(outputTable.getSelectedRow(),2).toString());
         EditItemFrame.setVisible(true); //make it visible
     }//GEN-LAST:event_EditItemButtonActionPerformed
 
     private void DeleteItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemButtonActionPerformed
-        String toBeDeleted = outputTable.getValueAt(outputTable.getSelectedRow(), 0).toString(); //get name of selected item
-        /*delete it!
+        String toBeDeletedName = outputTable.getValueAt(outputTable.getSelectedRow(), 0).toString(); //get name of selected item
+        String toBeDeletedQuantity = outputTable.getValueAt(outputTable.getSelectedRow(), 1).toString(); //get quantity
+        String toBeDeletedPrice = outputTable.getValueAt(outputTable.getSelectedRow(), 2).toString(); //get price
+
         database.info.InventoryInfo DeleteItem = new database.info.InventoryInfo();
         engine.InventoryDBManager InventoryDelete = new engine.InventoryDBManager();
         DeleteItem.setItemName(outputTable.getValueAt(outputTable.getSelectedRow(), 0).toString());
         DeleteItem.setItemQuantity(outputTable.getValueAt(outputTable.getSelectedRow(), 1).toString());
         DeleteItem.setItemPrice(outputTable.getValueAt(outputTable.getSelectedRow(), 2).toString());
-        */
+        InventoryDelete.DBremoveRecord(toBeDeletedName+";"+toBeDeletedQuantity+";"+toBeDeletedPrice);
+        performSearch();
     }//GEN-LAST:event_DeleteItemButtonActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
@@ -338,11 +344,15 @@ public class EditInventoryFrame extends javax.swing.JFrame {
     public static void performSearch(){
         SearchButton.doClick();
     }
+    
+    public static void deleteItem(){
+        DeleteItemButton.doClick();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddItemButton;
     private javax.swing.JButton CloseButton;
-    private javax.swing.JButton DeleteItemButton;
+    private static javax.swing.JButton DeleteItemButton;
     private javax.swing.JButton EditItemButton;
     public static javax.swing.JButton SearchButton;
     public static javax.swing.JTextField SearchField;

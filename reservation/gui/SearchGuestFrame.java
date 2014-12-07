@@ -5,6 +5,10 @@
  */
 package reservation.gui;
 
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import javax.swing.table.DefaultTableModel;
+
 public class SearchGuestFrame extends javax.swing.JFrame {
     /**
      * Creates new form SearchGuestFrame
@@ -31,10 +35,9 @@ public class SearchGuestFrame extends javax.swing.JFrame {
         GuestIDLabel = new javax.swing.JLabel();
         LastNameLabel = new javax.swing.JLabel();
         SearchButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        GuestInfoText = new javax.swing.JTextArea();
         CloseButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputTable = new javax.swing.JTable();
 
         setResizable(false);
 
@@ -61,11 +64,6 @@ public class SearchGuestFrame extends javax.swing.JFrame {
             }
         });
 
-        GuestInfoText.setColumns(20);
-        GuestInfoText.setRows(5);
-        GuestInfoText.setFocusable(false);
-        jScrollPane1.setViewportView(GuestInfoText);
-
         CloseButton.setText("Close");
         CloseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,56 +71,74 @@ public class SearchGuestFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Results");
+        outputTable.setAutoCreateRowSorter(true);
+        outputTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "First Name", "Last Name", "Address", "Phone Number", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(outputTable);
+        if (outputTable.getColumnModel().getColumnCount() > 0) {
+            outputTable.getColumnModel().getColumn(0).setPreferredWidth(15);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LastNameLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(LastNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
                         .addComponent(GuestIDLabel)
-                        .addGap(26, 26, 26)
-                        .addComponent(IDField))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 86, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CloseButton, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(76, 76, 76))
+                        .addGap(12, 12, 12)
+                        .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LastNameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(216, 216, 216)
+                        .addComponent(CloseButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GuestIDLabel)
+                    .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LastNameLabel)
+                    .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GuestIDLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LastNameLabel)
-                            .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(CloseButton)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CloseButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -142,15 +158,78 @@ public class SearchGuestFrame extends javax.swing.JFrame {
             GuestSearch.setGuestID("qqqqqqqqqqqqqqqqqqqqq"); //the purpose of this is to set it equal to a value that should never be in database
             GuestSearch.setLastName(LastNameField.getText());
         }
-        //GuestSearch.setGuestID(IDField.getText());
-        //GuestSearch.setLastName(LastNameField.getText());
-        System.out.println("TESTING USER INPUT: "+IDField.getText() + " " + LastNameField.getText());
-        System.out.println("TESTING VARS SET IN GUESTINFO: "+GuestSearch.getGuestID() + " " + GuestSearch.getLastName());
         
-        //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());       
-        engine.GuestDBManager manager = new engine.GuestDBManager();
-        searchReturn = manager.searchDB(GuestSearch);
-        GuestInfoText.setText("Guest Information:\n"+searchReturn.replace(";" , "\n"));
+        if(IDField.getText().equals("") && focus == 1){
+            //print all records
+            String query = "";
+
+            try{
+                GuestSearch.setLastName(query);
+            } catch(NullPointerException e) {
+                //string not found
+            }
+
+            engine.GuestDBManager manager = new engine.GuestDBManager();
+            try {
+                ArrayList<String> output = manager.printAllRecords(GuestSearch);
+                
+                String listString = "";
+                for (String s : output) {
+                    listString += s + "\t";
+                }
+                String[] split = listString.split(Pattern.quote("\t")); //split into pieces
+                System.out.println("split: "+split);
+                DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+                model.setRowCount(0);
+                
+                for (int i = 0; i <= split.length; i++) {
+                    String[] newSplit = split[i].split(Pattern.quote(";"));
+                    model.addRow(newSplit);
+                }
+            } catch(ArrayIndexOutOfBoundsException e){
+                //ViewInventoryOutput.setText("No matching item found in inventory.");
+            }
+        }
+        
+        else if(LastNameField.getText().equals("") && focus == 2){
+            //print all records
+            String query = "";
+
+            try{
+                GuestSearch.setLastName(query);
+            } catch(NullPointerException e) {
+                //string not found
+            }
+
+            engine.GuestDBManager manager = new engine.GuestDBManager();
+            try {
+                ArrayList<String> output = manager.printAllRecords(GuestSearch);
+                
+                String listString = "";
+                for (String s : output) {
+                    listString += s + "\t";
+                }
+                String[] split = listString.split(Pattern.quote("\t")); //split into pieces
+                
+                DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+                model.setRowCount(0);
+                
+                for (int i = 0; i <= split.length; i++) {
+                    String[] newSplit = split[i].split(Pattern.quote(";"));
+                    model.addRow(newSplit);
+                }
+            } catch(ArrayIndexOutOfBoundsException e){
+                //ViewInventoryOutput.setText("No matching item found in inventory.");
+            }
+        } else {
+            //TEST GuestInfoText.setText(IDField.getText()+"\n"+LastNameField.getText());       
+            engine.GuestDBManager manager = new engine.GuestDBManager();
+            searchReturn = manager.searchDB(GuestSearch);
+            String[] split = searchReturn.split(";");
+            DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
+            model.setRowCount(0);
+            model.addRow(split);
+        }
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
@@ -203,12 +282,11 @@ public class SearchGuestFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseButton;
     private javax.swing.JLabel GuestIDLabel;
-    private javax.swing.JTextArea GuestInfoText;
     private javax.swing.JTextField IDField;
     private javax.swing.JTextField LastNameField;
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JButton SearchButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable outputTable;
     // End of variables declaration//GEN-END:variables
 }

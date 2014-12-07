@@ -672,5 +672,42 @@ public class GuestDBManager {
 
     return nReturnValue;
     }//method
+    
+    public ArrayList<String> printAllRecords(GuestInfo GuestDB) {
+        //Variables
+        nameOfFile = nameOfFile + "\\guestDatabaseFile.txt";
+        String strLine = "";
+        String[] fields;
+        ArrayList theRecords = new ArrayList();
+        boolean isSearching = true;
+        ArrayList<String> finalOutput = new ArrayList<String>();
+        //opening and reading database file for comparison purposes
+        try {
+            //Get all the file records in the Array
+            theRecords = DatabaseReader.DBreadFile(nameOfFile);
+        } //try
+        catch (Exception ee) {
+            System.err.println("Error: " + ee.getMessage() + "..stack: " + ee.getStackTrace().toString());
+        } //catch
+        int iCount = 1;
+        int nRecCount = theRecords.size();
+        Iterator itr = theRecords.iterator();
+        itr.next();     //skips the first line of file, which contains database name
+        while (itr.hasNext() && isSearching == true) {
+            if (iCount < nRecCount + 1) {
+                try {
+                    strLine = (String) theRecords.get(iCount);
+                    strLine = strLine.trim();
+                    finalOutput.add(strLine);
+                } catch (IndexOutOfBoundsException e) {
+                    //reached end of file
+                    isSearching = false;
+                }
+            } //if
+            iCount++;
+        } //while
+        return finalOutput;
+
+    }
 
 }   //CLASS END
