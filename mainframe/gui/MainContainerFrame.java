@@ -729,7 +729,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void OrderHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryButtonActionPerformed
         kitchen.gui.OrderHistoryFrame OrderHistoryFrame = new kitchen.gui.OrderHistoryFrame(); //Create a new instance of the frame
         OrderHistoryFrame.setLocationRelativeTo(null); //Center the frame
-        OrderHistoryFrame.getRootPane().setDefaultButton(OrderHistoryFrame.SearchButton);
+        OrderHistoryFrame.getRootPane().setDefaultButton(OrderHistoryFrame.SearchButton); //make enter button do search
+        OrderHistoryFrame.SearchButton.doClick(); //automatically display all records
         OrderHistoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_OrderHistoryButtonActionPerformed
 
@@ -892,7 +893,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             String[] subSplit = orderList[i].split(":");
             formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
         }
-        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\nReady For Pickup: "+rfp;
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableFocusGained
 
@@ -915,7 +916,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             String[] subSplit = orderList[i].split(":");
             formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
         }
-        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\nReady For Pickup: "+rfp;
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableMouseClicked
 
@@ -938,7 +939,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             String[] subSplit = orderList[i].split(":");
             formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
         }
-        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\nReady For Pickup: "+rfp;
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableKeyReleased
 

@@ -124,14 +124,14 @@ public class OrderFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Quantity", "Item Name"
+                "#", "Item Name", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -420,10 +420,12 @@ public class OrderFrame extends javax.swing.JFrame {
             GuestInfo class will set guest information and check for input error
             GuestDBManager will write to the database if input is correct
         */
+        double totalCost = 0;
         ArrayList<String> orderContentsArray = new ArrayList<String>();
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
         for(int row = 0; row < model.getRowCount(); row++){
-            orderContentsArray.add(model.getValueAt(row,1).toString()+":"+model.getValueAt(row,0).toString());
+            orderContentsArray.add(model.getValueAt(row,1).toString()+":"+model.getValueAt(row,0).toString()+":"+model.getValueAt(row,2).toString());
+            totalCost += Double.parseDouble(model.getValueAt(row,2).toString());
         }
         
         database.info.OrderInfo NewOrder = new database.info.OrderInfo();
@@ -438,7 +440,7 @@ public class OrderFrame extends javax.swing.JFrame {
         NewOrder.setRoomNumber(RoomNumberField.getText());
         NewOrder.setOrderContents(orderContentsArray);
         NewOrder.setSpecialRequests(SpecialRequestsField.getText());
-        NewOrder.setTotalCost("24.99"); //TODO: add total cost
+        NewOrder.setTotalCost(Double.toString(totalCost)); //TODO: add total cost
         NewOrder.setReadyForPickup("0");
         NewOrder.setTimeStamp(dateFormat.format(date));
         orderManager.addOrder(NewOrder);
@@ -453,7 +455,7 @@ public class OrderFrame extends javax.swing.JFrame {
 
     private void EggsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EggsButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",EggsButton.getText()};
+        String[] item = {"1",EggsButton.getText(),"3.99"};
         model.addRow(item);
     }//GEN-LAST:event_EggsButtonActionPerformed
 
@@ -466,67 +468,67 @@ public class OrderFrame extends javax.swing.JFrame {
 
     private void BurgerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BurgerButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",BurgerButton.getText()};
+        String[] item = {"1",BurgerButton.getText(),"5.99"};
         model.addRow(item);
     }//GEN-LAST:event_BurgerButtonActionPerformed
 
     private void SodaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SodaButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",SodaButton.getText()};
+        String[] item = {"1",SodaButton.getText(),"0.99"};
         model.addRow(item);
     }//GEN-LAST:event_SodaButtonActionPerformed
 
     private void HotdogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HotdogButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",HotdogButton.getText()};
+        String[] item = {"1",HotdogButton.getText(),"3.99"};
         model.addRow(item);
     }//GEN-LAST:event_HotdogButtonActionPerformed
 
     private void SteakButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SteakButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",SteakButton.getText()};
+        String[] item = {"1",SteakButton.getText(),"12.99"};
         model.addRow(item);
     }//GEN-LAST:event_SteakButtonActionPerformed
 
     private void WineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WineButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",WineButton.getText()};
+        String[] item = {"1",WineButton.getText(),"4.99"};
         model.addRow(item);
     }//GEN-LAST:event_WineButtonActionPerformed
 
     private void DonutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DonutButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",DonutButton.getText()};
+        String[] item = {"1",DonutButton.getText(),"0.99"};
         model.addRow(item);
     }//GEN-LAST:event_DonutButtonActionPerformed
 
     private void IceCreamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IceCreamButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",IceCreamButton.getText()};
+        String[] item = {"1",IceCreamButton.getText(),"2.99"};
         model.addRow(item);
     }//GEN-LAST:event_IceCreamButtonActionPerformed
 
     private void BeerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeerButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",BeerButton.getText()};
+        String[] item = {"1",BeerButton.getText(),"2.99"};
         model.addRow(item);
     }//GEN-LAST:event_BeerButtonActionPerformed
 
     private void ChickenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChickenButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",ChickenButton.getText()};
+        String[] item = {"1",ChickenButton.getText(),"9.99"};
         model.addRow(item);
     }//GEN-LAST:event_ChickenButtonActionPerformed
 
     private void PopsicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PopsicleButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",PopsicleButton.getText()};
+        String[] item = {"1",PopsicleButton.getText(),"1.99"};
         model.addRow(item);
     }//GEN-LAST:event_PopsicleButtonActionPerformed
 
     private void CandyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandyButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-        String[] item = {"1",CandyButton.getText()};
+        String[] item = {"1",CandyButton.getText(),"0.99"};
         model.addRow(item);
     }//GEN-LAST:event_CandyButtonActionPerformed
 
