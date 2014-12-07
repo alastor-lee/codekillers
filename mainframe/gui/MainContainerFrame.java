@@ -730,31 +730,10 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void RemoveOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveOrderButtonActionPerformed
         //DOESN'T WORK
         //String toBeDeleted = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
-        engine.OrderDBManager orderManager = new engine.OrderDBManager();
-        //orderManager.DBremoveOrder(toBeDeleted);
-        
-        String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
-
-        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
-
-        OrderSearch.setOrderID(query);
-        boolean rfp = false;
-        String nonSplit = orderManager.searchDB(OrderSearch); //return fields
-        String[] split = nonSplit.split(";");
-        String[] orderList = split[5].split(",");
-        String formattedOutput1 = "Order ID: "+split[0]+"\nGuest ID: "+split[1]+"\nGuest Name: "+split[2]+" "+split[3]+"\nRoom Number: "+split[4]+"\nSpecial Requests: "+split[6]+"\n\n";
-        String formattedOutput2 = "------------\n#   Item\n------------\n";
-        for (int i = 0; i < orderList.length; i++){
-            String[] subSplit = orderList[i].split(":");
-            formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
-        }
-        if(split[8].equals("0")){
-            rfp = false;
-        } else {
-            rfp = true;
-        }
-        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
-        ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
+        //System.out.println("toBeDeleted: "+toBeDeleted);
+        //database.info.OrderInfo orderInfo = new database.info.OrderInfo();
+        //engine.OrderDBManager orderManager = new engine.OrderDBManager();
+        //orderManager.DBremoveRecord(toBeDeleted);
     }//GEN-LAST:event_RemoveOrderButtonActionPerformed
 
     private void EditOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditOrderButtonActionPerformed
