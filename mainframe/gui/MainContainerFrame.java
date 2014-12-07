@@ -722,6 +722,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void OrderHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryButtonActionPerformed
         kitchen.gui.OrderHistoryFrame OrderHistoryFrame = new kitchen.gui.OrderHistoryFrame(); //Create a new instance of the frame
         OrderHistoryFrame.setLocationRelativeTo(null); //Center the frame
+        OrderHistoryFrame.getRootPane().setDefaultButton(OrderHistoryFrame.SearchButton);
         OrderHistoryFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_OrderHistoryButtonActionPerformed
 
