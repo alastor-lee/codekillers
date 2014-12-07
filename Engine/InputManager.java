@@ -91,7 +91,7 @@ public class InputManager {
         }
     }
     
-    //following if for reservation input validation
+    //following is for reservation input validation
     //checks for existence of guest in DB when attempting to create a reservation
     //searches for existence of given guestID
     public int checkIfExist(String id, String fileName){
@@ -102,16 +102,64 @@ public class InputManager {
         guestDB = DatabaseReader.DBreadFile(fileName);  //reading from DB
         Iterator itr = guestDB.iterator();
         itr.next(); //skips first line, which is the name of file
-        System.out.println("TEST "+itr.hasNext());
         while(itr.hasNext()){
             allFields = itr.next().toString().split(";");   //pulling line from file
             currID = allFields[0];  //currID set to ID of given line
-            System.out.println("field value: "+allFields[0]+" searching for: "+id);
+            //System.out.println("field value: "+allFields[0]+" searching for: "+id);
             if(currID.equals(id)){
-                System.out.println("there is an ID match");
+                //System.out.println("there is an ID match");
                 IDcheck = 0;    //there is a match, and tf no error
+                return IDcheck; //ends loop
             }
         }
         return IDcheck;
+    }
+    
+    //checking that the room number requested matches predefined rules
+    public int verifyRoomNum(int RoomNum, int type, int prefs){
+        System.out.println("type: "+type+" prefs: "+prefs);
+        if((RoomNum >= 100 && RoomNum <= 120)||(RoomNum >= 200 && RoomNum <= 220)||(RoomNum >= 300 && RoomNum <= 320)){
+            //checking for type rule following
+            switch(type) {
+            //0 - Two Double Beds, 1 - One King Bed, 2 - Suite
+            case 0: System.out.println("case 0 type");
+                    if(RoomNum > 110||RoomNum > 210||RoomNum > 310){
+                        System.out.println("Need two double bed");
+                        break;
+                    } else return 7;
+            case 1: System.out.println("case 1 type");
+                    if(!((RoomNum >= 103 && RoomNum <= 110)||(RoomNum >= 203 && RoomNum <= 210)||(RoomNum <= 303 && RoomNum <= 310))){
+                        System.out.println("Need one king bed");
+                        return 7;
+                    } else break;
+            case 2: System.out.println("case 2 type");
+                    if(!(RoomNum <= 102||RoomNum <= 202||RoomNum <= 302)){
+                        System.out.println("Need suite");
+                        return 7;
+                    } else break;
+            default: System.out.println("Something is very wrong");
+            }
+            //checking for special preference rule following
+            switch(prefs) {
+            //0 - Beach View, 1 - Land View, 2 - Near Smoking Area
+            case 0: System.out.println("case 0 prefs");
+                    if(!(RoomNum <= 105||RoomNum <= 205||RoomNum <= 305)){
+                        System.out.println("Need beach view");
+                        return 7;
+                    } else break;
+            case 1: System.out.println("case 1 prefs");
+                    if(!(RoomNum > 105||RoomNum > 205||RoomNum > 305)){
+                        System.out.println("Need land view");
+                        return 7;
+                    } else break;
+            case 2: System.out.println("case 2 prefs");
+                    if(!(RoomNum <= 110||RoomNum <= 210||RoomNum <= 310)){
+                        System.out.println("Need smoking area");
+                        return 7;
+                    } else break;
+            default: System.out.println("Something is very wrong");
+            }
+            return 0;
+        } else return 7; //RoomNum is not within valid boundaries
     }
 }

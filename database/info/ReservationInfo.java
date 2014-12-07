@@ -78,8 +78,13 @@ public class ReservationInfo {
         //rooms 100-102, 200-202, and 300-302 are Suites
         //rooms 103-110, 203-210, and 303-310 are One King Size Bed
         //rooms 111-120, 211-220, and 311-320 are Two Double Bed
-        //verify.checkRoomNum(numOf, )
-        return 0;
+        test = verify.isInteger(RoomNum);
+        if(test == true){
+            //verifyRoomNum checks for correct room # and rule following
+            return verify.verifyRoomNum(Integer.parseInt(RoomNum), Integer.parseInt(TypeOfRoom), Integer.parseInt(SpecialPref));
+        } else{    //RoomNum is not an Integer, automatic error
+            return 7;   //7 = error
+        }
     }
     
     public int setComments(String coms){
@@ -87,7 +92,7 @@ public class ReservationInfo {
         Comments = coms;
         return 0;
     }
-    //for use by databaseManager class
+    //for use by databaseManager class primarily
     public String toString(){
         return GuestID+";"+NumOfPersons+";"+TypeOfRoom+";"+CheckIn+";"+CheckOut+";"+RoomNum+";"+SpecialPref+";"+Comments;
     }

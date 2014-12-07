@@ -108,6 +108,12 @@ public class NewReservationFrame extends javax.swing.JFrame {
 
         CommentsTextArea.setColumns(20);
         CommentsTextArea.setRows(5);
+        CommentsTextArea.setText("!!!!CLEAR THIS!!!!\nBeach View: 100-105, 200-205, 300-305\nLand View: 106-120, 206-220, 306-320\nNear Smoking: 100-110, 200-210, 300-310\nSuites: 100-102, 200-202, 300-302\nOne King: 103-110, 203-210, 303-310\nTwo Double: 111-120, 211-220, 311-320\n!!!!CLEAR THIS!!!!");
+        CommentsTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CommentsTextAreaFocusGained(evt);
+            }
+        });
         ContainerPane.setViewportView(CommentsTextArea);
 
         CreateReservationButton.setText("Create Reservation");
@@ -170,10 +176,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
                                         .addComponent(CommentsLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(SpecialPrefComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(SpecialPrefComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(TypeRoomLabel)
@@ -196,14 +202,14 @@ public class NewReservationFrame extends javax.swing.JFrame {
                                     .addComponent(GuestLookupButton)
                                     .addComponent(CheckDateAvailabilityButton)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(134, 134, 134)
+                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
+                        .addGap(167, 167, 167)
                         .addComponent(CancelButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(ErrorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(123, 123, 123)
+                        .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -246,18 +252,18 @@ public class NewReservationFrame extends javax.swing.JFrame {
                     .addComponent(SpecialPrefComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(CommentsLabel)))
-                .addGap(42, 42, 42)
+                        .addComponent(CommentsLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(ContainerPane, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ErrorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CreateReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CancelButton)
-                .addGap(52, 52, 52))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -372,6 +378,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
     private void RoomNumberFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RoomNumberFieldFocusGained
         RoomNumberField.selectAll();
     }//GEN-LAST:event_RoomNumberFieldFocusGained
+
+    private void CommentsTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CommentsTextAreaFocusGained
+        CommentsTextArea.selectAll();
+    }//GEN-LAST:event_CommentsTextAreaFocusGained
 
     /**
      * @param args the command line arguments
