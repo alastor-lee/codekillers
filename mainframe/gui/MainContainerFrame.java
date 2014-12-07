@@ -711,8 +711,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewInventoryButtonActionPerformed
 
     private void ViewMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMenuButtonActionPerformed
-        //kitchenGUI.ViewMenuFrame ViewMenu = new kitchenGUI.ViewMenuFrame(); //Create a new instance of the frame
-        //ViewMenu.setVisible(true); //Make the frame visible
+        kitchen.gui.ViewMenuFrame ViewMenu = new kitchen.gui.ViewMenuFrame(); //Create a new instance of the frame
+        ViewMenu.setLocationRelativeTo(null);
+        ViewMenu.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewMenuButtonActionPerformed
 
     private void RemoveOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveOrderButtonActionPerformed
