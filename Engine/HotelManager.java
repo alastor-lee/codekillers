@@ -89,7 +89,7 @@ public class HotelManager {
             }
             //creation of Order History Database
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(OrderHistoryDB), "utf-8"))) {
-                writer.write("DB4 Order History DB");
+                writer.write("DB4 Order History DB:0");
             } 
             catch (IOException ex){
                 System.out.println("Exception found: "+ex);
