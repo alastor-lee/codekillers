@@ -36,6 +36,7 @@ public class OrderDBManager {
     public static String _SpecialRequests;
     public static String _TotalCost;
     public static String _ReadyForPickup;
+    public static String _TimeStamp;
 
     //FLAG VARIABLES
     //static final int recPosition_LastName = 1;
@@ -84,7 +85,7 @@ public class OrderDBManager {
     public int addOrder(OrderInfo NewOrder){
         nameOfFile = nameOfFile + "\\orderDatabaseFile.txt";   //provides full path to file
         //piecing together the new line to be added to data file
-        String newRecord = NewOrder.getOrderID()+";"+NewOrder.getGuestID()+";"+NewOrder.getFirstName()+";"+NewOrder.getLastName()+";"+NewOrder.getRoomNumber()+";"+NewOrder.getOrderContents()+";"+NewOrder.getSpecialRequests()+";"+NewOrder.getTotalCost()+";"+NewOrder.getReadyForPickup();
+        String newRecord = NewOrder.getOrderID()+";"+NewOrder.getGuestID()+";"+NewOrder.getFirstName()+";"+NewOrder.getLastName()+";"+NewOrder.getRoomNumber()+";"+NewOrder.getOrderContents()+";"+NewOrder.getSpecialRequests()+";"+NewOrder.getTotalCost()+";"+NewOrder.getReadyForPickup()+";"+NewOrder.getTimeStamp();
 
         int nReturnValue;
         String strLine; //will hold one line of file at a time
@@ -121,6 +122,7 @@ public class OrderDBManager {
             _SpecialRequests = fields[5].trim();
             _TotalCost = fields[6].trim();
             _ReadyForPickup = fields[7].trim();
+            _TimeStamp = fields[8].trim();
            
             //comparing current entry at given iterator count to the new entry
             //only guestID and email need to be checked for duplicate records

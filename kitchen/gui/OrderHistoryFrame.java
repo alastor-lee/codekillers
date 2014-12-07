@@ -68,11 +68,11 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Guest Name", "Room Number", "Total Cost"
+                "Order ID", "Date", "Time", "Guest Name", "Room Number", "Total Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -175,7 +175,8 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
                 for (int i = 2; i < split.length; i++) {
                     if (i % 2 == 0) {
                         String[] subsplit = split[i].split(Pattern.quote(";"));
-                        String[] newArr = {subsplit[0], subsplit[2] + " " + subsplit[3], subsplit[4], subsplit[7]};
+                        String[] timeSplit = subsplit[9].split(" ");
+                        String[] newArr = {subsplit[0], timeSplit[0], timeSplit[1],subsplit[2] + " " + subsplit[3], subsplit[4], subsplit[7]};
                         model.addRow(newArr);
                     }
                 }

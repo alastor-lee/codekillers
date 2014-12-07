@@ -18,6 +18,7 @@ public class OrderInfo {
     String SpecialRequests;
     String TotalCost;
     String ReadyForPickup;
+    String TimeStamp;
     
     //setters
     public String setOrderID(){
@@ -54,6 +55,9 @@ public class OrderInfo {
     public void setReadyForPickup(String i){
         ReadyForPickup = i;
     }
+    public void setTimeStamp(String k){
+        TimeStamp = k;
+    }
     //getters
     public String getOrderID(){
         return OrderID;
@@ -83,9 +87,12 @@ public class OrderInfo {
     public String getReadyForPickup(){
         return ReadyForPickup;
     }
+    public String getTimeStamp(){
+        return TimeStamp;
+    }
     //toString
     public String toString(){
-        return OrderID + ";" + GuestID + ";" + FirstName + ";" + LastName + ";" + RoomNumber + ";" + OrderContents + ";" + SpecialRequests + ";" + TotalCost + ";" + ReadyForPickup; 
+        return OrderID + ";" + GuestID + ";" + FirstName + ";" + LastName + ";" + RoomNumber + ";" + OrderContents + ";" + SpecialRequests + ";" + TotalCost + ";" + ReadyForPickup + ";" + TimeStamp; 
     }
     
     public String arrayListToString(ArrayList<String> list) {

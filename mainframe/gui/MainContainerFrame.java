@@ -268,14 +268,14 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Guest Name", "Room Number"
+                "Order ID", "Date", "Time", "Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -291,10 +291,17 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 CurrentOrderTableFocusGained(evt);
             }
         });
+        CurrentOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CurrentOrderTableMouseClicked(evt);
+            }
+        });
+        CurrentOrderTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CurrentOrderTableKeyReleased(evt);
+            }
+        });
         jScrollPane4.setViewportView(CurrentOrderTable);
-        if (CurrentOrderTable.getColumnModel().getColumnCount() > 0) {
-            CurrentOrderTable.getColumnModel().getColumn(0).setPreferredWidth(30);
-        }
 
         ActiveOrderOutput.setColumns(20);
         ActiveOrderOutput.setRows(5);
@@ -889,6 +896,52 @@ public class MainContainerFrame extends javax.swing.JFrame {
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableFocusGained
 
+    private void CurrentOrderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CurrentOrderTableMouseClicked
+        String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
+
+        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+        
+        boolean rfp = false;
+
+        OrderSearch.setOrderID(query);
+
+        engine.OrderDBManager orderManager = new engine.OrderDBManager();
+        String nonSplit = orderManager.searchDB(OrderSearch); //return fields
+        String[] split = nonSplit.split(";");
+        String[] orderList = split[5].split(",");
+        String formattedOutput1 = "Order ID: "+split[0]+"\nGuest ID: "+split[1]+"\nGuest Name: "+split[2]+" "+split[3]+"\nRoom Number: "+split[4]+"\nSpecial Requests: "+split[6]+"\n\n";
+        String formattedOutput2 = "------------\n#   Item\n------------\n";
+        for (int i = 0; i < orderList.length; i++){
+            String[] subSplit = orderList[i].split(":");
+            formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+        }
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\nReady For Pickup: "+rfp;
+        ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
+    }//GEN-LAST:event_CurrentOrderTableMouseClicked
+
+    private void CurrentOrderTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CurrentOrderTableKeyReleased
+        String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
+
+        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+        
+        boolean rfp = false;
+
+        OrderSearch.setOrderID(query);
+
+        engine.OrderDBManager orderManager = new engine.OrderDBManager();
+        String nonSplit = orderManager.searchDB(OrderSearch); //return fields
+        String[] split = nonSplit.split(";");
+        String[] orderList = split[5].split(",");
+        String formattedOutput1 = "Order ID: "+split[0]+"\nGuest ID: "+split[1]+"\nGuest Name: "+split[2]+" "+split[3]+"\nRoom Number: "+split[4]+"\nSpecial Requests: "+split[6]+"\n\n";
+        String formattedOutput2 = "------------\n#   Item\n------------\n";
+        for (int i = 0; i < orderList.length; i++){
+            String[] subSplit = orderList[i].split(":");
+            formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+        }
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\nReady For Pickup: "+rfp;
+        ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
+    }//GEN-LAST:event_CurrentOrderTableKeyReleased
+
 
 
     //SEARCH/UPDATE TAB ACTIONS
@@ -957,7 +1010,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
             for (int i = 2; i < split.length; i++) {
                 if (i % 2 == 0) {
                     String[] subsplit = split[i].split(Pattern.quote(";"));
-                    String[] newArr = {subsplit[0], subsplit[2] + " " + subsplit[3], subsplit[4]};
+                    String[] timeSplit = subsplit[9].split(" ");
+                    String[] newArr = {subsplit[0], timeSplit[0],timeSplit[1],subsplit[2] + " " + subsplit[3]};
                     model.addRow(newArr);
                 }
             }

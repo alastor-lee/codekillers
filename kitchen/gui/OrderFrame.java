@@ -5,7 +5,10 @@
  */
 package kitchen.gui;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import mainframe.gui.MainContainerFrame;
 
@@ -425,6 +428,8 @@ public class OrderFrame extends javax.swing.JFrame {
         
         database.info.OrderInfo NewOrder = new database.info.OrderInfo();
         engine.OrderDBManager orderManager = new engine.OrderDBManager();
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm");
+        Date date = new Date();
         //getting and setting guest info into/from GuestInfo class
         NewOrder.setOrderID(); //TODO: generate order ID
         NewOrder.setGuestID(GuestIDField.getText());
@@ -435,6 +440,7 @@ public class OrderFrame extends javax.swing.JFrame {
         NewOrder.setSpecialRequests(SpecialRequestsField.getText());
         NewOrder.setTotalCost("24.99"); //TODO: add total cost
         NewOrder.setReadyForPickup("0");
+        NewOrder.setTimeStamp(dateFormat.format(date));
         orderManager.addOrder(NewOrder);
         System.out.println(NewOrder.toString());    //TEST
         this.dispose(); //Close the frame
