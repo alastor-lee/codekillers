@@ -43,6 +43,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
         cancelReservationButton = new javax.swing.JButton();
         GuestSearchButton = new javax.swing.JButton();
         LogOutButton = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        CurrentReservationTable = new javax.swing.JTable();
         floorLayoutTab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -132,6 +134,47 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
+        CurrentReservationTable.setAutoCreateRowSorter(true);
+        CurrentReservationTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Guest ID", "# Persons", "Guest Name", "Room Number", "Check In Date", "Check Out Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CurrentReservationTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CurrentReservationTableFocusGained(evt);
+            }
+        });
+        CurrentReservationTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CurrentReservationTableMouseClicked(evt);
+            }
+        });
+        CurrentReservationTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CurrentReservationTableKeyReleased(evt);
+            }
+        });
+        jScrollPane5.setViewportView(CurrentReservationTable);
+
         javax.swing.GroupLayout reserveTabLayout = new javax.swing.GroupLayout(reserveTab);
         reserveTab.setLayout(reserveTabLayout);
         reserveTabLayout.setHorizontalGroup(
@@ -139,27 +182,36 @@ public class MainContainerFrame extends javax.swing.JFrame {
             .addGroup(reserveTabLayout.createSequentialGroup()
                 .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(reserveTabLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(32, 32, 32)
                         .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                .addComponent(newReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(cancelReservationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(newReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))
                     .addGroup(reserveTabLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(LogOutButton)))
-                .addContainerGap(668, Short.MAX_VALUE))
+                        .addComponent(LogOutButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         reserveTabLayout.setVerticalGroup(
             reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reserveTabLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(newReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(cancelReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGroup(reserveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reserveTabLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(newReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(cancelReservationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(GuestSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE))
+                    .addGroup(reserveTabLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(LogOutButton)
                 .addContainerGap())
         );
@@ -378,7 +430,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             .addGroup(kitchenTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(kitchenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         kitchenTabLayout.setVerticalGroup(
             kitchenTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,7 +614,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(53, Short.MAX_VALUE))))
+                        .addContainerGap(77, Short.MAX_VALUE))))
         );
         checkoutTabLayout.setVerticalGroup(
             checkoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -631,7 +683,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         searchTab.setLayout(searchTabLayout);
         searchTabLayout.setHorizontalGroup(
             searchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         searchTabLayout.setVerticalGroup(
             searchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -969,6 +1021,18 @@ public class MainContainerFrame extends javax.swing.JFrame {
         ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableKeyReleased
 
+    private void CurrentReservationTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CurrentReservationTableFocusGained
+        reservationSearch(); //update reservation table
+    }//GEN-LAST:event_CurrentReservationTableFocusGained
+
+    private void CurrentReservationTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CurrentReservationTableMouseClicked
+        reservationSearch(); //update reservation table
+    }//GEN-LAST:event_CurrentReservationTableMouseClicked
+
+    private void CurrentReservationTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CurrentReservationTableKeyReleased
+        reservationSearch(); //update reservation table
+    }//GEN-LAST:event_CurrentReservationTableKeyReleased
+
 
 
     //SEARCH/UPDATE TAB ACTIONS
@@ -1046,6 +1110,54 @@ public class MainContainerFrame extends javax.swing.JFrame {
             //stuff
         }
     }
+    
+    public static void reservationSearch() {
+        //display all items
+        String query = "";
+        database.info.ReservationInfo ReservationSearch = new database.info.ReservationInfo();
+        database.info.GuestInfo GuestSearch = new database.info.GuestInfo();
+
+        try {
+            ReservationSearch.setGuestID(query);
+        } catch (NullPointerException e) {
+            //if no records exist, display nothing
+        }
+        engine.ReservationDBManager reservationManager = new engine.ReservationDBManager();
+        engine.GuestDBManager guestManager = new engine.GuestDBManager();
+        try {
+            /* need to add a print all records function to reservation db manager
+            ArrayList<String> reservationOutput = reservationManager.printAllRecords(ReservationSearch);
+            ArrayList<String> guestOutput = guestManager.printAllRecords(GuestSearch);
+            
+             String ReservationString = "";
+             for (String s : reservationOutput) {
+                ReservationString += s + "\t"; //make all records into 1 string
+             }
+            
+            String GuestString = "";
+            for (String s : guestOutput) {
+                GuestString += s + "\t"; //make all records into 1 string
+            }
+            
+            String[] ReservationSplit = ReservationString.split(Pattern.quote("\t")); //split into pieces
+            String[] GuestSplit = GuestString.split(Pattern.quote("\t")); //split into pieces
+
+            DefaultTableModel model = (DefaultTableModel) CurrentReservationTable.getModel();
+            model.setRowCount(0);
+            for (int i = 0; i <= split.length; i++) {
+               String[] GuestSubSplit = GuestSplit[i].split(Pattern.quote(";"));
+               String[] ReservationSubSplit = ReservationSplit[i].split(Pattern.quote(";"));
+            
+               //How to use newArr: first field should be GuestID, second field should be First Name + " " + Last Name
+               // third field should be number of persons,
+               //fourth field should be RoomNumber, fifth field should be Check In Date, sixth field should  be Check Out Date
+               String[] newArr = {GuestSubSplit[0],GuestSubSplit[1] + " " + GuestSubSplit[2],ReservationSubSplit[1],ReservationSubSplit[5],ReservationSubSplit[3],ReservationSubSplit[4]};
+               model.addRow(newArr);
+            }*/
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //error, probably with searches
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea ActiveOrderOutput;
@@ -1054,6 +1166,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JButton CheckoutGuestSearchButton;
     private static javax.swing.JTable CurrentOrderTable;
     private javax.swing.JLabel CurrentOrdersLabel1;
+    private static javax.swing.JTable CurrentReservationTable;
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
     private javax.swing.JLabel GuestInfoLabel;
@@ -1094,6 +1207,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPanel kitchenPanel;
     private javax.swing.JPanel kitchenTab;

@@ -116,6 +116,7 @@ public class LoginFrame extends javax.swing.JFrame {
             this.dispose();
             MainContainerFrame MainContainer = new MainContainerFrame();
             MainContainer.setLocationRelativeTo(null);
+            MainContainer.reservationSearch(); //auto display current reservations
             MainContainer.setVisible(true);
         } else {
             System.out.println("Invalid username or password.");
