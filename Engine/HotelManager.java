@@ -81,7 +81,19 @@ public class HotelManager {
             }
             //creation of Inventory Database
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(InventoryDB), "utf-8"))) {
-                writer.write("DB3 Inventory DB");
+                writer.write("DB3 Inventory DB\n"
+                        + "Chicken;30;9.99\n"
+                        + "Eggs;20;3.99\n"
+                        + "Burger;15;5.99\n"
+                        + "Soda;50;.99\n"
+                        + "Hot Dog;15;3.99\n"
+                        + "Steak;30;12.99\n"
+                        + "Wine;50;4.99\n"
+                        + "Donut;30;.99\n"
+                        + "Ice Cream;30;2.99\n"
+                        + "Beer;50;2.99\n"
+                        + "Popsicle;20;1.99\n"
+                        + "Candy;30;.99");
             } 
             catch (IOException ex){
                 System.out.println("Exception found: "+ex);
