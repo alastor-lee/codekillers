@@ -655,8 +655,10 @@ iCount =0;
 
 nRecCount = theRecords.size();
 
-for (it = theRecords.iterator(); it.hasNext(); ) {
-    it.next(); //skip first value
+it = theRecords.iterator(); 
+it.next();
+
+while (it.hasNext()) {
     if (iCount < nRecCount + 1) { //HAS ISSUES DELETING WHEN ONLY 2 ITEMS REMAIN
         try{
             if(it.hasNext()){
