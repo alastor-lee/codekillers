@@ -8,8 +8,10 @@ package mainframe.gui;
 import static engine.InputManager.isInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
+import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -57,8 +59,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
         orderPickupButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         CurrentOrderTable = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        CurrentOrderTable1 = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        ActiveOrderOutput = new javax.swing.JTextArea();
         checkoutTab = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         guestIDField = new javax.swing.JTextField();
@@ -94,6 +96,12 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        mainFrame.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mainFrameStateChanged(evt);
+            }
+        });
 
         newReservationButton.setText("New Reservation");
         newReservationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -266,30 +274,32 @@ public class MainContainerFrame extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(CurrentOrderTable);
-
-        CurrentOrderTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Order ID", "Guest Name", "Room Number"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane5.setViewportView(CurrentOrderTable1);
+        CurrentOrderTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CurrentOrderTableFocusGained(evt);
+            }
+        });
+        jScrollPane4.setViewportView(CurrentOrderTable);
+        if (CurrentOrderTable.getColumnModel().getColumnCount() > 0) {
+            CurrentOrderTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+        }
+
+        ActiveOrderOutput.setColumns(20);
+        ActiveOrderOutput.setRows(5);
+        ActiveOrderOutput.setFocusable(false);
+        jScrollPane6.setViewportView(ActiveOrderOutput);
 
         javax.swing.GroupLayout kitchenPanelLayout = new javax.swing.GroupLayout(kitchenPanel);
         kitchenPanel.setLayout(kitchenPanelLayout);
@@ -298,13 +308,16 @@ public class MainContainerFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
                 .addGap(359, 359, 359)
                 .addComponent(CurrentOrdersLabel1)
-                .addGap(175, 175, 175)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(activeOrdersLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kitchenPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
+                        .addComponent(orderPickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
                         .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(OrderHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,11 +330,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kitchenPanelLayout.createSequentialGroup()
-                        .addGap(587, 587, 587)
-                        .addComponent(orderPickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         kitchenPanelLayout.setVerticalGroup(
             kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,9 +342,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
                     .addComponent(activeOrdersLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4)
                     .addGroup(kitchenPanelLayout.createSequentialGroup()
                         .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -348,7 +356,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(ViewInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EditInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(EditInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(orderPickupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(70, 70, 70))
@@ -361,7 +370,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
             .addGroup(kitchenTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(kitchenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         kitchenTabLayout.setVerticalGroup(
             kitchenTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,6 +649,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private void GuestSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestSearchButtonActionPerformed
         reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setLocationRelativeTo(null); //Center the frame
+        SearchFrame.getRootPane().setDefaultButton(SearchFrame.SearchButton);
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_GuestSearchButtonActionPerformed
 
@@ -802,6 +812,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
         //here the button calls on the search frame from the reservation.gui package, same functionality needed
         reservation.gui.SearchGuestFrame SearchFrame = new reservation.gui.SearchGuestFrame(); //Create a new instance of the frame
         SearchFrame.setLocationRelativeTo(null); //Center the frame
+        SearchFrame.getRootPane().setDefaultButton(SearchFrame.SearchButton);
         SearchFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_CheckoutGuestSearchButtonActionPerformed
 
@@ -846,6 +857,37 @@ public class MainContainerFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cashButtonActionPerformed
 
+    private void mainFrameStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainFrameStateChanged
+        JTabbedPane TabFrame = (JTabbedPane) evt.getSource();
+        int index = TabFrame.getSelectedIndex();
+        if (index == 2){
+            orderSearch();
+        }
+    }//GEN-LAST:event_mainFrameStateChanged
+
+    private void CurrentOrderTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CurrentOrderTableFocusGained
+        String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
+
+        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+        
+        boolean rfp = false;
+
+        OrderSearch.setOrderID(query);
+
+        engine.OrderDBManager orderManager = new engine.OrderDBManager();
+        String nonSplit = orderManager.searchDB(OrderSearch); //return fields
+        String[] split = nonSplit.split(";");
+        String[] orderList = split[5].split(",");
+        String formattedOutput1 = "Order ID: "+split[0]+"\nGuest ID: "+split[1]+"\nGuest Name: "+split[2]+" "+split[3]+"\nRoom Number: "+split[4]+"\nSpecial Requests: "+split[6]+"\n\n";
+        String formattedOutput2 = "------------\n#   Item\n------------\n";
+        for (int i = 0; i < orderList.length; i++){
+            String[] subSplit = orderList[i].split(":");
+            formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+        }
+        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\nReady For Pickup: "+rfp;
+        ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
+    }//GEN-LAST:event_CurrentOrderTableFocusGained
+
 
 
     //SEARCH/UPDATE TAB ACTIONS
@@ -888,13 +930,47 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static void orderSearch() {
+        //display all items
+        String query = "";
+        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+
+        try {
+            OrderSearch.setFirstName(query);
+        } catch (NullPointerException e) {
+            //stuff
+        }
+        engine.OrderDBManager manager = new engine.OrderDBManager();
+        try {
+            ArrayList<String> output = manager.printAllRecords(OrderSearch);
+
+            String listString = "";
+            for (String s : output) {
+                listString += s + "\t";
+            }
+            String[] split = listString.split(Pattern.quote("\t")); //split into pieces
+
+            DefaultTableModel model = (DefaultTableModel) CurrentOrderTable.getModel();
+            model.setRowCount(0);
+            for (int i = 2; i < split.length; i++) {
+                if (i % 2 == 0) {
+                    String[] subsplit = split[i].split(Pattern.quote(";"));
+                    String[] newArr = {subsplit[0], subsplit[2] + " " + subsplit[3], subsplit[4]};
+                    model.addRow(newArr);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //stuff
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea ActiveOrderOutput;
     private javax.swing.JLabel BillLabel;
     private javax.swing.JButton CheckOutButton;
     private javax.swing.JButton CheckoutGuestSearchButton;
-    private javax.swing.JTable CurrentOrderTable;
-    private javax.swing.JTable CurrentOrderTable1;
+    private static javax.swing.JTable CurrentOrderTable;
     private javax.swing.JLabel CurrentOrdersLabel1;
     private javax.swing.JButton EditInventoryButton;
     private javax.swing.JButton EditOrderButton;
@@ -936,7 +1012,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPanel kitchenPanel;
     private javax.swing.JPanel kitchenTab;
     private javax.swing.JTabbedPane mainFrame;
