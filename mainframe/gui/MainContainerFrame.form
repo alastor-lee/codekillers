@@ -339,7 +339,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="CurrentOrdersLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="activeOrdersLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>

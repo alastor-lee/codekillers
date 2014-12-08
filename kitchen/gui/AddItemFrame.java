@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kitchen.gui;
 
 import static engine.InputManager.isPositiveInteger;
@@ -45,12 +40,6 @@ public class AddItemFrame extends javax.swing.JFrame {
         ItemQuantityLabel.setText("Quantity:");
 
         ItemPriceLabel.setText("Price:");
-
-        ItemNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ItemNameFieldActionPerformed(evt);
-            }
-        });
 
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,10 +144,6 @@ public class AddItemFrame extends javax.swing.JFrame {
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         this.dispose(); //Close the frame
     }//GEN-LAST:event_CancelButtonActionPerformed
-
-    private void ItemNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItemNameFieldActionPerformed
 
     /**
      * @param args the command line arguments
