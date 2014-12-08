@@ -126,7 +126,7 @@ public class MainContainerFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Guest ID", "# Persons", "Guest Name", "Room Number", "Check In Date", "Check Out Date"
+                "Guest ID", "# Persons", "Guest Name", "Room Number", "Check Out Date", "Check In Date"
             }
         ) {
             Class[] types = new Class [] {
@@ -144,14 +144,14 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        CurrentReservationTable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                CurrentReservationTableFocusGained(evt);
-            }
-        });
         CurrentReservationTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CurrentReservationTableMouseClicked(evt);
+            }
+        });
+        CurrentReservationTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CurrentReservationTableFocusGained(evt);
             }
         });
         CurrentReservationTable.addKeyListener(new java.awt.event.KeyAdapter() {

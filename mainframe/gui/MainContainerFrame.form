@@ -144,8 +144,8 @@
                         <Column editable="false" title="# Persons" type="java.lang.String"/>
                         <Column editable="false" title="Guest Name" type="java.lang.String"/>
                         <Column editable="false" title="Room Number" type="java.lang.String"/>
-                        <Column editable="false" title="Check In Date" type="java.lang.String"/>
-                        <Column editable="true" title="Check Out Date" type="java.lang.String"/>
+                        <Column editable="false" title="Check Out Date" type="java.lang.String"/>
+                        <Column editable="true" title="Check In Date" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -187,8 +187,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CurrentReservationTableFocusGained"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CurrentReservationTableMouseClicked"/>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CurrentReservationTableFocusGained"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CurrentReservationTableKeyReleased"/>
                   </Events>
                   <AuxValues>

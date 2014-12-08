@@ -7,17 +7,6 @@ package engine;
 import database.info.*;
 import java.io.*;
 import java.util.*;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.lang.reflect.*;
 
 //start of class
 public class UserDBManager {
