@@ -7,7 +7,7 @@ import mainframe.gui.LoginFrame;
 import java.util.*;
 
 public class InputManager {
-    
+    int flag; //multipurpose flag var
     //ADDRESS ERRROR CHECKING
     //returns 2 for error, 0 otherwise
     public int checkAddress(String a) {
@@ -213,8 +213,10 @@ public class InputManager {
         //or at least one day after any check out date
         oldDateIN.add(Calendar.DAY_OF_MONTH, -1);   //need check against 2 days before
         if(currDate.before(oldDateIN)){
+            flag = 1;  //for verifyCheckOut
             return 0;
         } else if(currDate.after(oldDateOUT)){
+            flag = 2;   //for verifyCheckOut
             return 0;
         }
         return 5;
@@ -224,14 +226,18 @@ public class InputManager {
         //check out date must be at least one day before any other check in date
         //and at least two days after any other check out date
         //System.out.println("orig checkout: "+oldDateOUT.toString());
-        oldDateOUT.add(Calendar.DAY_OF_MONTH, 1);   //need to check for 2 days after
-        //System.out.println("plus one checkout: "+oldDateOUT.toString());
-        if(currDate.before(oldDateIN)){
+        if(flag==1){    //new check in time is before old check in
+            if(currDate.before(oldDateIN)){
             //System.out.println("check out issue with check in(out)");
             return 0;
-        } else if(currDate.after(oldDateOUT)){
-            //System.out.println("check out issue with check out(out)");
-            return 0;
+            }
+        } else { //new check in is after old check out
+            oldDateOUT.add(Calendar.DAY_OF_MONTH, 1);   //need to check for 2 days after
+            //System.out.println("plus one checkout: "+oldDateOUT.toString());
+             if(currDate.after(oldDateOUT)){
+                //System.out.println("check out issue with check out(out)");
+                return 0;
+            }
         }
         return 6;
     }
