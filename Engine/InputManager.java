@@ -123,40 +123,34 @@ public class InputManager {
             switch(type) {
             //0 - Two Double Beds, 1 - One King Bed, 2 - Suite
             case 0: System.out.println("case 0 type");
-                    if(RoomNum > 110||RoomNum > 210||RoomNum > 310){
-                        System.out.println("Need two double bed");
+                    if((RoomNum>110&&RoomNum<=120)||(RoomNum>210&&RoomNum<=220)||(RoomNum>310&&RoomNum<=320)){
                         break;
-                    } else return 7;
+                    } else System.out.println("Need two double bed"); return 7;
             case 1: System.out.println("case 1 type");
-                    if(!((RoomNum >= 103 && RoomNum <= 110)||(RoomNum >= 203 && RoomNum <= 210)||(RoomNum <= 303 && RoomNum <= 310))){
-                        System.out.println("Need one king bed");
-                        return 7;
-                    } else break;
+                    if((RoomNum>=103&&RoomNum<=110)||(RoomNum>203&&RoomNum<=210)||(RoomNum>303&&RoomNum<=310)){
+                        break;
+                    } else System.out.println("Need one king bed"); return 7;
             case 2: System.out.println("case 2 type");
-                    if(!(RoomNum <= 102||RoomNum <= 202||RoomNum <= 302)){
-                        System.out.println("Need suite");
-                        return 7;
-                    } else break;
+                    if((RoomNum>=100&&RoomNum<=102)||(RoomNum>=200&&RoomNum<=202)||(RoomNum>300&&RoomNum<=302)){
+                        break;
+                    } else System.out.println("Need suite"); return 7;
             default: System.out.println("Something is very wrong");
             }
             //checking for special preference rule following
             switch(prefs) {
             //0 - Beach View, 1 - Land View, 2 - Near Smoking Area
             case 0: System.out.println("case 0 prefs");
-                    if(!(RoomNum <= 105||RoomNum <= 205||RoomNum <= 305)){
-                        System.out.println("Need beach view");
-                        return 7;
-                    } else break;
+                    if((RoomNum>=100&&RoomNum<=105)||(RoomNum>=200&&RoomNum<=205)||(RoomNum>300&&RoomNum<=305)){
+                        break;
+                    } else System.out.println("Need beach view"); return 7;
             case 1: System.out.println("case 1 prefs");
-                    if(!(RoomNum > 105||RoomNum > 205||RoomNum > 305)){
-                        System.out.println("Need land view");
-                        return 7;
-                    } else break;
+                    if((RoomNum>=106&&RoomNum<=120)||(RoomNum>=206&&RoomNum<=220)||(RoomNum>306&&RoomNum<=320)){
+                        break;
+                    } else System.out.println("Need land view"); return 7;
             case 2: System.out.println("case 2 prefs");
-                    if(!(RoomNum <= 110||RoomNum <= 210||RoomNum <= 310)){
-                        System.out.println("Need smoking area");
-                        return 7;
-                    } else break;
+                    if((RoomNum>=100&&RoomNum<=110)||(RoomNum>=200&&RoomNum<=210)||(RoomNum>300&&RoomNum<=310)){
+                        break;
+                    } else System.out.println("Need smoking area"); return 7;
             default: System.out.println("Something is very wrong");
             }
             return 0;
