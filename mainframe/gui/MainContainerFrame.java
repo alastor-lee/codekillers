@@ -1,5 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mainframe.gui;
 
+import static engine.InputManager.isInteger;
+import engine.OrderDBManager;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -356,9 +363,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
             kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CurrentOrdersLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(activeOrdersLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CurrentOrdersLabel1)
+                    .addComponent(activeOrdersLabel))
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kitchenPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
