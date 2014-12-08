@@ -322,8 +322,8 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="CheckInSpinner">
           <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" maximum="now" minimum="now" stepSize="5" type="date"/>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_WEEK)" type="code"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
@@ -331,7 +331,7 @@
         <Component class="javax.swing.JSpinner" name="CheckOutSpinner">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="now" stepSize="5" type="date"/>
+              <SpinnerModel initial="now" minimum="now" stepSize="5" type="date"/>
             </Property>
           </Properties>
         </Component>

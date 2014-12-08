@@ -18,6 +18,7 @@ public class ReservationInfo {
     String SpecialPref;
     String Comments;
     String pathToGuestDB = new File("").getAbsolutePath()+"\\database_files\\guestDatabaseFile.txt";
+    String pathToReservDB = new File("").getAbsolutePath()+"\\database_files\\reservationDatabaseFile.txt";
     boolean test;
     engine.InputManager verify = new engine.InputManager();
     //setters
@@ -51,13 +52,95 @@ public class ReservationInfo {
     //inputManager handles time clashes within preexisting reservations
     public int setCheckIn(String timeIn){
         CheckIn = timeIn;
-        //TODO: handle
-        return 0;
+        //Format: WEEKDAY, MONTH, DAY, TIME, ZONE, YEAR
+        String[] dateFields;
+        String year, month, day;
+        int yearInt, monthInt, dayInt;
+        dateFields = CheckIn.split(" "); //need fields 1, 2 and 5
+        year = dateFields[5];
+        month = dateFields[1];
+        day = dateFields[2];
+        //getting integer month from String version
+        System.out.println("year: "+year+" month: "+month+" day: "+day); //TEST
+        switch(month){
+            case "Dec": monthInt = 12;
+                break;
+            case "Nov": monthInt = 11;
+                break;
+            case "Oct": monthInt = 10;
+                break;
+            case "Sep": monthInt = 9;
+                break;
+            case "Aug": monthInt = 8;
+                break;
+            case "Jul": monthInt = 7;
+                break;
+            case "Jun": monthInt = 6;
+                break;
+            case "May": monthInt = 5;
+                break;
+            case "Apr": monthInt = 4;
+                break;
+            case "Mar": monthInt = 3;
+                break;
+            case "Feb": monthInt = 2;
+                break;
+            case "Jan": monthInt = 1;
+                break;
+            default: System.out.println("Invalid Month"); 
+                return 5;
+        }
+        yearInt = Integer.parseInt(year);
+        dayInt = Integer.parseInt(day);
+        CheckIn = Integer.toString(yearInt)+" "+Integer.toString(monthInt)+" "+Integer.toString(dayInt);
+        System.out.println(CheckIn);    //TEST
+        return verify.verifyCheckInDate(yearInt, monthInt, dayInt, pathToReservDB, RoomNum);
     }
     //inputManager handles time clashes within preexisting reservations
     public int setCheckOut(String timeOut){
+        //Format: WEEKDAY, MONTH, DAY, TIME, ZONE, YEAR
         CheckOut = timeOut;
-        //TODO: handle
+        String[] dateFields;
+        String year, month, day;
+        int yearInt, monthInt, dayInt;
+        dateFields = CheckOut.split(" "); //need fields 1, 2 and 5
+        year = dateFields[5];
+        month = dateFields[1];
+        day = dateFields[2];
+        //getting integer month from String version
+        System.out.println("year: "+year+" month: "+month+" day: "+day); //TEST
+        switch(month){
+            case "Dec": monthInt = 12;
+                break;
+            case "Nov": monthInt = 11;
+                break;
+            case "Oct": monthInt = 10;
+                break;
+            case "Sep": monthInt = 9;
+                break;
+            case "Aug": monthInt = 8;
+                break;
+            case "Jul": monthInt = 7;
+                break;
+            case "Jun": monthInt = 6;
+                break;
+            case "May": monthInt = 5;
+                break;
+            case "Apr": monthInt = 4;
+                break;
+            case "Mar": monthInt = 3;
+                break;
+            case "Feb": monthInt = 2;
+                break;
+            case "Jan": monthInt = 1;
+                break;
+            default: System.out.println("Invalid Month"); 
+                return 5;
+        }
+        yearInt = Integer.parseInt(year);
+        dayInt = Integer.parseInt(day);
+        CheckOut = Integer.toString(yearInt)+" "+Integer.toString(monthInt)+" "+Integer.toString(dayInt);
+        System.out.println(CheckOut);    //TEST
         return 0;
     }
     

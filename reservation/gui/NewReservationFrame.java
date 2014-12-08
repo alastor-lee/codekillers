@@ -151,10 +151,10 @@ public class NewReservationFrame extends javax.swing.JFrame {
             }
         });
 
-        CheckInSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+        CheckInSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_WEEK));
         CheckInSpinner.setToolTipText("");
 
-        CheckOutSpinner.setModel(new javax.swing.SpinnerDateModel());
+        CheckOutSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
 
         SpecialPrefComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Beach View", "Land View", "Near Smoking Areas" }));
 
@@ -315,15 +315,17 @@ public class NewReservationFrame extends javax.swing.JFrame {
         //setGuestID error returns 2
         if(check==0){   //setNumOfPersons error returns 3
             check = newReserv.setNumOfPersons(NumPersonsField.getText());
-        }       
-        if(check==0){   //setCheckIn error returns 5
-            check = newReserv.setCheckIn(CheckInSpinner.getValue().toString());
-        }            
-        if(check==0){   //setCheckOut error returns 6
-            check = newReserv.setCheckOut(CheckOutSpinner.getValue().toString());
         }
         if(check==0){   //setRoomNum error returns 7
             check = newReserv.setRoomNum(RoomNumberField.getText());
+        }
+        if(check==0){   //setCheckIn error returns 5
+            System.out.println("Date for check in: "+CheckInSpinner.getValue());
+            check = newReserv.setCheckIn(CheckInSpinner.getValue().toString());
+        }            
+        if(check==0){   //setCheckOut error returns 6
+            System.out.println("Date for check out: "+CheckOutSpinner.getValue());
+            check = newReserv.setCheckOut(CheckOutSpinner.getValue().toString());
         }
         if(check==0){   //success returns 1, error returns 13
             //engine.ReservationDBManager reservationAdd = new engine.ReservationDBManager();

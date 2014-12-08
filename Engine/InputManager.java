@@ -156,4 +156,54 @@ public class InputManager {
             return 0;
         } else return 7; //RoomNum is not within valid boundaries
     }
+    
+    //check in validation
+    public int verifyCheckInDate(int yearInt, int monthInt, int dayInt, String fileName, String RoomNum){
+        //Date Format: WEEKDAY, MONTH, DAY, TIME, ZONE, YEAR
+        //the check in date must come at least one calendar day after
+        //all check out dates for a given room.
+        Calendar newDate = Calendar.getInstance();
+        Calendar oldDate = Calendar.getInstance();
+        String[] allFields, oldDateFields;
+        String oldRoomNum;
+        int oldYearInt, oldMonthInt, oldDayInt;
+        //calendar will now hold the desired reservation date check in information
+        newDate.set(yearInt, monthInt, dayInt);
+        System.out.println("year int: "+yearInt+" month int: "+monthInt+" day int: "+dayInt); //TEST
+        
+        //must open resevation DB and compare check out times to this check in time
+        ArrayList reservDB = new ArrayList();
+        reservDB = DatabaseReader.DBreadFile(fileName);  //reading from DB
+        Iterator itr = reservDB.iterator();
+        itr.next(); //skips first line, which is the name of file
+        while(itr.hasNext()){
+            allFields = itr.next().toString().split(";");   //pulling line from file
+            oldRoomNum = allFields[5];  //index 5 holds room number
+            if(RoomNum.equals(oldRoomNum)){ //this is key, room numbers must be the same
+                System.out.println("room number match");
+                //index 4 holds check OUT value
+                oldDateFields = allFields[4].split(" ");
+                System.out.println(oldDateFields[0]);   //TEST
+                oldYearInt = Integer.parseInt(oldDateFields[0]);
+                oldMonthInt = Integer.parseInt(oldDateFields[1]);
+                oldDayInt = Integer.parseInt(oldDateFields[2]);
+                oldDate.set(oldYearInt, oldMonthInt, oldDayInt);
+                //check in must be at least 2 days before in other check in
+                //or at least one day after any check out date
+                if(newDate.before(oldDate)){
+                    System.out.println("check in date is too early");
+                    return 5;
+                }
+            }
+        }
+        
+        //5 is error message
+        return 0;
+    }
+    //check out validation
+    public int verifyCheckOutDate(int yearInt, int monthInt, int dayInt, String fileName, String RoomNum){
+        //check out date must be at least one day before any other check in date
+        //and at least two days after any other check out date
+        return 0;
+    }
 }
