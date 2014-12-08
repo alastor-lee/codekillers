@@ -25,8 +25,6 @@ public class ViewMenuFrame extends javax.swing.JFrame {
         MenuImage = new javax.swing.JLabel();
         CloseButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         MenuImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainframe/resources/menu.jpg"))); // NOI18N
 
         CloseButton.setText("Close");

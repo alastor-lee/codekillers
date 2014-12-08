@@ -65,10 +65,7 @@
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="GuestSearchButton" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cancelReservationButton" max="32767" attributes="0"/>
-                                      <Component id="newReservationButton" min="-2" pref="188" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="newReservationButton" min="-2" pref="188" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="jScrollPane5" pref="672" max="32767" attributes="0"/>
@@ -90,15 +87,13 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="newReservationButton" min="-2" pref="61" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="cancelReservationButton" min="-2" pref="61" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="GuestSearchButton" min="-2" pref="61" max="-2" attributes="0"/>
-                              <EmptySpace pref="195" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane5" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" pref="510" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -115,14 +110,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newReservationButtonActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="cancelReservationButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cancel Reservation"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelReservationButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="GuestSearchButton">
@@ -339,7 +326,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="CurrentOrdersLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="activeOrdersLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
