@@ -190,6 +190,9 @@ public class ReservationInfo {
         Comments = coms;
         return 0;
     }
+    public String getGuestID(){
+        return GuestID;
+    }
     //for use by databaseManager class primarily
     public String toString(){
         return GuestID+";"+NumOfPersons+";"+TypeOfRoom+";"+CheckIn+";"+CheckOut+";"+RoomNum+";"+SpecialPref+";"+Comments;
