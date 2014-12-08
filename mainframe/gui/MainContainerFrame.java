@@ -8,6 +8,7 @@ package mainframe.gui;
 import static engine.InputManager.isInteger;
 import engine.OrderDBManager;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,12 +55,9 @@ public class MainContainerFrame extends javax.swing.JFrame {
         activeOrdersLabel = new javax.swing.JLabel();
         NewOrderButton = new javax.swing.JButton();
         OrderHistoryButton = new javax.swing.JButton();
-        EditOrderButton = new javax.swing.JButton();
-        RemoveOrderButton = new javax.swing.JButton();
         ViewMenuButton = new javax.swing.JButton();
         ViewInventoryButton = new javax.swing.JButton();
         EditInventoryButton = new javax.swing.JButton();
-        orderPickupButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         CurrentOrderTable = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -273,20 +271,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
             }
         });
 
-        EditOrderButton.setText("Edit Order");
-        EditOrderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditOrderButtonActionPerformed(evt);
-            }
-        });
-
-        RemoveOrderButton.setText("Remove Order");
-        RemoveOrderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveOrderButtonActionPerformed(evt);
-            }
-        });
-
         ViewMenuButton.setText("View Menu");
         ViewMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,13 +289,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         EditInventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditInventoryButtonActionPerformed(evt);
-            }
-        });
-
-        orderPickupButton.setText("Ready For Pickup");
-        orderPickupButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderPickupButtonActionPerformed(evt);
             }
         });
 
@@ -365,32 +342,25 @@ public class MainContainerFrame extends javax.swing.JFrame {
         kitchenPanel.setLayout(kitchenPanelLayout);
         kitchenPanelLayout.setHorizontalGroup(
             kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
-                .addGap(359, 359, 359)
-                .addComponent(CurrentOrdersLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(activeOrdersLabel)
-                .addGap(73, 73, 73))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(kitchenPanelLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
-                        .addComponent(orderPickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
+                        .addComponent(CurrentOrdersLabel1)
+                        .addGap(221, 221, 221)
+                        .addComponent(activeOrdersLabel)
+                        .addGap(96, 96, 96))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kitchenPanelLayout.createSequentialGroup()
                         .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EditInventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(OrderHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(EditOrderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(RemoveOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ViewMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(EditInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ViewMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ViewInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         kitchenPanelLayout.setVerticalGroup(
@@ -400,27 +370,24 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CurrentOrdersLabel1)
                     .addComponent(activeOrdersLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4)
+                .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kitchenPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(kitchenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane6)))
+                    .addGroup(kitchenPanelLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addComponent(NewOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(OrderHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(EditOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RemoveOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(ViewMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(ViewInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EditInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(orderPickupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(70, 70, 70))
+                        .addGap(18, 18, 18)
+                        .addComponent(EditInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout kitchenTabLayout = new javax.swing.GroupLayout(kitchenTab);
@@ -429,8 +396,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
             kitchenTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kitchenTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kitchenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addComponent(kitchenPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         kitchenTabLayout.setVerticalGroup(
             kitchenTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -779,22 +746,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         ViewMenu.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_ViewMenuButtonActionPerformed
 
-    private void RemoveOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveOrderButtonActionPerformed
-        //DOESN'T WORK
-        //String toBeDeleted = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
-        //System.out.println("toBeDeleted: "+toBeDeleted);
-        //database.info.OrderInfo orderInfo = new database.info.OrderInfo();
-        //engine.OrderDBManager orderManager = new engine.OrderDBManager();
-        //orderManager.DBremoveRecord(toBeDeleted);
-    }//GEN-LAST:event_RemoveOrderButtonActionPerformed
-
-    private void EditOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditOrderButtonActionPerformed
-        kitchen.gui.OrderFrame OrderFrame = new kitchen.gui.OrderFrame(); //Create a new instance of the frame
-        OrderFrame.setLocationRelativeTo(null); //Center the frame
-        OrderFrame.setVisible(true); //Make the frame visible
-        // Not exactly sure how this is going to work.
-    }//GEN-LAST:event_EditOrderButtonActionPerformed
-
     private void OrderHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryButtonActionPerformed
         kitchen.gui.OrderHistoryFrame OrderHistoryFrame = new kitchen.gui.OrderHistoryFrame(); //Create a new instance of the frame
         OrderHistoryFrame.setLocationRelativeTo(null); //Center the frame
@@ -808,10 +759,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
         OrderFrame.setLocationRelativeTo(null); //Center the frame
         OrderFrame.setVisible(true); //Make the frame visible
     }//GEN-LAST:event_NewOrderButtonActionPerformed
-
-    private void orderPickupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPickupButtonActionPerformed
-        //edit order rfp to true
-    }//GEN-LAST:event_orderPickupButtonActionPerformed
 
 
 
@@ -903,7 +850,12 @@ public class MainContainerFrame extends javax.swing.JFrame {
                 String nonSplit = manager.searchDB(GuestSearch); //return field corresponding to guest ID
                 String[] split = nonSplit.split(Pattern.quote(";")); //split into pieces
                 checkoutInfoOutput.setText("Guest ID: " + split[0] + "\nFirst Name: " + split[1] + "\nLast Name: " + split[2] + "\nAddress: " + split[3] + "\nPhone Number: " + split[4] + "\nEmail Address: " + split[5]);
-
+                
+                try {
+                    totalAmountDueField.setText(split[6]);
+                } catch (Exception e){
+                    totalAmountDueField.setText("149.99");
+                }
                 //ALSO PRINT BILLING INFORMATION TO checkoutBillOutput
                 //totalAmountDueField.setText(split[6]);
             } catch (IndexOutOfBoundsException e) {
@@ -925,8 +877,8 @@ public class MainContainerFrame extends javax.swing.JFrame {
             checkoutOutputField.setText("Error: Please enter the amount paid in cash by the guest.");
         } else {
             try {
-                changeDueField.setText(Double.toString(Double.parseDouble(amountPaidField.getText()) - Double.parseDouble(totalAmountDueField.getText())));
-                checkoutOutputField.setText("Cash payment authorized: Please put cash in the register.");
+                changeDueField.setText(new DecimalFormat("#.##").format(Double.parseDouble(amountPaidField.getText()) - Double.parseDouble(totalAmountDueField.getText())));
+                checkoutOutputField.setText("Cash payment authorized: Please\n put cash in the register.");
             } catch (NumberFormatException e) {
                 checkoutOutputField.setText("Error: Total amount due field is blank.");
             }
@@ -942,29 +894,33 @@ public class MainContainerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainFrameStateChanged
 
     private void CurrentOrderTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CurrentOrderTableFocusGained
-        String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
+        try {
+            String query = CurrentOrderTable.getValueAt(CurrentOrderTable.getSelectedRow(), 0).toString();
 
-        database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
+            database.info.OrderInfo OrderSearch = new database.info.OrderInfo();
 
-        OrderSearch.setOrderID(query);
-        boolean rfp = false;
-        engine.OrderDBManager orderManager = new engine.OrderDBManager();
-        String nonSplit = orderManager.searchDB(OrderSearch); //return fields
-        String[] split = nonSplit.split(";");
-        String[] orderList = split[5].split(",");
-        String formattedOutput1 = "Order ID: "+split[0]+"\nGuest ID: "+split[1]+"\nGuest Name: "+split[2]+" "+split[3]+"\nRoom Number: "+split[4]+"\nSpecial Requests: "+split[6]+"\n\n";
-        String formattedOutput2 = "------------\n#   Item\n------------\n";
-        for (int i = 0; i < orderList.length; i++){
-            String[] subSplit = orderList[i].split(":");
-            formattedOutput2 += (subSplit[1]+"    "+subSplit[0]+"\n");
+            OrderSearch.setOrderID(query);
+            boolean rfp = false;
+            engine.OrderDBManager orderManager = new engine.OrderDBManager();
+            String nonSplit = orderManager.searchDB(OrderSearch); //return fields
+            String[] split = nonSplit.split(";");
+            String[] orderList = split[5].split(",");
+            String formattedOutput1 = "Order ID: " + split[0] + "\nGuest ID: " + split[1] + "\nGuest Name: " + split[2] + " " + split[3] + "\nRoom Number: " + split[4] + "\nSpecial Requests: " + split[6] + "\n\n";
+            String formattedOutput2 = "------------\n#   Item\n------------\n";
+            for (int i = 0; i < orderList.length; i++) {
+                String[] subSplit = orderList[i].split(":");
+                formattedOutput2 += (subSplit[1] + "    " + subSplit[0] + "\n");
+            }
+            if (split[8].equals("0")) {
+                rfp = false;
+            } else {
+                rfp = true;
+            }
+            String formattedOutput3 = "\nTotal Cost: " + split[7] + "\n\nReady For Pickup: " + rfp;
+            ActiveOrderOutput.setText(formattedOutput1 + formattedOutput2 + formattedOutput3);
+        } catch (Exception e) {
+
         }
-        if(split[8].equals("0")){
-            rfp = false;
-        } else {
-            rfp = true;
-        }
-        String formattedOutput3 = "\nTotal Cost: "+split[7]+"\n\nReady For Pickup: "+rfp;
-        ActiveOrderOutput.setText(formattedOutput1+formattedOutput2+formattedOutput3);
     }//GEN-LAST:event_CurrentOrderTableFocusGained
 
     private void CurrentOrderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CurrentOrderTableMouseClicked
@@ -1168,14 +1124,12 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel CurrentOrdersLabel1;
     private static javax.swing.JTable CurrentReservationTable;
     private javax.swing.JButton EditInventoryButton;
-    private javax.swing.JButton EditOrderButton;
     private javax.swing.JLabel GuestInfoLabel;
     private javax.swing.JButton GuestSearchButton;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JButton NewOrderButton;
     private javax.swing.JButton OrderHistoryButton;
     private javax.swing.JButton ProcessPaymentButton;
-    private javax.swing.JButton RemoveOrderButton;
     private javax.swing.JButton ViewInventoryButton;
     private javax.swing.JButton ViewMenuButton;
     private javax.swing.JLabel activeOrdersLabel;
@@ -1213,7 +1167,6 @@ public class MainContainerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel kitchenTab;
     private javax.swing.JTabbedPane mainFrame;
     private javax.swing.JButton newReservationButton;
-    private javax.swing.JButton orderPickupButton;
     private javax.swing.JLabel paymentInfoLabel;
     private javax.swing.JPanel reserveTab;
     private javax.swing.JPanel searchTab;
