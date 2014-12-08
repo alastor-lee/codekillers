@@ -44,7 +44,6 @@ public class ReservationDBManager {
     //GuestInfo class is passed in to obtain necessary new guest info
     public int addReservation(ReservationInfo NewReservation){
         nameOfFile = nameOfFile + "\\reservationDatabaseFile.txt";   //provides full path to file
-        //System.out.println("File path is:" + nameOfFile);  //TEST
         int nReturnValue;
         //piecing together the new line to be added to data file
         String newRecord = NewReservation.toString();
