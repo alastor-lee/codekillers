@@ -17,7 +17,7 @@ public class DatabaseReader {
     //is returned out.
     //THIS METHOD IS NEEDED FOR EVERY DATABASE MANAGER CLASS
     public static ArrayList DBreadFile(String reservationFile){
-        System.out.println(reservationFile);
+        System.out.println("file being accessed by reader: "+reservationFile);
         ArrayList records = new ArrayList();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(reservationFile));

@@ -328,8 +328,8 @@ public class NewReservationFrame extends javax.swing.JFrame {
             check = newReserv.setCheckOut(CheckOutSpinner.getValue().toString());
         }
         if(check==0){   //success returns 1, error returns 13
-            //engine.ReservationDBManager reservationAdd = new engine.ReservationDBManager();
-            //check = reservationAdd.addReservation(newReserv); 
+            engine.ReservationDBManager reservationAdd = new engine.ReservationDBManager();
+            check = reservationAdd.addReservation(newReserv); 
         }
         System.out.println(newReserv.toString());
             switch(check) {

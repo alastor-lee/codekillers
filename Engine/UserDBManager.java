@@ -592,6 +592,7 @@ return nReturnValue;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Method: DBremoveRecord(String fullPathFileName, String deleteRecord)
 //------------------------------------------------------------------------------------------------------------
+/* COMMENTING OUT, NOT WORKING
 public static int DBremoveRecord(String reservationFile, String delRecord){
 
 //Variables
@@ -684,6 +685,7 @@ if (nReturnValue == FOUND_RECORD_TO_DELETE)	{
 
 return nReturnValue;
 }  //method
+*/
 
 /*
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

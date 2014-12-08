@@ -20,6 +20,7 @@ public class ReservationInfo {
     String pathToGuestDB = new File("").getAbsolutePath()+"\\database_files\\guestDatabaseFile.txt";
     String pathToReservDB = new File("").getAbsolutePath()+"\\database_files\\reservationDatabaseFile.txt";
     boolean test;
+    int yearInt, monthIntIn,monthIntOut, dayInt;
     engine.InputManager verify = new engine.InputManager();
     //setters
     //going to search to make sure guest curently exists in DB
@@ -54,8 +55,7 @@ public class ReservationInfo {
         CheckIn = timeIn;
         //Format: WEEKDAY, MONTH, DAY, TIME, ZONE, YEAR
         String[] dateFields;
-        String year, month, day;
-        int yearInt, monthInt, dayInt;
+        String year, month, day, INorOUT = "IN";
         dateFields = CheckIn.split(" "); //need fields 1, 2 and 5
         year = dateFields[5];
         month = dateFields[1];
@@ -63,46 +63,45 @@ public class ReservationInfo {
         //getting integer month from String version
         System.out.println("year: "+year+" month: "+month+" day: "+day); //TEST
         switch(month){
-            case "Dec": monthInt = 12;
+            case "Dec": monthIntIn = 12;
                 break;
-            case "Nov": monthInt = 11;
+            case "Nov": monthIntIn = 11;
                 break;
-            case "Oct": monthInt = 10;
+            case "Oct": monthIntIn = 10;
                 break;
-            case "Sep": monthInt = 9;
+            case "Sep": monthIntIn = 9;
                 break;
-            case "Aug": monthInt = 8;
+            case "Aug": monthIntIn = 8;
                 break;
-            case "Jul": monthInt = 7;
+            case "Jul": monthIntIn = 7;
                 break;
-            case "Jun": monthInt = 6;
+            case "Jun": monthIntIn = 6;
                 break;
-            case "May": monthInt = 5;
+            case "May": monthIntIn = 5;
                 break;
-            case "Apr": monthInt = 4;
+            case "Apr": monthIntIn = 4;
                 break;
-            case "Mar": monthInt = 3;
+            case "Mar": monthIntIn = 3;
                 break;
-            case "Feb": monthInt = 2;
+            case "Feb": monthIntIn = 2;
                 break;
-            case "Jan": monthInt = 1;
+            case "Jan": monthIntIn = 1;
                 break;
             default: System.out.println("Invalid Month"); 
                 return 5;
         }
         yearInt = Integer.parseInt(year);
         dayInt = Integer.parseInt(day);
-        CheckIn = Integer.toString(yearInt)+" "+Integer.toString(monthInt)+" "+Integer.toString(dayInt);
+        CheckIn = Integer.toString(yearInt)+" "+Integer.toString(monthIntIn)+" "+Integer.toString(dayInt);
         System.out.println(CheckIn);    //TEST
-        return verify.verifyCheckInDate(yearInt, monthInt, dayInt, pathToReservDB, RoomNum);
+        return verify.verifyDate(yearInt, monthIntIn, dayInt, pathToReservDB, RoomNum, INorOUT);
     }
     //inputManager handles time clashes within preexisting reservations
     public int setCheckOut(String timeOut){
         //Format: WEEKDAY, MONTH, DAY, TIME, ZONE, YEAR
         CheckOut = timeOut;
         String[] dateFields;
-        String year, month, day;
-        int yearInt, monthInt, dayInt;
+        String year, month, day, INorOUT = "OUT";
         dateFields = CheckOut.split(" "); //need fields 1, 2 and 5
         year = dateFields[5];
         month = dateFields[1];
@@ -110,38 +109,54 @@ public class ReservationInfo {
         //getting integer month from String version
         System.out.println("year: "+year+" month: "+month+" day: "+day); //TEST
         switch(month){
-            case "Dec": monthInt = 12;
+            case "Dec": monthIntOut = 12;
                 break;
-            case "Nov": monthInt = 11;
+            case "Nov": monthIntOut = 11;
                 break;
-            case "Oct": monthInt = 10;
+            case "Oct": monthIntOut = 10;
                 break;
-            case "Sep": monthInt = 9;
+            case "Sep": monthIntOut = 9;
                 break;
-            case "Aug": monthInt = 8;
+            case "Aug": monthIntOut = 8;
                 break;
-            case "Jul": monthInt = 7;
+            case "Jul": monthIntOut = 7;
                 break;
-            case "Jun": monthInt = 6;
+            case "Jun": monthIntOut = 6;
                 break;
-            case "May": monthInt = 5;
+            case "May": monthIntOut = 5;
                 break;
-            case "Apr": monthInt = 4;
+            case "Apr": monthIntOut = 4;
                 break;
-            case "Mar": monthInt = 3;
+            case "Mar": monthIntOut = 3;
                 break;
-            case "Feb": monthInt = 2;
+            case "Feb": monthIntOut = 2;
                 break;
-            case "Jan": monthInt = 1;
+            case "Jan": monthIntOut = 1;
                 break;
             default: System.out.println("Invalid Month"); 
-                return 5;
+                return 6;
+        }
+        //verifying that check out is after check in
+        //check in setting must happen before check out setting for this to work correctly
+        if(yearInt < Integer.parseInt(year)){
+            //invalid date, check out year before check in year
+            System.out.println("check in year is after check out year");
+            return 6;
+        } else if(yearInt == Integer.parseInt(year) && monthIntIn > monthIntOut){
+            //invalid date, check out month before check in month in the same year
+            System.out.println("check out month is before check in month of same year");
+            return 6;
+        } else if(yearInt == Integer.parseInt(year) && monthIntIn == monthIntOut && dayInt >= Integer.parseInt(day)){
+            //invalid date, check in and check out are in same month but on
+            //the same day or check out is on an earlier day
+            System.out.println("check out date is same day or day before check in date of same year and month");
+            return 6;
         }
         yearInt = Integer.parseInt(year);
         dayInt = Integer.parseInt(day);
-        CheckOut = Integer.toString(yearInt)+" "+Integer.toString(monthInt)+" "+Integer.toString(dayInt);
+        CheckOut = Integer.toString(yearInt)+" "+Integer.toString(monthIntOut)+" "+Integer.toString(dayInt);
         System.out.println(CheckOut);    //TEST
-        return 0;
+        return verify.verifyDate(yearInt, monthIntOut, dayInt, pathToReservDB, RoomNum, INorOUT);
     }
     
     public int setSpecialPref(String pref){
